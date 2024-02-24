@@ -3,7 +3,8 @@ import java.util.UUID;
 
 public class Utils {
 
-    public String generateSerialId () {
+    public static String generateSerialId () {
+
         return UUID.randomUUID().toString();
     }
 }
