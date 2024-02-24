@@ -1,15 +1,27 @@
 import java.util.Random;
 
 public class Teacher {
-    private String id;
+    private final String id;
     private String name;
     private double salary;
+    private static int indexTeacher = 1;
 
     public Teacher(String name, double salary) {
-        Random random = new Random();
-        this.id =  Integer.toString(random.nextInt(1000));
+        id = generateID(indexTeacher);
         setName(name);
         setSalary(salary);
+        indexTeacher++;
+    }
+
+    public void getInfo(){
+        System.out.println("Teacher - ID: " + getId() + " | Name: " + getName() + " | Salary: " + getSalary());
+    }
+
+    public boolean getTeacherById(String idToCheck){
+        return this.id.equals(idToCheck);
+    }
+    static String generateID(int indexTeacher){
+        return "T" + Integer.toString(indexTeacher);
     }
 
     //setters
