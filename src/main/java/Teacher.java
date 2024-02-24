@@ -13,6 +13,7 @@ public class Teacher {
         indexTeacher++;
     }
 
+
     public void getInfo(){
         System.out.println("Teacher - ID: " + getId() + " | Name: " + getName() + " | Salary: " + getSalary());
     }
