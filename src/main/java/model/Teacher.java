@@ -1,8 +1,18 @@
 package model;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.UUID;
 
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Teacher {
+
+    @Setter(AccessLevel.NONE)
     private final String teacherId;
     private String name;
     private double salary;
@@ -13,23 +23,4 @@ public class Teacher {
         this.salary = salary;
     }
 
-    public String getTeacherId() {
-        return teacherId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 }
