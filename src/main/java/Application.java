@@ -59,6 +59,7 @@ public class Application {
 
                 System.out.println("Salary: ");
                 double salary = Double.parseDouble(scanner.nextLine());
+
                 Teacher teacher = new Teacher(name, salary);
                 teachersMap.put(teacher.getTeacherId(), teacher );
             }
@@ -70,6 +71,8 @@ public class Application {
             return teachersMap;
 
     }
+
+
 
 }
 
