@@ -1,6 +1,4 @@
-package example;
-
-import java.util.List;
+package org;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package example;
+package org;
 
 import java.util.UUID;
 
@@ -7,7 +7,7 @@ public class Student {
     private String name;
     private String address;
     private String email;
-    private Course course;
+    //private Course course;
 
     // Constructor
     public Student(String name, String address, String email) {
