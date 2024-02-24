@@ -28,12 +28,13 @@ public class Teacher {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public boolean setSalary(double salary) {
         if (salary < 0) {
-            throw new IllegalArgumentException("Salary cannot be negative");
+            return false;
         } else {
             this.salary = salary;
         }
+        return true;
     }
 
 }
