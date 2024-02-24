@@ -9,6 +9,7 @@ public class Application {
 
         createSchoolName();
         teacherDetails();
+        studentDetails();
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -64,11 +65,39 @@ public class Application {
             teachersMap.put(teacher.getTeacherId(), teacher);
         }
 
-        /*for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
+        for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
                 System.out.println("Teacher ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Salary: " + entry.getValue().getSalary());
-            }*/
+            }
 
           return teachersMap;
+
+    }
+
+    private static Map<String,Student> studentDetails() {
+        Map<String,Student> studentMap = new HashMap<>();
+        int number = number(SchoolComponents.STUDENTS);
+        scanner.nextLine();
+        for (int i = 0; i < number; i++) {
+            System.out.println("Enter details for Student " + (i + 1) + ":");
+
+            System.out.println("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Adress: ");
+            String adress = scanner.nextLine();
+
+            System.out.println("Email: ");
+            String email = scanner.nextLine();
+
+            Student student = new Student(name, adress, email);
+            studentMap.put(student.getStudentId(), student);
+        }
+
+        for (Map.Entry<String, Student> entry : studentMap.entrySet()) {
+                System.out.println("Student ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Adress: " + entry.getValue().getAddress() + ", Email: " + entry.getValue().getEmail());
+            }
+
+        return studentMap;
 
     }
 

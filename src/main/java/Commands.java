@@ -37,7 +37,7 @@ public class Commands {
         this.teacherList = teacherList;
     }
 
-    public void commandSelector(CommandEnum commandAction){
+ /*   public void commandSelector(CommandEnum commandAction){
         String studentID = "asdfasdf";
         String courseID = "asdfasdf";
         String teacherID = "asdfasdf";
@@ -73,7 +73,7 @@ public class Commands {
             System.err.println("The command selected is not available");
             break;
         }
-    }
+    } */
 
     public void enroll(String studentID, String courseID){ // This command will help enroll the student specified in the corresponding course. While also updating the money_earned of that course based on its price
     }
