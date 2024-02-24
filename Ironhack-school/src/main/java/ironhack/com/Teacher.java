@@ -10,6 +10,6 @@ public class Teacher extends Person {
 
     public Teacher(String name, double salary) {
         super(name);
-        this.salary = salary;
+        setSalary(salary);
     }
 }
