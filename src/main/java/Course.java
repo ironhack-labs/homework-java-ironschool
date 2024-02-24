@@ -7,7 +7,7 @@ public class Course {
 
     private double price;
     private double money_earned;
-    //private Teacher teacher; Add it once Teacher class is created
+    private Teacher teacher;
 
 
     public Course(String courseId, String name, double price, double money_earned) {
@@ -49,11 +49,11 @@ public class Course {
         this.money_earned = money_earned;
     }
 
-    /*public Teacher getTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
-    }*/
+    }
 }
