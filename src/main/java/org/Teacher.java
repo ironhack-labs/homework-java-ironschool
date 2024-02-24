@@ -1,3 +1,5 @@
+package org;
+
 import java.util.Random;
 
 public class Teacher {
