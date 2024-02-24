@@ -1,12 +1,18 @@
 package model;
 
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 @EqualsAndHashCode
 public class Course {
 
+    @Setter(AccessLevel.NONE)
     private final String courseId;
     private String name;
     private double price;
