@@ -4,7 +4,7 @@ public enum SchoolComponents {
     STUDENTS ("students"),
     COURSES ("courses");
 
-    private String label;
+    private final String label;
 
     SchoolComponents(String label) {
         this.label = label;
@@ -14,4 +14,7 @@ public enum SchoolComponents {
     public String toString() {
         return label;
     }
+
+
+
 }

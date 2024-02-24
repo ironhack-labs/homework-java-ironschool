@@ -9,11 +9,8 @@ public class Application {
 
         createSchoolName();
         teacherDetails();
-
-
-
-
     }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     private static void createSchoolName() {
@@ -46,7 +43,6 @@ public class Application {
 
         } while (number <= 0);
 
-
         return number;
 
     }
@@ -68,9 +64,9 @@ public class Application {
             teachersMap.put(teacher.getTeacherId(), teacher);
         }
 
-        for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
+        /*for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
                 System.out.println("Teacher ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Salary: " + entry.getValue().getSalary());
-            }
+            }*/
 
           return teachersMap;
 
