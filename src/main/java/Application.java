@@ -63,9 +63,9 @@ public class Application {
                 teachersMap.put(teacher.getTeacherId(), teacher );
             }
 
-            for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
+           /* for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
                 System.out.println("Teacher ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Salary: " + entry.getValue().getSalary());
-            }
+            }*/
 
             return teachersMap;
 
