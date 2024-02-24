@@ -1,4 +1,4 @@
-package org;
+package example;
 
 import java.util.List;
 
