@@ -11,13 +11,13 @@ public class School {
     private List<Teacher> teacherList;
     private List<Course> courseList;
 
-    private void showStudents() {
+    public void showStudents() {
         for (Student student : studentList) {
             student.printInfo();
         }
     }
 
-    private Student lookupStudent(String studentId) {
+    public Student lookupStudent(String studentId) {
         for(Student student : studentList) {
             if (Objects.equals(student.getId(), studentId)) {
                 return student;
@@ -26,7 +26,7 @@ public class School {
         return null;
     }
 
-//    private Object lookupObject(String id, List<Object> objectList) {
+//    public Object lookupObject(String id, List<Object> objectList) {
 //        for(Object object : objectList) {
 //            if (Objects.equals(object.getId(), id)) {
 //                return object;
@@ -35,13 +35,13 @@ public class School {
 //        return null;
 //    }
 
-    private void showCourses() {
+    public void showCourses() {
         for (Course course : courseList) {
             course.printInfo();
         }
     }
 
-    private Course lookupCourse(String courseId) {
+    public Course lookupCourse(String courseId) {
         for(Course course : courseList) {
             if (Objects.equals(course.getId(), courseId)) {
                 return course;
@@ -50,12 +50,12 @@ public class School {
         return null;
     }
 
-    private void showTeachers() {
+    public void showTeachers() {
         for (Teacher teacher : teacherList) {
             teacher.printInfo();
         }    }
 
-    private Teacher lookupTeacher(String teacherId) {
+    public Teacher lookupTeacher(String teacherId) {
         for(Teacher teacher : teacherList) {
             if (Objects.equals(teacher.getId(), teacherId)) {
                 return teacher;
@@ -64,5 +64,15 @@ public class School {
         return null;
     }
 
-
+    public double calculateProfit() {
+        // TODO: exception handling
+        double profit = 0;
+        for (Course course : courseList) {
+            profit += course.getMoney_earned();
+        }
+        for (Teacher teacher : teacherList) {
+            profit -= teacher.getSalary();
+        }
+        return profit;
+    }
 }
