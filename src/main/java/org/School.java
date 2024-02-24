@@ -1,44 +1,55 @@
 package org;
+import java.util.HashMap;
 import java.util.List;
 
 public class School {
     private String name;
-    private List<Course> listCourse;
+    HashMap<String, Course> courseMap;
+    HashMap<String, Teacher> teacherMap;
+    HashMap<String, Student> studentMap;
 
-    private List<Teacher> listTeacher;
 
-    private List<Student> listStudent;
-
-    public School(String name, List<Course> listCourse, List<Teacher> listTeacher, List<Student> listStudent) {
+    public School(String name, List<Teacher> listTeacher, List<Course> listCourse, List<Student> listStudent) {
         setName(name);
-        setListCourse(listCourse);
-        setListTeacher(listTeacher);
-        setListStudent(listStudent);
+        setHashmapTeacher(listTeacher);
+        setHashmapCourse(listCourse);
+        setHashmapStudent(listStudent);
     }
 
     public void setName(String name) {
         this.name = name;
     }
-    public void setListCourse(List<Course> listCourse) {
-        this.listCourse = listCourse;
+
+    public void setHashmapTeacher(List<Teacher> listTeacher) {
+        teacherMap = new HashMap<>();
+        for (Teacher teacher : listTeacher){
+            teacherMap.put(teacher.getTeacherId(), teacher);
+        }
     }
-    public void setListTeacher(List<Teacher> listTeacher) {
-        this.listTeacher = listTeacher;
+    public void setHashmapCourse(List<Course> listCourse) {
+        courseMap = new HashMap<>();
+        for (Course course : listCourse){
+            courseMap.put(course.getCourseId(), course);
+        }
     }
-    public void setListStudent(List<Student> listStudent) {
-        this.listStudent = listStudent;
+    public void setHashmapStudent(List<Student> listStudent) {
+        studentMap = new HashMap<>();
+        for (Student student : listStudent){
+            studentMap.put(student.getStudentId(), student);
+        }
     }
 
     public String getName() {
         return this.name;
     }
-    public List<Course> getListCourse() {
-        return this.listCourse;
+    public HashMap<String, Course> getCourseMap() {
+        return this.courseMap;
     }
-    public List<Teacher> getListTeacher() {
-        return this.listTeacher;
+    public HashMap<String, Teacher> getTeacherMap() {
+        return this.teacherMap;
     }
-    public List<Student> getListStudent() {
-        return this.listStudent;
+
+    public HashMap<String, Student> getStudentMap() {
+        return this.studentMap;
     }
 }
