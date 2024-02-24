@@ -2,6 +2,8 @@ package org;
 
 import java.util.List;
 
+import static org.School.getCourseById;
+
 public class Command {
     public void displayCommands(){
         System.out.println("1. Enroll a new student");
@@ -17,7 +19,20 @@ public class Command {
 
     public void enrollStudent(String studentId, String courseId){}
 
-    public void assignTeacher(String teacherId, String courseId){}
+    public void assignTeacher(String teacherId, String courseId){
+        //find course by id, getCourseMap() tiene que ser static
+        Course course = getCourseById(courseId, School.getCourseMap());
+        //find teacher by teacher id, getTeacherMap() tiene que ser static
+        Teacher teacher = getTeacherById(teacherId, School.getTeacherMap());
+        //set teacher to course
+        if(course == null){
+            System.out.println("Course doesn't exist");
+        } else {
+            course.setTeacher(teacher);
+        }
+    }
+
+
 
     public List<Course> showCourses(){}
 
