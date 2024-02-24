@@ -43,7 +43,6 @@ public class Commands {
         String teacherID = "asdfasdf";
         switch (commandAction){
         case ENROLL:
-
             enroll(studentID,courseID);
             break;
         case ASSIGN:
@@ -91,12 +90,13 @@ public class Commands {
     }
 
     public void LookupCourse(String courseID){ // This command will display the full details of the specified course
-        if(courseList.containsKey(courseID)){
+        if(courseList.containsKey(courseID)) {
             System.out.println("Course ID: " + courseID);
             System.out.println("Course Name: " + courseList.get(courseID).getName());
             System.out.println("Course Price: " + courseList.get(courseID).getPrice());
             System.out.println("Course Money Earned: " + courseList.get(courseID).getMoney_earned());
             System.out.println("Course Teacher: " + courseList.get(courseID).getTeacher().getName());
+        }
     }
 
     public void ShowStudents(){ //This command will display a list of all students
