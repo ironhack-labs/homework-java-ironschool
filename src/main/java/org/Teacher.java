@@ -1,30 +1,27 @@
 package org;
 
-import java.util.Random;
-
 public class Teacher {
-    private final String id;
+    private String id;
     private String name;
     private double salary;
-    private static int indexTeacher = 1;
+    private static int idCounter = 1;
 
     public Teacher(String name, double salary) {
-        id = generateID(indexTeacher);
+        assignTeacherId();
         setName(name);
         setSalary(salary);
-        indexTeacher++;
     }
 
 
     public void getInfo(){
-        System.out.println("Teacher - ID: " + getId() + " | Name: " + getName() + " | Salary: " + getSalary());
+        System.out.println("Teacher - ID: " + getTeacherId() + " | Name: " + getName() + " | Salary: " + getSalary());
     }
 
     public boolean getTeacherById(String idToCheck){
         return this.id.equals(idToCheck);
     }
-    static String generateID(int indexTeacher){
-        return "T" + Integer.toString(indexTeacher);
+    private void assignTeacherId(){
+        this.id = "T" + String.valueOf(idCounter++);
     }
 
     //setters
@@ -37,7 +34,7 @@ public class Teacher {
     }
 
     //getters
-    public String getId() {
+    public String getTeacherId() {
         return this.id;
     }
 
