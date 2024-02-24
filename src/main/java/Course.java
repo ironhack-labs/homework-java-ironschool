@@ -3,6 +3,8 @@ import java.util.UUID;
 public class Course {
     private String courseId;
     private String name;
+
+
     private double price;
     private double money_earned;
     //private Teacher teacher; Add it once Teacher class is created
