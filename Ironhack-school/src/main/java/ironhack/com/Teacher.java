@@ -12,4 +12,10 @@ public class Teacher extends Person {
         super(name);
         setSalary(salary);
     }
+
+    public void printInfo() {
+        System.out.println("Id: " + getId()
+                + ", Name: " + getName()
+                + ", Salary: " + getSalary());
+    }
 }

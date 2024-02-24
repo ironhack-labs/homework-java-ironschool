@@ -12,7 +12,9 @@ public class School {
     private List<Course> courseList;
 
     private void showStudents() {
-        // codigo
+        for (Student student : studentList) {
+            student.printInfo();
+        }
     }
 
     private Student lookupStudent(String studentId) {
@@ -34,7 +36,9 @@ public class School {
 //    }
 
     private void showCourses() {
-
+        for (Course course : courseList) {
+            course.printInfo();
+        }
     }
 
     private Course lookupCourse(String courseId) {
@@ -47,8 +51,9 @@ public class School {
     }
 
     private void showTeachers() {
-        // codigo
-    }
+        for (Teacher teacher : teacherList) {
+            teacher.printInfo();
+        }    }
 
     private Teacher lookupTeacher(String teacherId) {
         for(Teacher teacher : teacherList) {

@@ -33,4 +33,12 @@ public class Course {
     public void assign(Teacher teacher) {
         setTeacher(teacher);
     }
+
+    public void printInfo() {
+        System.out.println("Id: " + getId()
+                + ", Name: " + getName()
+                + ", Price: " + getPrice()
+                + ", Money Earned: " + getMoney_earned()
+                + ", Teacher: " + getTeacher().getName());
+    }
 }
