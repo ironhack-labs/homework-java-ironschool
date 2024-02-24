@@ -22,4 +22,12 @@ public class Student extends Person{
         this.email = email;
         this.courseList = courseList;
     }
+
+    public void printInfo() {
+        System.out.println("Id: " + getId()
+                + ", Name: " + getName()
+                + ", Address: " + getAddress()
+                + ", Email: " + getEmail()
+                + ", Courses: " + getCourseList().toString());
+    }
 }
