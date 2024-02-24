@@ -54,4 +54,9 @@ public class Student {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    // Helper
+    public void getInfo() {
+        System.out.println("Student - ID: " + this.studentId + " | Name: " + getName() + " | Address: " + getAddress() + " | Email: " + getEmail());
+    }
 }
