@@ -1,4 +1,6 @@
-package example;
+package org;
+
+import org.Teacher;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Course {
         return courseId;
     }
 
-    public void assignCourseId() {
+    private void assignCourseId() {
         this.courseId = "C" + String.valueOf(idCounter++);
     }
 
@@ -76,6 +78,8 @@ public class Course {
     public Teacher getTeacher(){
         return this.teacher;
     }
+
+    // TODO - move to Utils
     public static Course getCourseById(String id, List<Course> courseList){
         for (Course course : courseList) {
             if (course.getCourseId().equals(id)) {
@@ -92,6 +96,8 @@ public class Course {
                 + "Taught by: " + getTeacher() +"}";
         //falta añadir getter del name del Teacher
     }
+
+    // TODO - move to Utils
     public static String getAllCourses(List<Course> courseList){
         StringBuilder allCoursesInfo = new StringBuilder();
         for (Course course : courseList) {
