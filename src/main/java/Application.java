@@ -23,23 +23,23 @@ public class Application {
 
     }
 
-    private static int number(SchoolComponents classToCount) {
+    private static int number(SchoolComponents schoolComponents) {
         int number;
 
         do {
-            System.out.println(String.format("How many %s are there in the school: ", classToCount));
+            System.out.println(String.format("How many %s are there in the school: ", schoolComponents));
             while (!scanner.hasNextInt()) {
-                System.out.println(String.format("Please enter a valid number for the %s ", classToCount));
+                System.out.println(String.format("Please enter a valid number for the %s ", schoolComponents));
                 scanner.next();
             }
             number = scanner.nextInt();
 
             if (number <= 0) {
-                System.err.println(String.format("The number of %s can't be 0 or negative", classToCount));
+                System.err.println(String.format("The number of %s can't be 0 or negative", schoolComponents));
             } else if (number == 1) {
-                System.out.println(String.format("In your school there is only " + number + " %s", classToCount));
+                System.out.println(String.format("In your school there is only " + number + " %s", schoolComponents));
             } else {
-                System.out.println(String.format("In your school there are " + number + " %s", classToCount));
+                System.out.println(String.format("In your school there are " + number + " %s", schoolComponents));
             }
 
         } while (number <= 0);
