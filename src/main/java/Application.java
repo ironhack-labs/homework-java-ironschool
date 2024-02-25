@@ -23,7 +23,7 @@ public class Application {
 
     }
 
-    private static int number(SchoolComponents schoolComponents) {
+    private static int numberOfComponents(SchoolComponents schoolComponents) {
         int number;
 
         do {
@@ -50,7 +50,7 @@ public class Application {
 
     private static Map<String,Teacher> teacherDetails() {
         Map<String,Teacher> teachersMap = new HashMap<>();
-        int number = number(SchoolComponents.TEACHERS);
+        int number = numberOfComponents(SchoolComponents.TEACHERS);
         scanner.nextLine();
         for (int i = 0; i < number; i++) {
             System.out.println("Enter details for Teacher " + (i + 1) + ":");
@@ -75,7 +75,7 @@ public class Application {
 
     private static Map<String,Student> studentDetails() {
         Map<String,Student> studentMap = new HashMap<>();
-        int number = number(SchoolComponents.STUDENTS);
+        int number = numberOfComponents(SchoolComponents.STUDENTS);
         scanner.nextLine();
         for (int i = 0; i < number; i++) {
             System.out.println("Enter details for Student " + (i + 1) + ":");
@@ -100,7 +100,6 @@ public class Application {
         return studentMap;
 
     }
-
 
 
 }
