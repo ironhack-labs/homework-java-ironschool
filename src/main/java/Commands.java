@@ -41,10 +41,11 @@ public class Commands {
         String studentID = "asdfasdf";
         String courseID = "asdfasdf";
         String teacherID = "asdfasdf";
+
         switch (commandAction){
         case ENROLL:
-
             enroll(studentID,courseID);
+
             break;
         case ASSIGN:
             assign(teacherID,courseID);
@@ -76,11 +77,20 @@ public class Commands {
         }
     }
 
-    public void enroll(String studentID, String courseID){ // This command will help enroll the student specified in the corresponding course. While also updating the money_earned of that course based on its price
+    public void enroll(Student studentID, Course courseID) {
+        Course course = courseID;
+        Student student = studentID;
+
+        courseID.courseEnroll(studentID, courseID);
+
+        // Increase money earned
+        courseID.setMoney_earned(courseID.getMoney_earned() + courseID.getPrice());
     }
 
-    public void assign(String teacherID,String courseID){   //This command will help assign the teacher specified to the corresponding course
+    public void assign(Teacher teacherID,Course courseID){   //This command will help assign the teacher specified to the corresponding course
+        Teacher teacher = teacherID;
 
+        courseID.setTeacher(teacherID);
     }
 
     public void ShowCourses(){    //This command will display a list of all courses

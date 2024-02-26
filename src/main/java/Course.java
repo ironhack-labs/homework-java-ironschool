@@ -1,4 +1,5 @@
 
+import java.util.HashMap;
 import java.util.UUID;
 public class Course {
     private String courseId;
@@ -8,6 +9,7 @@ public class Course {
     private double price;
     private double money_earned;
     private Teacher teacher;
+    private HashMap<String, Course> courseList = new HashMap<String, Course>();
 
 
     public Course(String courseId, String name, double price, double money_earned) {
@@ -55,5 +57,9 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public void courseEnroll(Student student, Course x){
+        courseList.put(student.getStudentId(), x);
     }
 }
