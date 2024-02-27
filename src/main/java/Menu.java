@@ -8,8 +8,7 @@ public class Menu {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String welcomeMenu = FigletFont.convertOneLine("Iron-School");
-        System.out.println(welcomeMenu);
+        System.out.println(FigletFont.convertOneLine("Iron-School"));
         int selectedOption = showPrincipalMenuAndRetrieveOption(sc);
         System.out.println("Option Selected: " + selectedOption);
     }
@@ -19,15 +18,16 @@ public class Menu {
             System.out.println(OPTION_DATA_ENTRY + " -> Data Entry");
             System.out.println(OPTION_SCHOOL_MANAGEMENT + " -> School Management");
 
+
             int selectedOption = -1;
             while (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
                 try {
                     selectedOption = sc.nextInt();
                     if (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
-                        System.out.println("Invalid option. Please enter either " + OPTION_DATA_ENTRY + " or " + OPTION_SCHOOL_MANAGEMENT);
+                        System.err.println("Invalid option. Please enter either " + OPTION_DATA_ENTRY + " or " + OPTION_SCHOOL_MANAGEMENT);
                     }
                 } catch (NoSuchElementException e) {
-                    System.out.println("Invalid input. Please enter a number.");
+                    System.err.println("Invalid input. Please enter a number.");
                     sc.nextLine();
                 }
             }
