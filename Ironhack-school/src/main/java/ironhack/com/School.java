@@ -1,76 +1,88 @@
 package ironhack.com;
+
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 @Getter
 @Setter
 public class School {
-    private List<Student> studentList;
-    private List<Teacher> teacherList;
-    private List<Course> courseList;
+    private String name;
+    private Map<String, Student> student_map = new HashMap<>();
+    private Map<String, Teacher> teacher_map = new HashMap<>();
+    private Map<String, Course> course_map = new HashMap<>();
+
+    public School(String name) {
+        this.name = name;
+    }
 
     public void showStudents() {
-        for (Student student : studentList) {
+        student_map.forEach((id, student) -> {
             student.printInfo();
-        }
+        });
     }
 
     public Student lookupStudent(String studentId) {
-        for(Student student : studentList) {
-            if (Objects.equals(student.getId(), studentId)) {
-                return student;
-            }
-        }
-        return null;
+        return student_map.get(studentId);
     }
 
-//    public Object lookupObject(String id, List<Object> objectList) {
-//        for(Object object : objectList) {
-//            if (Objects.equals(object.getId(), id)) {
-//                return object;
-//            }
-//        }
-//        return null;
-//    }
+    public void setListToStudentMap(List<Student> students) {
+        Map<String, Student> students_map = new HashMap<>();
+
+        for (Student student : students) {
+            students_map.put(student.getId(), student);
+        }
+        setStudent_map(students_map);
+    }
+
+    public void setListToCourseMap(List<Course> courses) {
+        Map<String, Course> courses_map = new HashMap<>();
+        for (Course course : courses) {
+            courses_map.put(course.getId(), course);
+        }
+        setCourse_map(courses_map);
+    }
+
+    public void setListToTeacherMap(List<Teacher> teachers) {
+
+        Map<String, Teacher> teachers_map = new HashMap<>();
+        for (Teacher teacher : teachers) {
+            teachers_map.put(teacher.getId(), teacher);
+        }
+        setTeacher_map(teachers_map);
+    }
 
     public void showCourses() {
-        for (Course course : courseList) {
+        course_map.forEach((id, course) -> {
             course.printInfo();
-        }
+        });
     }
 
     public Course lookupCourse(String courseId) {
-        for(Course course : courseList) {
-            if (Objects.equals(course.getId(), courseId)) {
-                return course;
-            }
-        }
-        return null;
+        return course_map.get(courseId);
     }
 
     public void showTeachers() {
-        for (Teacher teacher : teacherList) {
+        teacher_map.forEach((id, teacher) -> {
             teacher.printInfo();
-        }    }
+        });
+    }
 
     public Teacher lookupTeacher(String teacherId) {
-        for(Teacher teacher : teacherList) {
-            if (Objects.equals(teacher.getId(), teacherId)) {
-                return teacher;
-            }
-        }
-        return null;
+        return teacher_map.get(teacherId);
     }
 
     public double calculateProfit() {
         // TODO: exception handling
         double profit = 0;
-        for (Course course : courseList) {
+        for (Course course : course_map.values()) {
             profit += course.getMoney_earned();
         }
-        for (Teacher teacher : teacherList) {
+        ;
+        for (Teacher teacher : teacher_map.values()) {
             profit -= teacher.getSalary();
         }
         return profit;

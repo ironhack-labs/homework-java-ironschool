@@ -5,7 +5,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Student extends Person{
+public class Student extends Person {
     private String address;
     private String email;
     private List<Course> courseList;
@@ -28,6 +28,6 @@ public class Student extends Person{
                 + ", Name: " + getName()
                 + ", Address: " + getAddress()
                 + ", Email: " + getEmail()
-                + ", Courses: " + getCourseList().toString());
+                + ", Courses: " + (getCourseList() != null ? getCourseList().toString() : "N/A"));
     }
 }
