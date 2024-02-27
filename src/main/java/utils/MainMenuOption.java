@@ -1,13 +1,15 @@
+package utils;
+
 import lombok.Getter;
 
 @Getter
-public enum MainMenuOptions {
+public enum MainMenuOption {
         OPTION_DATA_ENTRY("Data Entry"),
         OPTION_SCHOOL_MANAGEMENT("School Management");
 
         private final String description;
 
-        MainMenuOptions(String description) {
+        MainMenuOption(String description) {
             this.description = description;
         }
 
