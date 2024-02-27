@@ -39,6 +39,6 @@ public class Course {
                 + ", Name: " + getName()
                 + ", Price: " + getPrice()
                 + ", Money Earned: " + getMoney_earned()
-                + ", Teacher: " + getTeacher().getName());
+                + ", Teacher: " +(getTeacher() != null ? getTeacher().getName() : "N/A"));
     }
 }
