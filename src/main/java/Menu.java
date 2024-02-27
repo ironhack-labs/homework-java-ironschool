@@ -1,6 +1,8 @@
 import com.github.lalyos.jfiglet.FigletFont;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Menu {
     private static final int OPTION_DATA_ENTRY = 1;
@@ -15,9 +17,7 @@ public class Menu {
 
         public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
             System.out.println("Select option");
-            System.out.println(OPTION_DATA_ENTRY + " -> Data Entry");
-            System.out.println(OPTION_SCHOOL_MANAGEMENT + " -> School Management");
-
+            Stream.of(MainMenuOptions.values()).forEach(opt -> System.out.println((opt.ordinal() + 1) + " - " + opt.getDescription()) );
 
             int selectedOption = -1;
             while (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
