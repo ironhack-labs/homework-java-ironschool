@@ -11,8 +11,7 @@ public class Menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println(FigletFont.convertOneLine("Iron-School"));
-        int selectedOption = showPrincipalMenuAndRetrieveOption(sc);
-        System.out.println("Option Selected: " + selectedOption);
+        System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(sc));
     }
 
         public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
