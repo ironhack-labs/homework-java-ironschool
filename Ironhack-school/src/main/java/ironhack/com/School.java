@@ -87,4 +87,29 @@ public class School {
         }
         return profit;
     }
+
+    public void enroll(String studentId, String courseId) {
+        Student student = findStudentById(studentId);
+        Course course = findCourseById(courseId);
+
+        if (student == null) {
+            throw new IllegalArgumentException("Student not found.");
+        }
+
+        if (course == null) {
+            throw new IllegalArgumentException("Course not found.");
+        }
+
+        course.setMoney_earned(course.getPrice());
+        student.enrollInCourse(course);
+
+    }
+
+    private Student findStudentById(String studentId) {
+        return student_map.get(studentId);
+    }
+
+    private Course findCourseById(String courseId) {
+        return course_map.get(courseId);
+    }
 }
