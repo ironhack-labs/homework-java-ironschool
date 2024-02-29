@@ -128,7 +128,6 @@ public class Commands {
                 System.err.println("The command selected is not available");
                 break;
         }
-        scanner.close();
     }
 
     public void enroll(String studentID, String courseID) {

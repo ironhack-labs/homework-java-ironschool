@@ -136,8 +136,8 @@ public class Application {
     }
 
     public static void Selector(Commands comandos){
-        Scanner scanner = new Scanner(System.in);
         while(true) {
+            Scanner scanner = new Scanner(System.in);
             System.out.println(("Do you want to use a command? (y/n)"));
             String response = scanner.next();
             scanner.nextLine();
@@ -190,7 +190,6 @@ public class Application {
                     System.err.println("The option selected is not available");
                 }
             } else if (response.equals("n")) {
-                scanner.close();
                 return;
             } else {
                 System.err.println("You typed a non-valid option");
