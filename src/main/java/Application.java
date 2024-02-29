@@ -83,21 +83,46 @@ public class Application {
             System.out.println("Name: ");
             String name = scanner.nextLine();
 
-            System.out.println("Adress: ");
-            String adress = scanner.nextLine();
+            System.out.println("Address: ");
+            String address = scanner.nextLine();
 
             System.out.println("Email: ");
             String email = scanner.nextLine();
 
-            Student student = new Student(name, adress, email);
+            Student student = new Student(name, address, email);
             studentMap.put(student.getStudentId(), student);
         }
 
         for (Map.Entry<String, Student> entry : studentMap.entrySet()) {
-                System.out.println("Student ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Adress: " + entry.getValue().getAddress() + ", Email: " + entry.getValue().getEmail());
+                System.out.println("Student ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Address: " + entry.getValue().getAddress() + ", Email: " + entry.getValue().getEmail());
             }
 
         return studentMap;
+
+    }
+
+    private static Map<String,Course> courseDetails() {
+        Map<String,Course> coursesMap = new HashMap<>();
+        int number = numberOfComponents(SchoolComponents.COURSES);
+        scanner.nextLine();
+        for (int i = 0; i < number; i++) {
+            System.out.println("Enter details for Course " + (i + 1) + ":");
+
+            System.out.println("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Price: ");
+            double price = Double.parseDouble(scanner.nextLine());
+
+            Course course = new Course(null, name, price, 000000); //SE TIENE QUE MIRAR EL TEMA DEL CONSTRUCTOR!!!
+            coursesMap.put(course.getCourseId(), course);
+        }
+
+        for (Map.Entry<String, Course> entry : coursesMap.entrySet()) {
+            System.out.println("Course ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Price: " + entry.getValue().getPrice());
+        }
+
+        return coursesMap;
 
     }
 
