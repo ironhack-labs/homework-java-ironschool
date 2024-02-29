@@ -70,6 +70,11 @@ public class Menu {
             double salary = scanner.nextDouble();
             scanner.nextLine();
             Teacher teacher = new Teacher(name, salary);
+            // Create teacher using Builder
+//            Teacher teacher = Teacher.builder()
+//                                        .name(name)
+//                                        .salary(salary)
+//                                        .build();
             System.out.println("Teacher " + teacher.getName() + " created with ID: " + teacher.getTeacherId());
         }
     }
