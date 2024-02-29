@@ -12,11 +12,6 @@ public class Teacher {
         setSalary(salary);
     }
 
-
-    public void getInfo(){
-        System.out.println("Teacher - ID: " + getTeacherId() + " | Name: " + getName() + " | Salary: " + getSalary());
-    }
-
     public boolean getTeacherById(String idToCheck){
         return this.id.equals(idToCheck);
     }
@@ -45,4 +40,10 @@ public class Teacher {
     public double getSalary() {
         return this.salary;
     }
+
+    public String getInfo(){
+        return ("Teacher - ID: " + getTeacherId() + " | Name: " +
+            getName() + " | Salary: " + getSalary());
+    }
+
 }
