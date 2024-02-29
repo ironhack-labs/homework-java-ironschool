@@ -13,14 +13,6 @@ public class Teacher extends Person {
         setSalary(salary);
     }
 
-    public void setSalary(double salary) {
-        if (Double.isNaN(salary)) {
-            System.err.println("The input for salary must be a number");
-        } else {
-            this.salary = salary;
-        }
-    }
-
     public void printInfo() {
         System.out.println("Id: " + getId()
                 + ", Name: " + getName()
