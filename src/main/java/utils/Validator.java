@@ -17,6 +17,15 @@ public class Validator {
         return validator;
     }
 
+    public static boolean isNumberValid(String number, int maxNumber) {
+        boolean isValidNumber = true;
+        if (!patternMatches(number, "^(?:[1-9]|" + maxNumber + ")$")) {
+            System.out.printf("The valid range is from 1 to %s%n", maxNumber);
+            isValidNumber = false;
+        }
+        return isValidNumber;
+    }
+
     public static boolean isEmailValid(String email) {
         return patternMatches(email, "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
     }
