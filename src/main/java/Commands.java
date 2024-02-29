@@ -132,6 +132,17 @@ public class Commands {
     }
 
     public void ShowProfit(){ //This command will calculate (The total money earned from all courses) - (The sum of all the teachers' salaries) and return the result
+        if (courseList.isEmpty())
+            return ;
+
+        double profit = 0;
+        for (Course oneCourse : courseList.values()) {
+            profit += oneCourse.getMoney_earned();
+            if (oneCourse.getTeacher() != null)
+                profit -= oneCourse.getTeacher().getSalary();
+        }
+
+        System.out.println("Total profit: " + profit + "€");
     }
 }
 
