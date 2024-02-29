@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,48 +42,99 @@ public class Commands {
         String studentID = "asdfasdf";
         String courseID = "asdfasdf";
         String teacherID = "asdfasdf";
+
         switch (commandAction){
         case ENROLL:
             enroll(studentID,courseID);
+
             break;
         case ASSIGN:
             assign(teacherID,courseID);
             break;
+
         case SHOW_COURSES:
             ShowCourses();
             break;
+
         case LOOKUP_COURSE:
             LookupCourse(courseID);
             break;
+
         case SHOW_STUDENTS:
             ShowStudents();
             break;
+
         case LOOKUP_STUDENT:
             LookupStudent(studentID);
             break;
+
         case SHOW_TEACHERS:
             ShowTeachers();
             break;
+
         case LOOKUP_TEACHER:
             LookupTeacher(teacherID);
             break;
+
         case SHOW_PROFIT:
             ShowProfit();
             break;
+
         default:
             System.err.println("The command selected is not available");
             break;
         }
     }
 
-    public void enroll(String studentID, String courseID){ // This command will help enroll the student specified in the corresponding course. While also updating the money_earned of that course based on its price
+    public void enroll(Student studentID, Course courseID) {
+        Course course = courseID;
+        Student student = studentID;
+
+        courseID.courseEnroll(studentID, courseID);
+
+        // Increase money earned
+        courseID.setMoney_earned(courseID.getMoney_earned() + courseID.getPrice());
     }
 
-    public void assign(String teacherID,String courseID){   //This command will help assign the teacher specified to the corresponding course
+    public void assign(Teacher teacherID,Course courseID){   //This command will help assign the teacher specified to the corresponding course
+        Teacher teacher = teacherID;
 
+        courseID.setTeacher(teacherID);
     }
 
     public void ShowCourses(){    //This command will display a list of all courses
+        for (Course course : courseList.values()){
+            System.out.println(course.getName());
+        };
+    }
+
+    public void LookupCourse(String courseID){ // This command will display the full details of the specified course
+        Course x = courseList.get(courseID);
+
+        System.out.println(x.getName());
+        System.out.println(x.getPrice());
+        System.out.println(x.getTeacher());
+        System.out.println(x.getClass());
+    }
+
+    public void ShowStudents(){ //This command will display a list of all students
+        for (Student student : studentList.values()){
+            System.out.println(student.getName());
+        }
+    }
+
+    public void LookupStudent(Student studentID){ //This command will display the full details of the specified student
+        Student student = studentList.get(studentID);
+
+        System.out.println(student.getName());
+        System.out.println(student.getAddress());
+        System.out.println(student.getCourse());
+        System.out.println(student.getEmail());
+    }
+
+    public void ShowTeachers(){ //This command will display a list of all teachers
+        for (Teacher teacher : teacherList.values()){
+            System.out.println(teacher.getName());
         System.out.println("List of Courses: ");
         for (Map.Entry<String, Course> entry : courseList.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue().getName());
@@ -124,6 +176,11 @@ public class Commands {
     }
 
     public void LookupTeacher(String teacherID){ // This command will display the full details of the specified teacher
+        Teacher teacher = teacherList.get(teacherID);
+
+        System.out.println(teacher.getName());
+        System.out.println(teacher.getSalary());
+        System.out.println(teacher.getClass());
         if(teacherList.containsKey(teacherID)){
             System.out.println("Teacher ID: " + teacherID);
             System.out.println("Teacher Name: " + teacherList.get(teacherID).getName());
