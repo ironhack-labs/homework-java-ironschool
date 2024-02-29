@@ -3,6 +3,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 @Setter
 @Getter
@@ -19,51 +20,115 @@ public class Commands {
     }
 
     public void commandSelector(CommandEnum commandAction){
-        String studentID = "asdfasdf";
-        String courseID = "asdfasdf";
-        String teacherID = "asdfasdf";
-
+        String studentID = "";
+        String courseID = "";
+        String teacherID = "";
+        Scanner scanner = new Scanner(System.in);
         switch (commandAction){
-        case ENROLL:
-            enroll(studentID, courseID);
+            case ENROLL:
+                System.out.println("Which course do you want to enroll? (write the id):\n");
+                courseList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName() + " ");
+                });
+                try {
+                    courseID = scanner.next();
+                    System.out.println("Which student do you want to enroll in this course? (write the id):\n");
+                    studentList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName()+ " ");
+                    });
+                    try {
+                        studentID = scanner.next();
+                        enroll(studentID, courseID);
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+                break;
+            case ASSIGN:
+                System.out.println("In which course do you want to assign a teacher? (write the id):\n");
+                courseList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName() + " ");
+                });
+                try{
+                    courseID = scanner.next();
+                    System.out.println("Which teacher do you want to assign to this course? (write the id):\n");
+                    teacherList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName()+ " ");
 
-            break;
-        case ASSIGN:
-            assign(teacherID, courseID);
-            break;
+                    });
+                    try {
+                        studentID = scanner.next();
+                        assign(teacherID, courseID);
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+                break;
 
-        case SHOW_COURSES:
-            ShowCourses();
-            break;
+            case SHOW_COURSES:
+                ShowCourses();
+                break;
 
-        case LOOKUP_COURSE:
-            LookupCourse(courseID);
-            break;
+            case LOOKUP_COURSE:
+                System.out.println("Which course do you want to look up? (write the id):\n");
+                courseList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName() + " ");
+                });
+                try{
+                    courseID = scanner.next();
+                    LookupCourse(courseID);
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+                break;
 
-        case SHOW_STUDENTS:
-            ShowStudents();
-            break;
+            case SHOW_STUDENTS:
+                ShowStudents();
+                break;
 
-        case LOOKUP_STUDENT:
-            LookupStudent(studentID);
-            break;
+            case LOOKUP_STUDENT:
+                System.out.println("Which student do you want to look up? (write the id):\n");
+                studentList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName() + " ");
+                });
+                try{
+                    studentID = scanner.next();
+                    LookupStudent(studentID);
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+                break;
 
-        case SHOW_TEACHERS:
-            ShowTeachers();
-            break;
+            case SHOW_TEACHERS:
+                ShowTeachers();
+                break;
 
-        case LOOKUP_TEACHER:
-            LookupTeacher(teacherID);
-            break;
+            case LOOKUP_TEACHER:
+                System.out.println("Which teacher do you want to look up? (write the id):\n");
+                teacherList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName() + " ");
+                });
+                try{
+                    teacherID = scanner.next();
+                    LookupTeacher(teacherID);
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+                break;
 
-        case SHOW_PROFIT:
-            ShowProfit();
-            break;
+            case SHOW_PROFIT:
+                ShowProfit();
+                break;
 
-        default:
-            System.err.println("The command selected is not available");
-            break;
+            default:
+                System.err.println("The command selected is not available");
+                break;
         }
+        scanner.close();
     }
 
     public void enroll(String studentID, String courseID) {
@@ -83,66 +148,33 @@ public class Commands {
     }
 
     public void ShowCourses(){    //This command will display a list of all courses
-        for (Course course : courseList.values()){
-            System.out.println(course.getName());
+
+        System.out.println("List of Courses: ");
+        for (Map.Entry<String, Course> entry : courseList.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getName());
         }
     }
 
-    public void ShowTeachers() { //This command will display a list of all teachers
-        for (Teacher teacher : teacherList.values()) {
-            System.out.println(teacher.getName());
-            System.out.println("List of Teachers: ");
-            for (Map.Entry<String, Course> entry : courseList.entrySet()) {
-                System.out.println(entry.getKey() + " : " + entry.getValue().getName());
-            }
-        }
-    }
+    public void LookupCourse(String courseID) { // This command will display the full details of the specified course
 
-    public void LookupCourse(String courseID){ // This command will display the full details of the specified course
-        Course x = courseList.get(courseID);
-
-        System.out.println(x.getName());
-        System.out.println(x.getPrice());
-        System.out.println(x.getTeacher());
-        System.out.println(x.getClass());
-    }
-
-    /*
-    public void LookupCourse(String courseID){ // This command will display the full details of the specified course
-        if(courseList.containsKey(courseID)) {
+        if (courseList.containsKey(courseID)) {
             System.out.println("Course ID: " + courseID);
             System.out.println("Course Name: " + courseList.get(courseID).getName());
             System.out.println("Course Price: " + courseList.get(courseID).getPrice());
             System.out.println("Course Money Earned: " + courseList.get(courseID).getMoney_earned());
             System.out.println("Course Teacher: " + courseList.get(courseID).getTeacher().getName());
         }
-    }*/
-
-
-    public void ShowStudents(){ //This command will display a list of all students
-        for (Student student : studentList.values()){
-            System.out.println(student.getName());
-        }
     }
+    public void ShowStudents(){ //This command will display a list of all students
 
-   /* public void ShowStudents(){ //This command will display a list of all students
         System.out.println("List of Students: ");
         for (Map.Entry<String, Student> entry : studentList.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue().getName());
         }
-    }*/
-
-    /*public void LookupStudent(Student studentID){ //This command will display the full details of the specified student
-        Student student = studentList.get(studentID);
-
-        System.out.println(student.getName());
-        System.out.println(student.getAddress());
-        System.out.println(student.getCourse());
-        System.out.println(student.getEmail());
-    }*/
-
+    }
 
     public void LookupStudent(String studentID){ //This command will display the full details of the specified student
+
         if(studentList.containsKey(studentID)){
             System.out.println("Student ID: " + studentID);
             System.out.println("Student Name: " + studentList.get(studentID).getName());
@@ -152,12 +184,16 @@ public class Commands {
         }
     }
 
-    public void LookupTeacher(String teacherID){ // This command will display the full details of the specified teacher
-        Teacher teacher = teacherList.get(teacherID);
+    public void ShowTeachers(){ //This command will display a list of all teachers
 
-        System.out.println(teacher.getName());
-        System.out.println(teacher.getSalary());
-        System.out.println(teacher.getClass());
+        System.out.println("List of Teachers: ");
+        for (Map.Entry<String, Teacher> entry : teacherList.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getName());
+        }
+    }
+
+    public void LookupTeacher(String teacherID){ // This command will display the full details of the specified teacher
+
         if(teacherList.containsKey(teacherID)){
             System.out.println("Teacher ID: " + teacherID);
             System.out.println("Teacher Name: " + teacherList.get(teacherID).getName());
