@@ -10,23 +10,29 @@ public class Menu {
     private static final int OPTION_DATA_ENTRY = 1;
     private static final int OPTION_SCHOOL_MANAGEMENT = 2;
     private static final int MAX_COURSES_TO_CREATE = 5;
+    private static final int MAX_STUDENT_TO_CREATE = 10;
+    private static final int MAX_TEACHER_TO_CREATE = 50;
     private static final Scanner scanner = new Scanner(System.in);
     private static int numberOfCourses;
+    private static int numberOfTeacher;
+    private static int numberOfStudent;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println(FigletFont.convertOneLine("Iron-School"));
         System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(sc));
-        numberOfCourses = getNumberOfCourses();
+        numberOfCourses = getNumberOfEntity("courses", MAX_COURSES_TO_CREATE);
+        numberOfTeacher = getNumberOfEntity("teachers", MAX_TEACHER_TO_CREATE);
+        numberOfStudent = getNumberOfEntity("students", MAX_STUDENT_TO_CREATE);
     }
 
-    private static int getNumberOfCourses() {
-        String numberOfCourses;
+    private static int getNumberOfEntity(String value, int max) {
+        String number;
         do {
-            System.out.println("Enter the number of courses to create: ");
-            numberOfCourses = scanner.next();
-        } while (!Validator.isNumberValid(numberOfCourses, MAX_COURSES_TO_CREATE));
-        return Integer.parseInt(numberOfCourses);
+            System.out.printf("Enter the number of %s to create: %n", value);
+            number = scanner.next();
+        } while (!Validator.isNumberValid(number, max));
+        return Integer.parseInt(number);
     }
 
     public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
