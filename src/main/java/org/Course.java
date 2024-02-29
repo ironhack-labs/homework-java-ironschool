@@ -80,13 +80,11 @@ public class Course {
         return this.teacher;
     }
 
-
-
     public String getInfo(){
-        return "{" + "Id: " + getCourseId() + "Name: "
-                + getName() + "Price: " + getPrice() + "$"
-                + "Total earned: " + getMoney_earned() + "$"
-                + "Taught by: " + getTeacher() +"}";
+        return "Course - ID: " + getCourseId() + " | Name: "
+                + getName() + " | Price: " + getPrice() + "$"
+                + " | Total earned: " + getMoney_earned() + "$"
+                + " | Taught by: " + getTeacher();
         //falta añadir getter del name del Teacher
     }
 

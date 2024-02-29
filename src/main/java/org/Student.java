@@ -3,19 +3,23 @@ package org;
 import java.util.UUID;
 
 public class Student {
-    private final String studentId;
+    private String studentId;
     private String name;
     private String address;
     private String email;
     private Course course;
+    private static int idCounter = 1;
 
     // Constructor
     public Student(String name, String address, String email) {
-        // TODO - copy from Course
-        this.studentId = UUID.randomUUID().toString(); // auto-generated studentId
+        assignCourseId();
         setName(name);
         setAddress(address);
         setEmail(email);
+    }
+
+    private void assignCourseId(){
+        this.studentId = "C" + String.valueOf(idCounter++);
     }
 
     // Getters
@@ -57,7 +61,8 @@ public class Student {
     }
 
     // Helper
-    public void getInfo() {
-        System.out.println("Student - ID: " + this.studentId + " | Name: " + getName() + " | Address: " + getAddress() + " | Email: " + getEmail());
+    public String getInfo() {
+        return("Student - ID: " + this.studentId + " | Name: " + getName() +
+                " | Address: " + getAddress() + " | Email: " + getEmail());
     }
 }
