@@ -48,4 +48,26 @@ public class ReadCsvInfo {
         }
     }
 
+    public static void school_creation_csv() throws FileNotFoundException {
+        String[] school_info = readSchoolInfo();
+        School school = new School(school_info[0]);
+
+        List<Teacher> teachers = readObjectInfo("src/files/Teachers.csv",1,RoleType.TEACHER);
+        List<Student> students = readObjectInfo("src/files/Students.csv",2,RoleType.STUDENT);
+        List<Course> courses = readObjectInfo("src/files/Courses.csv",2,RoleType.COURSE);
+
+        school.setListToStudentMap(students);
+        school.setListToTeacherMap(teachers);
+        school.setListToCourseMap(courses);
+
+        System.out.println("All Courses");
+        school.showCourses();
+
+        System.out.println("All Teachers");
+        school.showTeachers();
+
+        System.out.println("All Students");
+        school.showStudents();
+    }
+
 }
