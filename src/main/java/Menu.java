@@ -4,7 +4,6 @@ import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
 
-import java.sql.SQLOutput;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
