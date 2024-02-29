@@ -9,6 +9,7 @@ public class Application {
 
         createSchoolName();
         teacherDetails();
+        studentDetails();
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -22,23 +23,23 @@ public class Application {
 
     }
 
-    private static int number(SchoolComponents classToCount) {
+    private static int numberOfComponents(SchoolComponents schoolComponents) {
         int number;
 
         do {
-            System.out.println(String.format("How many %s are there in the school: ", classToCount));
+            System.out.println(String.format("How many %s are there in the school: ", schoolComponents));
             while (!scanner.hasNextInt()) {
-                System.out.println(String.format("Please enter a valid number for the %s ", classToCount));
+                System.out.println(String.format("Please enter a valid number for the %s ", schoolComponents));
                 scanner.next();
             }
             number = scanner.nextInt();
 
             if (number <= 0) {
-                System.err.println(String.format("The number of %s can't be 0 or negative", classToCount));
+                System.err.println(String.format("The number of %s can't be 0 or negative", schoolComponents));
             } else if (number == 1) {
-                System.out.println(String.format("In your school there is only " + number + " %s", classToCount));
+                System.out.println(String.format("In your school there is only " + number + " %s", schoolComponents));
             } else {
-                System.out.println(String.format("In your school there are " + number + " %s", classToCount));
+                System.out.println(String.format("In your school there are " + number + " %s", schoolComponents));
             }
 
         } while (number <= 0);
@@ -49,7 +50,7 @@ public class Application {
 
     private static Map<String,Teacher> teacherDetails() {
         Map<String,Teacher> teachersMap = new HashMap<>();
-        int number = number(SchoolComponents.TEACHERS);
+        int number = numberOfComponents(SchoolComponents.TEACHERS);
         scanner.nextLine();
         for (int i = 0; i < number; i++) {
             System.out.println("Enter details for Teacher " + (i + 1) + ":");
@@ -64,14 +65,66 @@ public class Application {
             teachersMap.put(teacher.getTeacherId(), teacher);
         }
 
-        /*for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
+        for (Map.Entry<String, Teacher> entry : teachersMap.entrySet()) {
                 System.out.println("Teacher ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Salary: " + entry.getValue().getSalary());
-            }*/
+            }
 
           return teachersMap;
 
     }
 
+    private static Map<String,Student> studentDetails() {
+        Map<String,Student> studentMap = new HashMap<>();
+        int number = numberOfComponents(SchoolComponents.STUDENTS);
+        scanner.nextLine();
+        for (int i = 0; i < number; i++) {
+            System.out.println("Enter details for Student " + (i + 1) + ":");
+
+            System.out.println("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Address: ");
+            String address = scanner.nextLine();
+
+            System.out.println("Email: ");
+            String email = scanner.nextLine();
+
+            Student student = new Student(name, address, email);
+            studentMap.put(student.getStudentId(), student);
+        }
+
+        for (Map.Entry<String, Student> entry : studentMap.entrySet()) {
+                System.out.println("Student ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Address: " + entry.getValue().getAddress() + ", Email: " + entry.getValue().getEmail());
+            }
+
+        return studentMap;
+
+    }
+
+    private static Map<String,Course> courseDetails() {
+        Map<String,Course> coursesMap = new HashMap<>();
+        int number = numberOfComponents(SchoolComponents.COURSES);
+        scanner.nextLine();
+        for (int i = 0; i < number; i++) {
+            System.out.println("Enter details for Course " + (i + 1) + ":");
+
+            System.out.println("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Price: ");
+            double price = Double.parseDouble(scanner.nextLine());
+
+            Course course = new Course(null, name, price, 000000); //SE TIENE QUE MIRAR EL TEMA DEL CONSTRUCTOR!!!
+            coursesMap.put(course.getCourseId(), course);
+        }
+
+        for (Map.Entry<String, Course> entry : coursesMap.entrySet()) {
+            System.out.println("Course ID: " + entry.getKey() + ", Name: " + entry.getValue().getName() + ", Price: " + entry.getValue().getPrice());
+        }
+
+        return coursesMap;
+
+    }
 
 
 }

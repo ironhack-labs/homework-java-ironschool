@@ -38,7 +38,7 @@ public class Commands {
         this.teacherList = teacherList;
     }
 
-    public void commandSelector(CommandEnum commandAction){
+ /*   public void commandSelector(CommandEnum commandAction){
         String studentID = "asdfasdf";
         String courseID = "asdfasdf";
         String teacherID = "asdfasdf";
@@ -84,7 +84,7 @@ public class Commands {
             System.err.println("The command selected is not available");
             break;
         }
-    }
+    } */
 
     public void enroll(Student studentID, Course courseID) {
         Course course = courseID;
