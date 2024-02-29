@@ -1,6 +1,7 @@
 package org;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class School {
     private String name;
@@ -42,14 +43,25 @@ public class School {
     public String getName() {
         return this.name;
     }
-    public HashMap<String, Course> getCourseMap() {
+    public static HashMap<String, Course> getCourseMap() {
         return this.courseMap;
     }
-    public HashMap<String, Teacher> getTeacherMap() {
+    public static HashMap<String, Teacher> getTeacherMap() {
         return this.teacherMap;
     }
 
     public HashMap<String, Student> getStudentMap() {
         return this.studentMap;
+    }
+
+    // prueba para ver si funciona
+    public static Course getCourseById(String id, HashMap<String, Course> courseMap){
+        for (Map.Entry<String, Course> entry : courseMap.entrySet()) {
+            if (entry.getValue().getCourseId().equals(id)) {
+                return entry.getValue();
+            }
+        }
+
+        return null;  //volver a pedir id al usuario...
     }
 }
