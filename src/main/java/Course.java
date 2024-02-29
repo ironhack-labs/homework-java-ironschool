@@ -16,7 +16,6 @@ public class Course {
         setCourseId(courseId);
         setName(name);
         setPrice(price);
-        setMoney_earned(money_earned);
     }
 
     public String getCourseId() {
