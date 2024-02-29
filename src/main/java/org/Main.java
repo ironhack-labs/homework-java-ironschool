@@ -23,13 +23,6 @@ public class Main {
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
 
-        scanner.close();
-
-
-
-
-
-
 
         int choiceMenu;
         Command command = new Command();
@@ -53,7 +46,7 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        command.enrollStudent(studentId, courseId);
+                        //command.enrollStudent(studentId, courseId);
 
                         System.out.println(printPurple("Congratulations! Your student has been successfully enrolled to the course."));
 
@@ -73,7 +66,7 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        command.assignTeacher(teacherId, courseId);
+                        //command.assignTeacher(teacherId, courseId);
 
                         System.out.println(printPurple("Congratulations! Your teacher has been successfully assigned to the course."));
 
@@ -100,7 +93,7 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        Course course = command.lookupCourse(courseId);
+                        //Course course = command.lookupCourse(courseId);
 
                         // TODO check como se definio esta funcion e implementarla - Victoria
 
@@ -126,7 +119,7 @@ public class Main {
                     studentId = scanner.nextLine();
 
                     try{
-                        Student student = command.lookupStundent(studentId);
+                        //Student student = command.lookupStundent(studentId);
                         // TODO check como se definio esta funcion e implementarla - Victoria
 
                         //System.out.println(printPurple(student));
@@ -149,7 +142,7 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     try{
-                        Teacher teacher = command.lookupTeacher(teacherId);
+                        //Teacher teacher = command.lookupTeacher(teacherId);
                         //System.out.println(printPurple(teacher));
 
                     }catch(IllegalArgumentException e){
@@ -165,141 +158,6 @@ public class Main {
         }while(choiceMenu != 9);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private static void itemCreator(String type, String schoolName, List collection, List teachers) {
         boolean is_num = false;
