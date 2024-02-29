@@ -3,6 +3,7 @@ import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
 
+import java.sql.SQLOutput;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -22,6 +23,7 @@ public class Menu {
        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfTeacher = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudent = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+        createTeachers();
     }
 
     private static String getSchoolName() {
@@ -60,6 +62,18 @@ public class Menu {
         }
         return selectedOption;
     }
+    private static void createTeachers() {
+        for (int i = 0; i < numberOfTeacher; i++) {
+            System.out.print("Enter name of teacher " + (i + 1) + ": ");
+            String name = scanner.nextLine();
+            System.out.print("Enter salary of teacher " + (i + 1) + ": ");
+            double salary = scanner.nextDouble();
+            scanner.nextLine();
+            Teacher teacher = new Teacher(name, salary);
+            System.out.println("Teacher " + teacher.getName() + " created with ID: " + teacher.getTeacherId());
+        }
+    }
+
 }
 
 
