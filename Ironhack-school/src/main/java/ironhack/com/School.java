@@ -102,7 +102,23 @@ public class School {
 
         course.setMoney_earned(course.getPrice());
         student.enrollInCourse(course);
+    }
 
+    public void assignTeacherToCourse(String teacherId, String courseId) {
+        course_map.get(courseId).setTeacher(teacher_map.get(teacherId));
+
+        Teacher teacher = findTeacherById(teacherId);
+        Course course = findCourseById(courseId);
+
+        if (teacher == null) {
+            throw new IllegalArgumentException("Teacher not found.");
+        }
+
+        if (course == null) {
+            throw new IllegalArgumentException("Course not found.");
+        }
+
+        course.assign(teacher);
     }
 
     private Student findStudentById(String studentId) {
@@ -111,5 +127,9 @@ public class School {
 
     private Course findCourseById(String courseId) {
         return course_map.get(courseId);
+    }
+
+    private Teacher findTeacherById(String teacherId) {
+        return teacher_map.get(teacherId);
     }
 }
