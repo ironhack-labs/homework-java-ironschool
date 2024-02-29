@@ -4,12 +4,14 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Builder;
 
 import java.util.UUID;
 
 @Getter
 @Setter
 @EqualsAndHashCode
+@Builder
 public class Teacher {
 
     @Setter(AccessLevel.NONE)
