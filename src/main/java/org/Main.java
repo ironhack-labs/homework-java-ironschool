@@ -23,13 +23,6 @@ public class Main {
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
 
-        scanner.close();
-
-
-
-
-
-
 
         int choiceMenu;
         Command command = new Command();
