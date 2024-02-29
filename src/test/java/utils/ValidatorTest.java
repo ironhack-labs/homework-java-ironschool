@@ -56,15 +56,18 @@ class ValidatorTest {
     @DisplayName("Should validate correct numbers")
     @ValueSource(strings = {"1", "2", "5"})
     void isNumberValid_when_correct_number(String number) {
-        int MAX_COURSES_TO_CREATE = 5;
-        assertTrue(Validator.isNumberValid(number, MAX_COURSES_TO_CREATE));
+        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
+        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
+        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
     }
 
     @ParameterizedTest
     @DisplayName("Should not validate wrong numbers")
-    @ValueSource(strings = {"0", "o", "8"})
+    @ValueSource(strings = {"0", "o", "80", "100"})
     void isNumberValid_when_wrong_number(String number) {
-        int MAX_COURSES_TO_CREATE = 5;
-        assertFalse(Validator.isNumberValid(number, MAX_COURSES_TO_CREATE));
+        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
+        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
+        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
+
     }
 }

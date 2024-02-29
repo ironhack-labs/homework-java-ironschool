@@ -19,7 +19,7 @@ public class Validator {
 
     public static boolean isNumberValid(String number, int maxNumber) {
         boolean isValidNumber = true;
-        if (!patternMatches(number, "^(?:[1-" + maxNumber + "])$")) {
+        if (!patternMatches(number, "^(?:[1-9]|" + maxNumber + ")$")) {
             System.out.printf("The valid range is from 1 to %s%n", maxNumber);
             isValidNumber = false;
         }
