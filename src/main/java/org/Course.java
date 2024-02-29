@@ -80,8 +80,6 @@ public class Course {
         return this.teacher;
     }
 
-
-
     public String getInfo(){
         return "Course - ID: " + getCourseId() + " | Name: "
                 + getName() + " | Price: " + getPrice() + "$"
