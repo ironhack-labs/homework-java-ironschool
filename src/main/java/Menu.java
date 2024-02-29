@@ -1,4 +1,5 @@
 import com.github.lalyos.jfiglet.FigletFont;
+import model.Teacher;
 import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
