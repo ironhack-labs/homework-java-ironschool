@@ -14,13 +14,13 @@ public class Course {
     private static final double MIN_PRICE = 100;
     private static final double MAX_PRICE = 1000;
 
-    public Course(String name, double price, double money_earned, Teacher teacher) {
+    public Course(String name, double price, double money_earned) {
         assignCourseId();
         setName(name);
         setPrice(price);
         this.money_earned = 0;
         //setMoney_earned(money_earned);//no se asigna manualmente
-        setTeacher(teacher);
+        this.teacher = null;
     }
 
     public String getCourseId() {
