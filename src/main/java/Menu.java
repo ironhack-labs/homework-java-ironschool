@@ -18,12 +18,20 @@ public class Menu {
     private static int numberOfStudent;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(FigletFont.convertOneLine("Iron-School"));
-        System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(sc));
+        System.out.println(FigletFont.convertOneLine(getSchoolName()));
+        System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
         numberOfCourses = getNumberOfEntity("courses", MAX_COURSES_TO_CREATE);
         numberOfTeacher = getNumberOfEntity("teachers", MAX_TEACHER_TO_CREATE);
         numberOfStudent = getNumberOfEntity("students", MAX_STUDENT_TO_CREATE);
+    }
+
+    private static String getSchoolName() {
+        String schoolName;
+        do {
+            System.out.println("Enter a school name: ");
+            schoolName = scanner.nextLine();
+        } while (!Validator.isNameValid(schoolName));
+        return schoolName;
     }
 
     private static int getNumberOfEntity(String value, int max) {

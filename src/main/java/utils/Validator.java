@@ -9,7 +9,12 @@ public class Validator {
     }
 
     public static boolean isNameValid(String name) {
-        return patternMatches(name, "^(?!-)[\\p{L} .'-]+$");
+        boolean validator = true;
+        if (!patternMatches(name, "^(?!-)[\\p{L} .'-]+$")) {
+            System.out.printf("Invalid name: %s%n", name);
+            validator = false;
+        }
+        return validator;
     }
 
     public static boolean isNumberValid(String number, int maxNumber) {
