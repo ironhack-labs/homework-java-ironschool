@@ -18,7 +18,8 @@ public class Course {
         assignCourseId();
         setName(name);
         setPrice(price);
-        setMoney_earned(money_earned);//no se asigna manualmente
+        this.money_earned = 0;
+        //setMoney_earned(money_earned);//no se asigna manualmente
         setTeacher(teacher);
     }
 
@@ -66,8 +67,8 @@ public class Course {
     public double getMoney_earned() {
         return money_earned;
     }
-
-    public void setMoney_earned(double money_earned) {
+    //se llama desde otra clase cada vez que se asigna un student
+    public void updateMoney_earned(double money_earned) {
         this.money_earned = money_earned;
     }
 
@@ -79,15 +80,7 @@ public class Course {
         return this.teacher;
     }
 
-    // TODO - move to Utils
-    public static Course getCourseById(String id, List<Course> courseList){
-        for (Course course : courseList) {
-            if (course.getCourseId().equals(id)) {
-                return course;
-            }
-        }
-        return null; //volver a pedir id al usuario...
-    }
+
 
     public String getInfo(){
         return "{" + "Id: " + getCourseId() + "Name: "
