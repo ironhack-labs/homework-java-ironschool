@@ -13,24 +13,24 @@ public class Menu {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static int numberOfCourses;
-    private static int numberOfTeacher;
-    private static int numberOfStudent;
+    private static int numberOfTeachers;
+    private static int numberOfStudents;
 
     public static void main(String[] args) {
-        System.out.println(FigletFont.convertOneLine(getSchoolName()));
+        System.out.println(FigletFont.convertOneLine(getValidNameFor("school")));
         //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
-       numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        numberOfTeacher = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-        numberOfStudent = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
     }
 
-    private static String getSchoolName() {
-        String schoolName;
+    private static String getValidNameFor(String entityType) {
+        String name;
         do {
-            System.out.println("Enter a school name: ");
-            schoolName = scanner.nextLine();
-        } while (!Validator.isNameValid(schoolName));
-        return schoolName;
+            System.out.printf("Enter a %s name: ", entityType);
+            name = scanner.nextLine();
+        } while (!Validator.isNameValid(name));
+        return name;
     }
 
     private static int getNumberOfEntity(String value, int max) {
