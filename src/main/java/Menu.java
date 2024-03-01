@@ -16,16 +16,17 @@ public class Menu {
     private static int numberOfCourses;
     private static int numberOfTeachers;
     private static int numberOfStudents;
+    private static School school;
 
     public static void main(String[] args) {
-        System.out.println(FigletFont.convertOneLine(getValidNameFor("school")));
+        school = createSchool();
         //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
         numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
     }
 
-    private static String getValidNameFor(String entityType) {
+    public static String getValidNameFor(String entityType) {
         String name;
         do {
             System.out.printf("Enter a %s name: ", entityType);
@@ -34,7 +35,7 @@ public class Menu {
         return name;
     }
 
-    private static int getNumberOfEntity(String value, int max) {
+    public static int getNumberOfEntity(String value, int max) {
         String number;
         do {
             System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
@@ -62,7 +63,7 @@ public class Menu {
         return selectedOption;
     }
 
-    private static School createSchool() {
+    public static School createSchool() {
         String schoolName = getValidNameFor("school");
         System.out.println(FigletFont.convertOneLine(schoolName));
         return new SchoolBuilder().name(schoolName).build();

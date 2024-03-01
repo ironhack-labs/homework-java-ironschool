@@ -1,12 +1,18 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MenuTest {
@@ -14,19 +20,18 @@ class MenuTest {
     @ParameterizedTest
     @DisplayName("Should pass with valid Input")
     @ValueSource(strings = {"1\n", "2\n", "2\n", "1\n"})
-    public void testShowPrincipalMenuAndRetrieveOption_ValidInput(String value){
+    public void testShowPrincipalMenuAndRetrieveOption_ValidInput(String value) {
         ByteArrayInputStream input = new ByteArrayInputStream(value.getBytes());
         Scanner sc = new Scanner(input);
         int result = Menu.showPrincipalMenuAndRetrieveOption(sc);
         System.out.println("Option Selected is: " + result);
-        assertTrue(result == 1  || result == 2);
-
+        assertTrue(result == 1 || result == 2);
     }
 
     @ParameterizedTest
     @DisplayName("ShouldReturn NoSuchElementException")
     @ValueSource(strings = {"pex\n", "dos\n", "NotValid\n", "!!!!!!!!!!\n"})
-    public void testShowPrincipalMenuAndRetrieveOption_InvalidInput(String value){
+    public void testShowPrincipalMenuAndRetrieveOption_InvalidInput(String value) {
         ByteArrayInputStream input = new ByteArrayInputStream(value.getBytes());
         Scanner sc = new Scanner(input);
         assertThrows(NoSuchElementException.class, () -> Menu.showPrincipalMenuAndRetrieveOption(sc));
@@ -45,4 +50,16 @@ class MenuTest {
         assertTrue(errorOutput.contains("Invalid option. Please enter either 1 or 2"));
         System.setErr(System.err);
     }
+
+    @Test
+    @DisplayName("Should create a school")
+    public void whentest_getValidNameFor() {
+        String expectedName = "Iron-School";
+        assertThat(Menu.createSchool()).isEqualTo(expectedName);
+
+        try (MockedStatic<Menu> menu = Mockito.mockStatic(Menu.class)) {
+            menu.when(Menu::createSchool).thenReturn(expectedName);
+        }
+    }
+
 }
