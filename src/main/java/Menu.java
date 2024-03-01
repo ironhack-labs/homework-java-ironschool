@@ -24,7 +24,7 @@ public class Menu {
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
     }
 
-    private static String getValidNameFor(String value) {
+    private static String getValidNameFor(String entityType) {
         String name;
         do {
             System.out.printf("Enter a %s name: ", value);
