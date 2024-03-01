@@ -27,7 +27,7 @@ public class Menu {
     private static String getValidNameFor(String entityType) {
         String name;
         do {
-            System.out.printf("Enter a %s name: ", value);
+            System.out.printf("Enter a %s name: ", entityType);
             name = scanner.nextLine();
         } while (!Validator.isNameValid(name));
         return name;
