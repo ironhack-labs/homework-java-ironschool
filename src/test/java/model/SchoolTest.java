@@ -1,12 +1,27 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class SchoolTest {
+    static School DummySchool;
+    static Teacher dummyAnne;
+    static Teacher dummyJohn;
+    @BeforeAll
+    static void CreateMockSchool() {
+        DummySchool = new School("Marinade");
+        dummyAnne = new Teacher("Anne", 1300.00);
+        dummyJohn = new Teacher("John", 1200.00);
+    }
+
     @Test
     @DisplayName("two different schools should have two different ids")
     void School_multipleInstancesOfSchoolDifferentIds() {
@@ -42,4 +57,32 @@ public class SchoolTest {
 
         assertEquals(balmes.getTotalProfit(), 2400.00);
     }
+
+    @Test
+    @DisplayName("Teachers can be added")
+    void School_addSomeDummyTeachers(){
+        DummySchool.addTeacher(dummyAnne);
+        DummySchool.addTeacher(dummyJohn);
+        assertEquals(2, DummySchool.getTeachers().size());
+    }
+
+//    @Test
+//    @DisplayName("")
+//    void School_showTeachersMethodReturnASCIITable(){
+//        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(outputStreamCaptor));
+//        String uuidDummyAnne = dummyAnne.getTeacherId();
+//        String uuidDummyJohn  = dummyJohn.getTeacherId();
+//        DummySchool.showTeachersMethod();
+//        String expectedOutput = String.format(
+//                        "+--------------------------------------+------------+%n" +
+//                        "| ID                                   | Teachers   |%n" +
+//                        "+--------------------------------------+------------+%n" +
+//                        "| %-36s | Anne       |%n" +
+//                        "| %-36s | John       |%n" +
+//                        "+--------------------------------------+------------+%n",
+//                uuidDummyAnne, uuidDummyJohn);
+//
+//        assertEquals(expectedOutput, outputStreamCaptor.toString());
+//    }
 }

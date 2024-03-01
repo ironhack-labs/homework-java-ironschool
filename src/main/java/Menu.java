@@ -1,4 +1,7 @@
 import com.github.lalyos.jfiglet.FigletFont;
+import model.School;
+import model.Teacher;
+import org.w3c.dom.ls.LSOutput;
 import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
@@ -19,7 +22,7 @@ public class Menu {
     public static void main(String[] args) {
         System.out.println(FigletFont.convertOneLine(getSchoolName()));
         //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
-       numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfTeacher = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudent = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
     }

@@ -47,6 +47,12 @@
             <version>0.0.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.mitchtalmadge</groupId>
+            <artifactId>ascii-data</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
