@@ -17,14 +17,14 @@ public class Menu {
     private static int numberOfStudent;
 
     public static void main(String[] args) {
-        System.out.println(FigletFont.convertOneLine(getValidName("school")));
+        System.out.println(FigletFont.convertOneLine(getValidNameFor("school")));
         //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
         numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfTeacher = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudent = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
     }
 
-    private static String getValidName(String value) {
+    private static String getValidNameFor(String value) {
         String name;
         do {
             System.out.printf("Enter a %s name: ", value);
