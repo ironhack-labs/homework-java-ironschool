@@ -28,7 +28,7 @@ public class Command {
             throw new IllegalArgumentException("Invalid course.");
         }
 
-        // Get the student by id
+        // Get the student by id -> **fix name typo**
         Student student = command.lookupStudent(studentId);
 
         // Check if the student is already enrolled in the course
@@ -67,6 +67,7 @@ public class Command {
 
     public Course lookupCourse(String courseId){}
 
+    // **Name has typo**
     public Student lookupStundent(String studentId){}
 
     public Teacher lookupTeacher(String teacherId){}
