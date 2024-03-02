@@ -9,9 +9,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SchoolTest {
+
     static School DummySchool;
     static Teacher dummyAnne;
     static Teacher dummyPedro;
@@ -56,6 +59,7 @@ public class SchoolTest {
         balmes.addCourse(englishCourseB2);
 
         assertEquals(balmes.getTotalProfit(), 2400.00);
+
     }
 
     @Test

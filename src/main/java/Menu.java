@@ -12,25 +12,30 @@ import java.util.stream.Stream;
 public class Menu {
     private static final int OPTION_DATA_ENTRY = 1;
     private static final int OPTION_SCHOOL_MANAGEMENT = 2;
-
-    private static final Scanner scanner = new Scanner(System.in);
     private static int numberOfCourses;
     private static int numberOfTeachers;
     private static int numberOfStudents;
+    private static School school;
 
     public static void main(String[] args) {
-        String name = getValidNameFor("school");
-        System.out.println(FigletFont.convertOneLine(name));
-        School school = new School(name);
-        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
-        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        school = createSchool();
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
-        registerStudents(school);
+        registerStudents(numberOfStudents);
+
+        //numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        //numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+
+        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
 
     }
 
-    private static void registerStudents(School school) {
+    public static School createSchool() {
+        String schoolName = getValidNameFor("school");
+        System.out.println(FigletFont.convertOneLine(schoolName));
+        return new School(schoolName);
+    }
+
+    private static void registerStudents(int numberOfStudents) {
         for (int i = 0; i < numberOfStudents; i++) {
             Student student = new Student(getValidNameFor("student"), getValidAddress(), getValidEmail());
             school.addStudent(student);
@@ -38,6 +43,7 @@ public class Menu {
     }
 
     private static String getValidNameFor(String entityType) {
+        Scanner scanner = new Scanner(System.in);
         String name;
         do {
             System.out.printf("Enter a %s name: %n", entityType);
@@ -47,6 +53,7 @@ public class Menu {
     }
 
     private static String getValidAddress() {
+        Scanner scanner = new Scanner(System.in);
         String address;
         do {
             System.out.println("Enter student's address: ");
@@ -56,19 +63,21 @@ public class Menu {
     }
 
     private static String getValidEmail() {
+        Scanner scanner = new Scanner(System.in);
         String email;
         do {
             System.out.println("Enter student's email: ");
-            email = scanner.nextLine();
+            email = scanner.next();
         } while (!Validator.isEmailValid(email));
         return email;
     }
 
     private static int getNumberOfEntity(String value, int max) {
+        Scanner scanner = new Scanner(System.in);
         String number;
         do {
             System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
-            number = scanner.nextLine();
+            number = scanner.next();
         } while (!Validator.isNumberValid(number, max));
         return Integer.parseInt(number);
     }
@@ -91,6 +100,7 @@ public class Menu {
         }
         return selectedOption;
     }
+
 }
 
 
