@@ -1,12 +1,29 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SchoolTest {
+
+    static School DummySchool;
+    static Teacher dummyAnne;
+    static Teacher dummyPedro;
+    @BeforeAll
+    static void CreateMockSchool() {
+        DummySchool = new School("Marinade");
+        dummyAnne = new Teacher("Anne", 1300.00);
+        DummySchool.addTeacher(dummyAnne);
+    }
 
     @Test
     @DisplayName("two different schools should have two different ids")
@@ -44,4 +61,29 @@ public class SchoolTest {
         assertEquals(balmes.getTotalProfit(), 2400.00);
 
     }
+
+    @Test
+    @DisplayName("Teachers can be added")
+    void School_addSomeDummyTeachers(){
+        assertEquals(1, DummySchool.getTeachers().size());
+    }
+
+    @Test
+    @DisplayName("Show the same table")
+    void School_showTeachersMethodReturnASCIITable(){
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+        String uuidDummyAnne = dummyAnne.getTeacherId();
+        String nameDummyAnne = dummyAnne.getName();
+        DummySchool.showTeachersMethod();
+        String expectedOutput = String.format(
+                "╔══════════════════════════════════════╤══════════╗%n" +
+                        "║ ID                                   │ Teachers ║%n" +
+                        "╠══════════════════════════════════════╪══════════╣%n" +
+                        "║ %-36s │ %-8s ║%n" +
+                        "╚══════════════════════════════════════╧══════════╝%n%n", uuidDummyAnne, nameDummyAnne);
+
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
 }

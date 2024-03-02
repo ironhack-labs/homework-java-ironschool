@@ -1,9 +1,11 @@
 package model;
 
+import com.mitchtalmadge.asciidata.table.ASCIITable;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,5 +69,19 @@ public class School {
             totalEarned += earned;
         }
         return totalEarned;
+    }
+
+
+    public void showTeachersMethod(){
+        String[] header = {"ID", "Teachers"};
+        String[][] data = new String[teachers.size()][2];
+        int i=0;
+        for(Map.Entry<String, Teacher> entry : teachers.entrySet()){
+            Teacher teacher = entry.getValue();
+            data[i][0] = teacher.getTeacherId();
+            data[i][1] = teacher.getName();
+            i++;
+        }
+        System.out.println(ASCIITable.fromData(header, data));
     }
 }

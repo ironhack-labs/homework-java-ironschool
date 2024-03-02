@@ -26,6 +26,7 @@ public class Menu {
         //numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
 
         //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
+
     }
 
     public static School createSchool() {
