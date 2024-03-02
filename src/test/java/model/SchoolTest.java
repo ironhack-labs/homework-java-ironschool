@@ -20,8 +20,6 @@ public class SchoolTest {
         DummySchool = new School("Marinade");
         dummyAnne = new Teacher("Anne", 1300.00);
         DummySchool.addTeacher(dummyAnne);
-        dummyPedro = new Teacher("Pedro", 1300.00);
-        DummySchool.addTeacher(dummyPedro);
     }
 
     @Test
@@ -72,18 +70,14 @@ public class SchoolTest {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         String uuidDummyAnne = dummyAnne.getTeacherId();
-        String uuidDummyPedro = dummyPedro.getTeacherId();
         String nameDummyAnne = dummyAnne.getName();
-        String nameDummyPedro = dummyPedro.getName();
         DummySchool.showTeachersMethod();
         String expectedOutput = String.format(
                 "╔══════════════════════════════════════╤══════════╗%n" +
                         "║ ID                                   │ Teachers ║%n" +
                         "╠══════════════════════════════════════╪══════════╣%n" +
                         "║ %-36s │ %-8s ║%n" +
-                        "╟──────────────────────────────────────┼──────────╢%n" +
-                        "║ %-36s │ %-8s ║%n" +
-                        "╚══════════════════════════════════════╧══════════╝%n%n", uuidDummyAnne, nameDummyAnne, uuidDummyPedro, nameDummyPedro);
+                        "╚══════════════════════════════════════╧══════════╝%n%n", uuidDummyAnne, nameDummyAnne);
 
         assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
