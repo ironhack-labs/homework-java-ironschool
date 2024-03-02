@@ -1,6 +1,5 @@
 import com.github.lalyos.jfiglet.FigletFont;
 import model.School;
-import model.SchoolBuilder;
 import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
@@ -66,7 +65,7 @@ public class Menu {
     public static School createSchool() {
         String schoolName = getValidNameFor("school");
         System.out.println(FigletFont.convertOneLine(schoolName));
-        return new SchoolBuilder().name(schoolName).build();
+        return new School(schoolName);
     }
 }
 

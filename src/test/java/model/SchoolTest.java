@@ -11,8 +11,8 @@ public class SchoolTest {
     @Test
     @DisplayName("two different schools should have two different ids")
     void School_multipleInstancesOfSchoolDifferentIds() {
-        School maristes = new SchoolBuilder().name("Maristes").build();
-        School balmes = new SchoolBuilder().name("Jaume Balmes").build();
+        School maristes = new School("Maristes");
+        School balmes = new School("Jaume Balmes");
         assertNotEquals(maristes.getId(), balmes.getId());
     }
 
