@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -65,7 +64,7 @@ public class School {
     }
 
 
-    protected void showTeachersMethod(){
+    public void showTeachersMethod(){
         String[] header = {"ID", "Teachers"};
         String[][] data = new String[teachers.size()][2];
         int i=0;
