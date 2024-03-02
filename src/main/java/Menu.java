@@ -18,21 +18,20 @@ public class Menu {
     private static int numberOfStudent;
 
     public static void main(String[] args) {
-        System.out.println(FigletFont.convertOneLine(getSchoolName()));
-        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
+           //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfTeacher = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudent = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
         createTeachers();
     }
 
-    private static String getSchoolName() {
-        String schoolName;
+    public static String getValidNameFor(String entityType) {
+        String name;
         do {
-            System.out.println("Enter a school name: ");
-            schoolName = scanner.nextLine();
-        } while (!Validator.isNameValid(schoolName));
-        return schoolName;
+            System.out.printf("Enter a %s name: ", entityType);
+            name = scanner.nextLine();
+        } while (!Validator.isNameValid(name));
+        return name;
     }
 
     private static int getNumberOfEntity(String value, int max) {
@@ -63,18 +62,15 @@ public class Menu {
         return selectedOption;
     }
     private static void createTeachers() {
+        String name;
+        double salary;
         for (int i = 0; i < numberOfTeacher; i++) {
+            name = getValidNameFor("teacher" + i);
             System.out.print("Enter name of teacher " + (i + 1) + ": ");
-            String name = scanner.nextLine();
             System.out.print("Enter salary of teacher " + (i + 1) + ": ");
-            double salary = scanner.nextDouble();
+            salary = scanner.nextDouble();
             scanner.nextLine();
             Teacher teacher = new Teacher(name, salary);
-            // Create teacher using Builder
-//            Teacher teacher = Teacher.builder()
-//                                        .name(name)
-//                                        .salary(salary)
-//                                        .build();
             System.out.println("Teacher " + teacher.getName() + " created with ID: " + teacher.getTeacherId());
         }
     }
