@@ -1,4 +1,6 @@
 import com.github.lalyos.jfiglet.FigletFont;
+import model.School;
+import model.Student;
 import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
@@ -8,10 +10,9 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Menu {
+    private static final Scanner scanner = new Scanner(System.in);
     private static final int OPTION_DATA_ENTRY = 1;
     private static final int OPTION_SCHOOL_MANAGEMENT = 2;
-
-    private static final Scanner scanner = new Scanner(System.in);
     private static int numberOfCourses;
     private static int numberOfTeachers;
     private static int numberOfStudents;
@@ -24,6 +25,12 @@ public class Menu {
         numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
         registerStudents(school);
+    }
+
+    public static School createSchool() {
+        String schoolName = getValidNameFor("school");
+        System.out.println(FigletFont.convertOneLine(schoolName));
+        return new School(schoolName);
     }
 
     private static void registerStudents(School school) {
@@ -55,7 +62,7 @@ public class Menu {
         String email;
         do {
             System.out.println("Enter student's email: ");
-            email = scanner.nextLine();
+            email = scanner.next();
         } while (!Validator.isEmailValid(email));
         return email;
     }
@@ -88,11 +95,6 @@ public class Menu {
         return selectedOption;
     }
 
-    public static School createSchool() {
-        String schoolName = getValidNameFor("school");
-        System.out.println(FigletFont.convertOneLine(schoolName));
-        return new School(schoolName);
-    }
 }
 
 
