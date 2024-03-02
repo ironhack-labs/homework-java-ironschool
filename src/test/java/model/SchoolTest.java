@@ -3,10 +3,11 @@ package model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SchoolTest {
+
     @Test
     @DisplayName("two different schools should have two different ids")
     void School_multipleInstancesOfSchoolDifferentIds() {
@@ -41,5 +42,6 @@ public class SchoolTest {
         balmes.addCourse(englishCourseB2);
 
         assertEquals(balmes.getTotalProfit(), 2400.00);
+
     }
 }

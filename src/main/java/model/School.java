@@ -20,6 +20,14 @@ public class School {
     private Map<String, Course> courses = new HashMap<>();
     private Map<String, Student> students = new HashMap<>();
 
+    public School(String name, Map<String, Teacher> teachers, Map<String, Course> courses, Map<String, Student> students) {
+        id = UUID.randomUUID().toString();
+        this.name = name;
+        this.teachers = teachers;
+        this.courses = courses;
+        this.students = students;
+    }
+
     public School(String name) {
         id = UUID.randomUUID().toString();
         this.name = name;
