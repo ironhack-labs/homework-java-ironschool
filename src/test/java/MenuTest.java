@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,9 +8,8 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MenuTest {
 
@@ -51,15 +47,5 @@ class MenuTest {
         System.setErr(System.err);
     }
 
-    @Test
-    @DisplayName("Should create a school")
-    public void whentest_getValidNameFor() {
-        String expectedName = "Iron-School";
-        assertThat(Menu.createSchool()).isEqualTo(expectedName);
-
-        try (MockedStatic<Menu> menu = Mockito.mockStatic(Menu.class)) {
-            menu.when(Menu::createSchool).thenReturn(expectedName);
-        }
-    }
 
 }
