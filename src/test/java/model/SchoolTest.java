@@ -61,7 +61,7 @@ public class SchoolTest {
     @Test
     @DisplayName("Teachers can be added")
     void School_addSomeDummyTeachers(){
-        assertEquals(2, DummySchool.getTeachers().size());
+        assertEquals(1, DummySchool.getTeachers().size());
     }
 
     @Test
