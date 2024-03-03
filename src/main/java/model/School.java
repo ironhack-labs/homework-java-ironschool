@@ -1,9 +1,11 @@
 package model;
 
+import com.mitchtalmadge.asciidata.table.ASCIITable;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,14 @@ public class School {
     private Map<String, Teacher> teachers = new HashMap<>();
     private Map<String, Course> courses = new HashMap<>();
     private Map<String, Student> students = new HashMap<>();
+
+    public School(String name, Map<String, Teacher> teachers, Map<String, Course> courses, Map<String, Student> students) {
+        id = UUID.randomUUID().toString();
+        this.name = name;
+        this.teachers = teachers;
+        this.courses = courses;
+        this.students = students;
+    }
 
     public School(String name) {
         id = UUID.randomUUID().toString();
@@ -59,5 +69,19 @@ public class School {
             totalEarned += earned;
         }
         return totalEarned;
+    }
+
+
+    public void showTeachersMethod(){
+        String[] header = {"ID", "Teachers"};
+        String[][] data = new String[teachers.size()][2];
+        int i=0;
+        for(Map.Entry<String, Teacher> entry : teachers.entrySet()){
+            Teacher teacher = entry.getValue();
+            data[i][0] = teacher.getTeacherId();
+            data[i][1] = teacher.getName();
+            i++;
+        }
+        System.out.println(ASCIITable.fromData(header, data));
     }
 }
