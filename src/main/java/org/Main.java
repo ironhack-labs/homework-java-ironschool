@@ -1,6 +1,9 @@
 package org;
 import java.util.*;
 
+import static org.Command.*;
+import static org.CommandUtils.showAll;
+import static org.CommandUtils.lookUp;
 public class Main {
     public static void main(String[] args) {
         String schoolName = "";
@@ -25,11 +28,10 @@ public class Main {
 
 
         int choiceMenu;
-        Command command = new Command();
 
         do{
 
-            command.displayCommands();
+            displayCommands();
             choiceMenu = scanner.nextInt();
             String studentId;
             String courseId;
@@ -46,13 +48,11 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        //command.enrollStudent(studentId, courseId);
-
+                        enrollStudent(studentId, courseId);
                         System.out.println(printPurple("Congratulations! Your student has been successfully enrolled to the course."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
-
                     }
 
                     break;
@@ -65,23 +65,20 @@ public class Main {
                     scanner.nextLine();
                     courseId = scanner.nextLine();
 
+                    //Donde se guarda la nueva school?
                     try{
-                        //command.assignTeacher(teacherId, courseId);
-
+                        assignTeacher(teacherId, courseId, school);
                         System.out.println(printPurple("Congratulations! Your teacher has been successfully assigned to the course."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
-
                     }
 
                     break;
                 case 3:
                     try{
-
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-                       // System.out.println(printPurple(command.showCourses()));
-
+                        // TODO Argument HashMap de Strings con los Datos de Courses
+                        System.out.println(printPurple(showAll(school.getCourseMap())));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -93,12 +90,8 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        //Course course = command.lookupCourse(courseId);
-
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-
                         //TODO Agregar un esperando o buscando? - Victoria
-                        //System.out.println(printPurple(course));
+                        System.out.println(printPurple(lookUp(school.getCourseMap(), courseId)));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -106,9 +99,10 @@ public class Main {
                     break;
                 case 5:
                     try{
-                        // TODO check como se definio esta funcion e implementarla - Victoria
+                        // TODO Argument HashMap de Strings con los Datos de Stundents
 
-                        //System.out.println(printPurple(showStudents()));
+                        System.out.println(printPurple(showAll(school.getStudentsMap())));
+
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -119,10 +113,8 @@ public class Main {
                     studentId = scanner.nextLine();
 
                     try{
-                        //Student student = command.lookupStundent(studentId);
-                        // TODO check como se definio esta funcion e implementarla - Victoria
 
-                        //System.out.println(printPurple(student));
+                        System.out.println(printPurple(lookUp(school.getStudentsMap(), studentId)));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -130,8 +122,8 @@ public class Main {
                     break;
                 case 7:
                     try{
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-                        //System.out.println(printPurple(showTeachers()));
+                        // TODO Argument HashMap de Strings con los Datos de Teachers
+                        System.out.println(printPurple(showAll(school.getTeachersMap())));
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -142,20 +134,25 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     try{
-                        //Teacher teacher = command.lookupTeacher(teacherId);
-                        //System.out.println(printPurple(teacher));
+
+                        System.out.println(printPurple(lookUp(school.getTeachersMap(), studentId)));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
                     break;
                 case 9:
+                    System.out.println("The profit of the school");
+                    showProfit(school);
+                    break;
+
+                case 10:
                     System.out.println("Closing program.");
                     scanner.close();
                     break;
             }
 
-        }while(choiceMenu != 9);
+        }while(choiceMenu != 10);
 
     }
 

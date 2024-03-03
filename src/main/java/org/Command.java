@@ -13,6 +13,7 @@ public class Command {
         System.out.println("6. Search for a specific student");
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
+        System.out.println("9. Show Profit");
         System.out.print("Enter your choice: ");
     }
 
@@ -59,20 +60,20 @@ public class Command {
 
 
 
-    public List<Course> showCourses(){}
+    //public List<Course> showCourses(){}
 
-    public List<Student> showStudents(){}
+    //public List<Student> showStudents(){}
 
-    public List<Teacher> showTeachers(){}
+    //public List<Teacher> showTeachers(){}
 
-    public Course lookupCourse(String courseId){}
+    //public Course lookupCourse(String courseId){}
 
     // **Name has typo**
-    public Student lookupStundent(String studentId){}
+    //public Student lookupStundent(String studentId){}
 
-    public Teacher lookupTeacher(String teacherId){}
+    //public Teacher lookupTeacher(String teacherId){}
 
-    public double showProfit(School school) throws IllegalArgumentException {
+    public static double showProfit(School school) throws IllegalArgumentException {
         double totalMoneyEarned = 0;
         double totalTeacherSalaries = 0;
 
