@@ -1,6 +1,10 @@
 import com.github.lalyos.jfiglet.FigletFont;
+
+import model.Teacher;
+
 import model.School;
 import model.Student;
+
 import utils.MainMenuOption;
 import utils.MaxValue;
 import utils.Validator;
@@ -18,14 +22,24 @@ public class Menu {
     private static School school;
 
     public static void main(String[] args) {
-        school = createSchool();
+//<<<<<<< HEAD
+           //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
+        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+        numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        createTeachers();
+        school = createSchool();
         registerStudents(numberOfStudents);
+    }
 
-        //numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        //numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-
-        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
+    public static String getValidNameFor(String entityType) {
+        Scanner scanner = new Scanner(System.in);
+        String name;
+        do {
+            System.out.printf("Enter a %s name: ", entityType);
+            name = scanner.nextLine();
+        } while (!Validator.isNameValid(name));
+        return name;
 
     }
 
@@ -40,16 +54,6 @@ public class Menu {
             Student student = new Student(getValidNameFor("student"), getValidAddress(), getValidEmail());
             school.addStudent(student);
         }
-    }
-
-    private static String getValidNameFor(String entityType) {
-        Scanner scanner = new Scanner(System.in);
-        String name;
-        do {
-            System.out.printf("Enter a %s name: %n", entityType);
-            name = scanner.nextLine();
-        } while (!Validator.isNameValid(name));
-        return name;
     }
 
     private static String getValidAddress() {
@@ -70,6 +74,7 @@ public class Menu {
             email = scanner.next();
         } while (!Validator.isEmailValid(email));
         return email;
+//>>>>>>> develop
     }
 
     private static int getNumberOfEntity(String value, int max) {
@@ -99,6 +104,21 @@ public class Menu {
             }
         }
         return selectedOption;
+    }
+//<<<<<<< HEAD
+    private static void createTeachers() {
+        Scanner scanner = new Scanner(System.in);
+        String name;
+        double salary;
+        for (int i = 0; i < numberOfTeachers; i++) {
+            name = getValidNameFor("teacher" + i);
+            System.out.print("Enter name of teacher " + (i + 1) + ": ");
+            System.out.print("Enter salary of teacher " + (i + 1) + ": ");
+               salary = scanner.nextDouble();
+            scanner.nextLine();
+            Teacher teacher = new Teacher(name, salary);
+            System.out.println("Teacher " + teacher.getName() + " created with ID: " + teacher.getTeacherId());
+        }
     }
 
 }
