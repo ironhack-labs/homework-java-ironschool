@@ -43,10 +43,10 @@ public class School {
     public String getName() {
         return this.name;
     }
-    public static HashMap<String, Course> getCourseMap() {
+    public HashMap<String, Course> getCourseMap() {
         return this.courseMap;
     }
-    public static HashMap<String, Teacher> getTeacherMap() {
+    public HashMap<String, Teacher> getTeacherMap() {
         return this.teacherMap;
     }
 
