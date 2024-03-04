@@ -51,25 +51,6 @@ public class Menu {
         }
     }
 
-    public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
-        System.out.println("Select option");
-        Stream.of(MainMenuOption.values()).forEach(opt -> System.out.println((opt.ordinal() + 1) + " - " + opt.getDescription()));
-
-        int selectedOption = -1;
-        while (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
-            try {
-                selectedOption = sc.nextInt();
-                if (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
-                    System.err.println("Invalid option. Please enter either " + OPTION_DATA_ENTRY + " or " + OPTION_SCHOOL_MANAGEMENT);
-                }
-            } catch (NoSuchElementException e) {
-                System.err.println("Invalid input. Please enter a number.");
-                sc.nextLine();
-            }
-        }
-        return selectedOption;
-    }
-
     public static float getSalary() {
         Scanner scanner = new Scanner(System.in);
         String salary;
@@ -120,6 +101,24 @@ public class Menu {
         return Integer.parseInt(number);
     }
 
+    public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
+        System.out.println("Select option");
+        Stream.of(MainMenuOption.values()).forEach(opt -> System.out.println((opt.ordinal() + 1) + " - " + opt.getDescription()));
+
+        int selectedOption = -1;
+        while (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
+            try {
+                selectedOption = sc.nextInt();
+                if (selectedOption != OPTION_DATA_ENTRY && selectedOption != OPTION_SCHOOL_MANAGEMENT) {
+                    System.err.println("Invalid option. Please enter either " + OPTION_DATA_ENTRY + " or " + OPTION_SCHOOL_MANAGEMENT);
+                }
+            } catch (NoSuchElementException e) {
+                System.err.println("Invalid input. Please enter a number.");
+                sc.nextLine();
+            }
+        }
+        return selectedOption;
+    }
 
 }
 
