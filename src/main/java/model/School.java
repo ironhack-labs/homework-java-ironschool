@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 @Getter
@@ -88,6 +89,32 @@ public class School {
         String[] header = {"ID", "Students", "Email-Students"};
         String[][] data = students.values().stream().map(student -> new String[]{student.getStudentId(), student.getName(),student.getEmail()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
+    }
+
+    public void enrollStudentMethod(String studentID, String courseID){
+
+        String newStudentID=checkID(studentID, students, this::showStudentsMethod);
+        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+
+        students.get(newStudentID).setCourse(courses.get(newCourseID));
+
+        if(courses.get(newCourseID).getMoney_earned()==0.0){
+            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getPrice());
+        }else{
+            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
+                    +courses.get(newCourseID).getPrice());
+        }
+    }
+    private String checkID(String id, Map<String, ?> map, Runnable showMethod) {
+        String newID = id;
+
+        while (!map.containsKey(newID)) {
+            showMethod.run();
+            System.out.println("Please insert a valid ID from the list shown above:");
+            Scanner scanner = new Scanner(System.in);
+            newID = scanner.nextLine();
+        }
+        return newID;
     }
 
 }
