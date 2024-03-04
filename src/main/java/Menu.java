@@ -1,5 +1,6 @@
 import com.github.lalyos.jfiglet.FigletFont;
 
+import model.Course;
 import model.Teacher;
 
 import model.School;
@@ -22,7 +23,6 @@ public class Menu {
     private static School school;
 
     public static void main(String[] args) {
-//<<<<<<< HEAD
            //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
         numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
         numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
@@ -30,6 +30,8 @@ public class Menu {
         createTeachers();
         school = createSchool();
         registerStudents(numberOfStudents);
+
+
     }
 
     public static String getValidNameFor(String entityType) {
@@ -74,7 +76,6 @@ public class Menu {
             email = scanner.next();
         } while (!Validator.isEmailValid(email));
         return email;
-//>>>>>>> develop
     }
 
     private static int getNumberOfEntity(String value, int max) {

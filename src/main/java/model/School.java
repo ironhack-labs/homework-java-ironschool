@@ -74,14 +74,13 @@ public class School {
 
     public void showTeachersMethod(){
         String[] header = {"ID", "Teachers"};
-        String[][] data = new String[teachers.size()][2];
-        int i=0;
-        for(Map.Entry<String, Teacher> entry : teachers.entrySet()){
-            Teacher teacher = entry.getValue();
-            data[i][0] = teacher.getTeacherId();
-            data[i][1] = teacher.getName();
-            i++;
-        }
+        String[][] data = teachers.values().stream().map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName()}).toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+    }
+
+    public void showCoursesMethod(){
+        String[] header = {"ID", "Courses"};
+        String[][] data = courses.values().stream().map(course-> new String[]{course.getCourseId(), course.getName()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
     }
 }

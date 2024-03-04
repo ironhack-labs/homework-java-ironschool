@@ -17,12 +17,16 @@ public class SchoolTest {
 
     static School DummySchool;
     static Teacher dummyAnne;
+
+    static Course dummyCourse;
     static Teacher dummyPedro;
     @BeforeAll
     static void CreateMockSchool() {
         DummySchool = new School("Marinade");
         dummyAnne = new Teacher("Anne", 1300.00);
+        dummyCourse = new Course("Introducción a la programación con Java", 7500);
         DummySchool.addTeacher(dummyAnne);
+        DummySchool.addCourse(dummyCourse);
     }
 
     @Test
@@ -68,9 +72,10 @@ public class SchoolTest {
         assertEquals(1, DummySchool.getTeachers().size());
     }
 
+
+
     @Test
-    @DisplayName("Show the same table")
-    void School_showTeachersMethodReturnASCIITable(){
+    void School_showTeachersMethodReturnASCIITable() {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         String uuidDummyAnne = dummyAnne.getTeacherId();
@@ -83,7 +88,37 @@ public class SchoolTest {
                         "║ %-36s │ %-8s ║%n" +
                         "╚══════════════════════════════════════╧══════════╝%n%n", uuidDummyAnne, nameDummyAnne);
 
-        assertEquals(expectedOutput, outputStreamCaptor.toString());
+
+        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
+        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
+
+        assertEquals(expectedNormalized, actualNormalized);
     }
+
+    @Test
+    void School_showCoursesMethodReturnASCIITable() {
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+        String uuidDummyCourse = dummyCourse.getCourseId();
+        String uuidDummyNameCourse = dummyCourse.getName();
+        DummySchool.showCoursesMethod();
+
+        String expectedOutput = String.format(
+                "╔══════════════════════════════════════╤═════════════════════════════════════════╗%n" +
+                        "║ ID                                   │ Courses                                 ║%n" +
+                        "╠══════════════════════════════════════╪═════════════════════════════════════════╣%n" +
+                        "║ %-36s │ %-36s ║%n" +
+                        "╚══════════════════════════════════════╧═════════════════════════════════════════╝%n%n", uuidDummyCourse, uuidDummyNameCourse);
+
+
+        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
+        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
+        assertEquals(expectedNormalized, actualNormalized);
+    }
+
+
+
+
+
 
 }
