@@ -16,31 +16,19 @@ import java.util.stream.Stream;
 public class Menu {
     private static final int OPTION_DATA_ENTRY = 1;
     private static final int OPTION_SCHOOL_MANAGEMENT = 2;
-    private static int numberOfCourses;
-    private static int numberOfTeachers;
-    private static int numberOfStudents;
     private static School school;
 
     public static void main(String[] args) {
-//<<<<<<< HEAD
-           //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
-        numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
-        numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-        createTeachers();
         school = createSchool();
+
+        int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        registerTeachers(numberOfTeachers);
+
+        int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
         registerStudents(numberOfStudents);
-    }
 
-    public static String getValidNameFor(String entityType) {
-        Scanner scanner = new Scanner(System.in);
-        String name;
-        do {
-            System.out.printf("Enter a %s name: ", entityType);
-            name = scanner.nextLine();
-        } while (!Validator.isNameValid(name));
-        return name;
-
+        //int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
     }
 
     public static School createSchool() {
@@ -56,35 +44,11 @@ public class Menu {
         }
     }
 
-    private static String getValidAddress() {
-        Scanner scanner = new Scanner(System.in);
-        String address;
-        do {
-            System.out.println("Enter student's address: ");
-            address = scanner.nextLine();
-        } while (!Validator.isAddressValid(address));
-        return address;
-    }
-
-    private static String getValidEmail() {
-        Scanner scanner = new Scanner(System.in);
-        String email;
-        do {
-            System.out.println("Enter student's email: ");
-            email = scanner.next();
-        } while (!Validator.isEmailValid(email));
-        return email;
-//>>>>>>> develop
-    }
-
-    private static int getNumberOfEntity(String value, int max) {
-        Scanner scanner = new Scanner(System.in);
-        String number;
-        do {
-            System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
-            number = scanner.next();
-        } while (!Validator.isNumberValid(number, max));
-        return Integer.parseInt(number);
+    private static void registerTeachers(int numberOfTeachers) {
+        for (int i = 0; i < numberOfTeachers; i++) {
+            Teacher teacher = new Teacher(getValidNameFor("teacher"), getSalary());
+            school.addTeacher(teacher);
+        }
     }
 
     public static int showPrincipalMenuAndRetrieveOption(Scanner sc) {
@@ -105,21 +69,57 @@ public class Menu {
         }
         return selectedOption;
     }
-//<<<<<<< HEAD
-    private static void createTeachers() {
+
+    public static float getSalary() {
+        Scanner scanner = new Scanner(System.in);
+        String salary;
+        do {
+            System.out.println("Enter the salary: ");
+            salary = scanner.next();
+        } while (!Validator.isNumberValid(salary, 0));
+        return Integer.parseInt(salary);
+    }
+
+    public static String getValidNameFor(String entityType) {
         Scanner scanner = new Scanner(System.in);
         String name;
-        double salary;
-        for (int i = 0; i < numberOfTeachers; i++) {
-            name = getValidNameFor("teacher" + i);
-            System.out.print("Enter name of teacher " + (i + 1) + ": ");
-            System.out.print("Enter salary of teacher " + (i + 1) + ": ");
-               salary = scanner.nextDouble();
-            scanner.nextLine();
-            Teacher teacher = new Teacher(name, salary);
-            System.out.println("Teacher " + teacher.getName() + " created with ID: " + teacher.getTeacherId());
-        }
+        do {
+            System.out.printf("Enter a %s name: ", entityType);
+            name = scanner.nextLine();
+        } while (!Validator.isNameValid(name));
+        return name;
     }
+
+    private static String getValidAddress() {
+        Scanner scanner = new Scanner(System.in);
+        String address;
+        do {
+            System.out.println("Enter student's address: ");
+            address = scanner.nextLine();
+        } while (!Validator.isAddressValid(address));
+        return address;
+    }
+
+    private static String getValidEmail() {
+        Scanner scanner = new Scanner(System.in);
+        String email;
+        do {
+            System.out.println("Enter student's email: ");
+            email = scanner.next();
+        } while (!Validator.isEmailValid(email));
+        return email;
+    }
+
+    private static int getNumberOfEntity(String value, int max) {
+        Scanner scanner = new Scanner(System.in);
+        String number;
+        do {
+            System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
+            number = scanner.next();
+        } while (!Validator.isNumberValid(number, max));
+        return Integer.parseInt(number);
+    }
+
 
 }
 

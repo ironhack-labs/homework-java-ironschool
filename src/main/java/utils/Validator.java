@@ -13,7 +13,9 @@ public class Validator {
     }
 
     public static boolean isNumberValid(String number, int maxNumber) {
-        return validate(number, "^(?:[1-9]|" + maxNumber + ")$", String.format("The valid range is from 1 to %s", number));
+        return maxNumber == 0 ?
+                validate(number, "^[1-9]\\d*$", String.format("The value %s is not valid", number)) :
+                validate(number, "^(?:[1-9]|" + maxNumber + ")$", String.format("The valid range is from 1 to %s", number));
     }
 
     public static boolean isEmailValid(String email) {
