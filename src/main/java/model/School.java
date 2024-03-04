@@ -83,4 +83,11 @@ public class School {
         String[][] data = courses.values().stream().map(course-> new String[]{course.getCourseId(), course.getName()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
     }
+
+    public void showStudentsMethod(){
+        String[] header = {"ID", "Students", "Email-Students"};
+        String[][] data = students.values().stream().map(student -> new String[]{student.getStudentId(), student.getName(),student.getEmail()}).toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+    }
+
 }

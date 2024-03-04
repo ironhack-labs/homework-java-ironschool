@@ -106,7 +106,6 @@ public class Menu {
         }
         return selectedOption;
     }
-//<<<<<<< HEAD
     private static void createTeachers() {
         Scanner scanner = new Scanner(System.in);
         String name;
