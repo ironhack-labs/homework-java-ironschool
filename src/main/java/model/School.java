@@ -91,7 +91,7 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void enrollStudentMethod(String studentID, String courseID){
+    public void enrollStudent(String studentID, String courseID){
 
         String newStudentID=checkID(studentID, students);
         String newCourseID = checkID(courseID, courses);
@@ -104,32 +104,28 @@ public class School {
     }
 
     private String checkID(String id, Map<String, ?> map) {
-        String newID = id;
-
         if (map == teachers) {
-            while (!map.containsKey(newID)) {
+            while (!map.containsKey(id)) {
                 showTeachersMethod();
-                newID = getNewID("Please insert a valid teacher ID from the list shown above:", newID);
+                id = getNewID("Please insert a valid teacher ID from the list shown above: ");
             }
         } else if (map == courses) {
-            while (!map.containsKey(newID)) {
+            while (!map.containsKey(id)) {
                 showCoursesMethod();
-                newID = getNewID("Please insert a valid course ID from the list shown above:", newID);
+                id = getNewID("Please insert a valid course ID from the list shown above: ");
             }
         } else if (map == students) {
-            while (!map.containsKey(newID)) {
+            while (!map.containsKey(id)) {
                 showStudentsMethod();
-                newID = getNewID("Please insert a valid student ID from the list shown above:", newID);
+                id = getNewID("Please insert a valid student ID from the list shown above: ");
             }
         }
-        return newID;
+        return id;
     }
-
-    private String getNewID(String x, String newID) {
-        System.out.println(x);
+    private String getNewID(String message) {
+        System.out.println(message);
         Scanner scanner = new Scanner(System.in);
-        newID = scanner.nextLine();
-        return newID;
+        return scanner.next();
     }
 }
 
