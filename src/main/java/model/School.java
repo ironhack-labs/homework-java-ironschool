@@ -92,31 +92,45 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void enrollStudentMethod(String studentID, String courseID){
+    public void enrollStudent(String studentID, String courseID){
 
-        String newStudentID=checkID(studentID, students, this::showStudentsMethod);
-        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+        String newStudentID=checkID(studentID, students);
+        String newCourseID = checkID(courseID, courses);
 
         students.get(newStudentID).setCourse(courses.get(newCourseID));
 
         courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
                 +courses.get(newCourseID).getPrice());
-    }
-    private String checkID(String id, Map<String, ?> map, Runnable showMethod) {
-        String newID = id;
 
-        while (!map.containsKey(newID)) {
-            showMethod.run();
-            System.out.println("Please insert a valid ID from the list shown above:");
-            Scanner scanner = new Scanner(System.in);
-            newID = scanner.nextLine();
+    }
+    private String checkID(String id, Map<String, ?> map) {
+        if (map == teachers) {
+            while (!map.containsKey(id)) {
+                showTeachersMethod();
+                id = getNewID("Please insert a valid teacher ID from the list shown above: ");
+            }
+        } else if (map == courses) {
+            while (!map.containsKey(id)) {
+                showCoursesMethod();
+                id = getNewID("Please insert a valid course ID from the list shown above: ");
+            }
+        } else if (map == students) {
+            while (!map.containsKey(id)) {
+                showStudentsMethod();
+                id = getNewID("Please insert a valid student ID from the list shown above: ");
+            }
         }
-        return newID;
+        return id;
+    }
+    private String getNewID(String message) {
+        System.out.println(message);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
     }
 
     public void lookupCourse(String courseID){
 
-        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+        String newCourseID = checkID(courseID, courses);
         String[] header = {"ID", "Courses","Teacher", "Price", "MoneyEarned"};
 
         String[][] data = courses.values().stream()
@@ -124,7 +138,10 @@ public class School {
                 .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
                 .toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
-        
+
     }
 
+
 }
+
+

@@ -157,14 +157,14 @@ public class SchoolTest {
         balmes.addStudent(peter);
         balmes.addCourse(englishCourseA1);
 
-        balmes.enrollStudentMethod(peter.getStudentId(), englishCourseA1.getCourseId());
+        balmes.enrollStudent(peter.getStudentId(), englishCourseA1.getCourseId());
 
         assertEquals(300, englishCourseA1.getMoney_earned());
         assertEquals(englishCourseA1, peter.getCourse());
 
         Student bruce = new Student("Bruce", "False Street 123", "testing@testcase.es");
         balmes.addStudent(bruce);
-        balmes.enrollStudentMethod(bruce.getStudentId(), englishCourseA1.getCourseId());
+        balmes.enrollStudent(bruce.getStudentId(), englishCourseA1.getCourseId());
 
         assertEquals(600, englishCourseA1.getMoney_earned());
         assertEquals(englishCourseA1, bruce.getCourse());
@@ -176,7 +176,7 @@ public class SchoolTest {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         dummyCourse.setTeacher(dummyAnne);
-        DummySchool.enrollStudentMethod(dummyStudent.getStudentId(), dummyCourse.getCourseId());
+        DummySchool.enrollStudent(dummyStudent.getStudentId(), dummyCourse.getCourseId());
 
         String uuidDummyCourse = dummyCourse.getCourseId();
         String uuidDummyNameCourse = dummyCourse.getName();
