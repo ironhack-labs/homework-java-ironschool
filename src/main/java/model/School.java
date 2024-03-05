@@ -169,5 +169,5 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-
 }
+
