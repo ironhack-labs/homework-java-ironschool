@@ -143,6 +143,20 @@ public class School {
 
     }
 
+    public void lookupStudent(String studentID) {
+
+        String newStudentID = checkID(studentID, students);
+        String[] header = {"ID", "Student", "Enrolled Course", "Email-Student", "Student Address"};
+
+        String[][] data = students.values().stream()
+                .filter(student -> student.getStudentId().equals(studentID))
+                .map(student -> new String[]{student.getStudentId(), student.getName(), student.getCourse().getName(),
+                        student.getEmail(), student.getAddress()})
+                .toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+
+    }
+
 
 }
 

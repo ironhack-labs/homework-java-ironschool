@@ -200,6 +200,49 @@ public class SchoolTest {
         assertEquals(expectedNormalized, actualNormalized);
     }
 
+    @Test
+    @DisplayName("Should be the same lookUp table result")
+    void School_lookupStudentMethodReturnASCIITable() {
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        DummySchool.enrollStudent(dummyStudent.getStudentId(), dummyCourse.getCourseId());
+
+        String uuidDummyStudent = dummyStudent.getStudentId();
+        String dummyStudentName = dummyStudent.getName();
+        String dummyStudentEmail = dummyStudent.getEmail();
+        String uuidDummyEnrolledCourse = dummyStudent.getCourse().getName();
+        String dummyStudentAddress = dummyStudent.getAddress();
+
+        DummySchool.lookupStudent(dummyStudent.getStudentId());
+
+        String expectedOutput = String.format(
+                "╔══════════════════════════════════════╤═════════╤═════════════════════════════════════════╤═══════════════════╤═════════════════════════════╗%n" +
+                        "║ ID                                   │ Student │ Enrolled Course                        │ Email-Student     │ Student Address             ║%n" +
+                        "╠══════════════════════════════════════╪═════════╪═════════════════════════════════════════╪═══════════════════╪═════════════════════════════╣%n" +
+                        "║ %-36s │ %-7s │ %-36s │ %-17s │ %-27s ║%n" +
+                        "╚══════════════════════════════════════╧═════════╧═════════════════════════════════════════╧═══════════════════╧═════════════════════════════╝%n%n",
+                uuidDummyStudent, dummyStudentName,uuidDummyEnrolledCourse, dummyStudentEmail, dummyStudentAddress);
+
+
+        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
+        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
+        assertEquals(expectedNormalized, actualNormalized);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
