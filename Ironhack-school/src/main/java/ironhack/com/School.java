@@ -100,8 +100,8 @@ public class School {
             throw new IllegalArgumentException("Course not found.");
         }
 
-        course.setMoney_earned(course.getPrice());
         student.enrollInCourse(course);
+        course.setMoney_earned(course.getMoney_earned() + course.getPrice());
 
     }
 
