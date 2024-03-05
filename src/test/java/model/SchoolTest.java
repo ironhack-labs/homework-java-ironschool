@@ -171,6 +171,34 @@ public class SchoolTest {
     }
 
     @Test
+    @DisplayName("Check Assign Method when IDs are not valid")
+    void School_enrollOneStudentAtCourse_NegativeTest(){
+
+        School balmes = new School("Jaume Balmes");
+        Teacher john = new Teacher("John", 1200.00);
+        Course englishCourseA1 = new Course("English A1", 300.00);
+        Student peter = new Student("Peter", "False Street 123", "testing@testcase.es");
+
+        balmes.addTeacher(john);
+        balmes.addStudent(peter);
+        balmes.addCourse(englishCourseA1);
+
+        balmes.enrollStudentMethod("INVALID_ID", englishCourseA1.getCourseId());
+
+        assertEquals(300, englishCourseA1.getMoney_earned());
+        assertEquals(englishCourseA1, peter.getCourse());
+
+        Student bruce = new Student("Bruce", "False Street 123", "testing@testcase.es");
+        balmes.addStudent(bruce);
+        balmes.enrollStudentMethod(bruce.getStudentId(), englishCourseA1.getCourseId());
+
+        assertEquals(600, englishCourseA1.getMoney_earned());
+        assertEquals(englishCourseA1, bruce.getCourse());
+    }
+
+
+
+    @Test
     @DisplayName("Should be the same lookUp table result")
     void School_lookupCoursesMethodReturnASCIITable() {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
