@@ -73,76 +73,93 @@ public class School {
         return totalEarned;
     }
 
-
-    public void showTeachersMethod(){
+    public void showTeachersMethod() {
         String[] header = {"ID", "Teachers"};
         String[][] data = teachers.values().stream().map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void showCoursesMethod(){
+    public void showCoursesMethod() {
         String[] header = {"ID", "Courses"};
-        String[][] data = courses.values().stream().map(course-> new String[]{course.getCourseId(), course.getName()}).toArray(String[][]::new);
+        String[][] data = courses.values().stream().map(course -> new String[]{course.getCourseId(), course.getName()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void showStudentsMethod(){
+    public void showStudentsMethod() {
         String[] header = {"ID", "Students", "Email-Students"};
-        String[][] data = students.values().stream().map(student -> new String[]{student.getStudentId(), student.getName(),student.getEmail()}).toArray(String[][]::new);
+        String[][] data = students.values().stream().map(student -> new String[]{student.getStudentId(), student.getName(), student.getEmail()}).toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void enrollStudentMethod(String studentID, String courseID){
+    public void enrollStudent(String studentID, String courseID) {
 
-        String newStudentID=checkID(studentID, students, this::showStudentsMethod);
-        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+        String newStudentID = checkID(studentID, students);
+        String newCourseID = checkID(courseID, courses);
 
         students.get(newStudentID).setCourse(courses.get(newCourseID));
 
         courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
-                +courses.get(newCourseID).getPrice());
-    }
-    private String checkID(String id, Map<String, ?> map, Runnable showMethod) {
-        String newID = id;
+                + courses.get(newCourseID).getPrice());
 
-        while (!map.containsKey(newID)) {
-            showMethod.run();
-            System.out.println("Please insert a valid ID from the list shown above:");
-            Scanner scanner = new Scanner(System.in);
-            newID = scanner.nextLine();
+    }
+
+    private String checkID(String id, Map<String, ?> map) {
+        if (map == teachers) {
+            while (!map.containsKey(id)) {
+                showTeachersMethod();
+                id = getNewID("Please insert a valid teacher ID from the list shown above: ");
+            }
+        } else if (map == courses) {
+            while (!map.containsKey(id)) {
+                showCoursesMethod();
+                id = getNewID("Please insert a valid course ID from the list shown above: ");
+            }
+        } else if (map == students) {
+            while (!map.containsKey(id)) {
+                showStudentsMethod();
+                id = getNewID("Please insert a valid student ID from the list shown above: ");
+            }
         }
-        return newID;
+        return id;
     }
 
-    public void lookupCourse(String courseID){
+    private String getNewID(String message) {
+        System.out.println(message);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 
-        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
-        String[] header = {"ID", "Courses","Teacher", "Price", "MoneyEarned"};
+    public void lookupCourse(String courseID) {
+
+        String newCourseID = checkID(courseID, courses);
+        String[] header = {"ID", "Courses", "Teacher", "Price", "MoneyEarned"};
 
         String[][] data = courses.values().stream()
                 .filter(course -> course.getCourseId().equals(courseID))
-                .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
+                .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),
+                        String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
                 .toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
-        
+
     }
 
-    public void lookupStudent(String studentID){
+    public void lookupStudent(String studentID) {
 
-        String newStudentID = checkID(studentID, students, this::showStudentsMethod);
+        String newStudentID = checkID(studentID, students);
         String[] header = {"ID", "Student", "Enrolled Course", "Email-Student", "Student Address"};
 
         String[][] data = students.values().stream()
                 .filter(student -> student.getStudentId().equals(studentID))
-                .map(student -> new String[]{student.getStudentId(), student.getName(), student.getCourse().getName(), student.getEmail(), student.getAddress()})
+                .map(student -> new String[]{student.getStudentId(), student.getName(), student.getCourse().getName(),
+                        student.getEmail(), student.getAddress()})
                 .toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
 
     }
 
-    public void lookupTeacher(String teacherID){
+	public void lookupTeacher(String teacherID) {
 
-        String newStudentID = checkID(teacherID, teachers, this::showTeachersMethod);
+        String newStudentID = checkID(teacherID, teachers);
         String[] header = {"ID", "Teacher", "Salary"};
 
         String[][] data = teachers.values().stream()
@@ -150,6 +167,7 @@ public class School {
                 .map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName(), String.valueOf(teacher.getSalary())})
                 .toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
-
     }
+
+
 }
