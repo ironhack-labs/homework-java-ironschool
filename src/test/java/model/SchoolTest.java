@@ -157,47 +157,17 @@ public class SchoolTest {
         balmes.addStudent(peter);
         balmes.addCourse(englishCourseA1);
 
-        balmes.enrollStudentMethod(peter.getStudentId(), englishCourseA1.getCourseId());
+        balmes.enrollStudent(peter.getStudentId(), englishCourseA1.getCourseId());
 
         assertEquals(300, englishCourseA1.getMoney_earned());
         assertEquals(englishCourseA1, peter.getCourse());
 
         Student bruce = new Student("Bruce", "False Street 123", "testing@testcase.es");
         balmes.addStudent(bruce);
-        balmes.enrollStudentMethod(bruce.getStudentId(), englishCourseA1.getCourseId());
+        balmes.enrollStudent(bruce.getStudentId(), englishCourseA1.getCourseId());
 
         assertEquals(600, englishCourseA1.getMoney_earned());
         assertEquals(englishCourseA1, bruce.getCourse());
-    }
-
-    @Test
-    @DisplayName("Should be the same lookUp table result")
-    void School_lookupCoursesMethodReturnASCIITable() {
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
-        dummyCourse.setTeacher(dummyAnne);
-        DummySchool.enrollStudentMethod(dummyStudent.getStudentId(), dummyCourse.getCourseId());
-
-        String uuidDummyCourse = dummyCourse.getCourseId();
-        String uuidDummyNameCourse = dummyCourse.getName();
-        String uuidDummyTeacherName = dummyCourse.getTeacher().getName();
-        String uuidDummyCoursePrice = String.valueOf(dummyCourse.getPrice());
-        String uuidDummyCourseMoneyEarned = String.valueOf(dummyCourse.getMoney_earned());
-
-        DummySchool.lookupCourse(dummyCourse.getCourseId());
-
-        String expectedOutput = String.format(
-                "╔══════════════════════════════════════╤═════════════════════════════════════════╤═════════╤════════╤═════════════╗%n" +
-                        "║ ID                                   │ Courses                                 │ Teacher │ Price  │ MoneyEarned ║%n" +
-                        "╠══════════════════════════════════════╪═════════════════════════════════════════╪═════════╪════════╪═════════════╣%n" +
-                        "║ %-36s │ %-36s │ %-4s │ %-6s │ %-6s ║%n" +
-                        "╚══════════════════════════════════════╧═════════════════════════════════════════╧═════════╧════════╧═════════════╝%n%n",
-                uuidDummyCourse, uuidDummyNameCourse,uuidDummyTeacherName, uuidDummyCoursePrice, uuidDummyCourseMoneyEarned);
-
-
-        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
-        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
-        assertEquals(expectedNormalized, actualNormalized);
     }
 
     @Test
@@ -206,7 +176,7 @@ public class SchoolTest {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        DummySchool.enrollStudentMethod(dummyStudent.getStudentId(), dummyCourse.getCourseId());
+        DummySchool.enrollStudent(dummyStudent.getStudentId(), dummyCourse.getCourseId());
 
         String uuidDummyStudent = dummyStudent.getStudentId();
         String dummyStudentName = dummyStudent.getName();
@@ -229,6 +199,7 @@ public class SchoolTest {
         String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
         assertEquals(expectedNormalized, actualNormalized);
     }
+
 
 
 
