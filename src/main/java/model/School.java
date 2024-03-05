@@ -93,28 +93,43 @@ public class School {
 
     public void enrollStudentMethod(String studentID, String courseID){
 
-        String newStudentID=checkID(studentID, students, this::showStudentsMethod);
-        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+        String newStudentID=checkID(studentID, students);
+        String newCourseID = checkID(courseID, courses);
 
         students.get(newStudentID).setCourse(courses.get(newCourseID));
 
-        if(courses.get(newCourseID).getMoney_earned()==0.0){
-            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getPrice());
-        }else{
-            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
-                    +courses.get(newCourseID).getPrice());
-        }
+        courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
+                +courses.get(newCourseID).getPrice());
+
     }
-    private String checkID(String id, Map<String, ?> map, Runnable showMethod) {
+
+    private String checkID(String id, Map<String, ?> map) {
         String newID = id;
 
-        while (!map.containsKey(newID)) {
-            showMethod.run();
-            System.out.println("Please insert a valid ID from the list shown above:");
-            Scanner scanner = new Scanner(System.in);
-            newID = scanner.nextLine();
+        if (map == teachers) {
+            while (!map.containsKey(newID)) {
+                showTeachersMethod();
+                newID = getNewID("Please insert a valid teacher ID from the list shown above:", newID);
+            }
+        } else if (map == courses) {
+            while (!map.containsKey(newID)) {
+                showCoursesMethod();
+                newID = getNewID("Please insert a valid course ID from the list shown above:", newID);
+            }
+        } else if (map == students) {
+            while (!map.containsKey(newID)) {
+                showStudentsMethod();
+                newID = getNewID("Please insert a valid student ID from the list shown above:", newID);
+            }
         }
         return newID;
     }
 
+    private String getNewID(String x, String newID) {
+        System.out.println(x);
+        Scanner scanner = new Scanner(System.in);
+        newID = scanner.nextLine();
+        return newID;
+    }
 }
+
