@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 @Getter
@@ -89,4 +90,41 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
+    public void enrollStudent(String studentID, String courseID){
+
+        String newStudentID=checkID(studentID, students);
+        String newCourseID = checkID(courseID, courses);
+
+        students.get(newStudentID).setCourse(courses.get(newCourseID));
+
+        courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
+                +courses.get(newCourseID).getPrice());
+
+    }
+
+    private String checkID(String id, Map<String, ?> map) {
+        if (map == teachers) {
+            while (!map.containsKey(id)) {
+                showTeachersMethod();
+                id = getNewID("Please insert a valid teacher ID from the list shown above: ");
+            }
+        } else if (map == courses) {
+            while (!map.containsKey(id)) {
+                showCoursesMethod();
+                id = getNewID("Please insert a valid course ID from the list shown above: ");
+            }
+        } else if (map == students) {
+            while (!map.containsKey(id)) {
+                showStudentsMethod();
+                id = getNewID("Please insert a valid student ID from the list shown above: ");
+            }
+        }
+        return id;
+    }
+    private String getNewID(String message) {
+        System.out.println(message);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 }
+
