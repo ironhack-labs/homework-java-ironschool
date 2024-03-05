@@ -139,4 +139,17 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
 
     }
+
+    public void lookupTeacher(String teacherID){
+
+        String newStudentID = checkID(teacherID, teachers, this::showTeachersMethod);
+        String[] header = {"ID", "Teacher", "Salary"};
+
+        String[][] data = teachers.values().stream()
+                .filter(teacher -> teacher.getTeacherId().equals(teacherID))
+                .map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName(), String.valueOf(teacher.getSalary())})
+                .toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+
+    }
 }
