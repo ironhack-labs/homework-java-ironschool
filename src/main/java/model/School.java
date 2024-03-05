@@ -1,6 +1,7 @@
 package model;
 
 import com.mitchtalmadge.asciidata.table.ASCIITable;
+import com.mitchtalmadge.asciidata.table.formats.ASCIITableFormat;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -98,12 +99,8 @@ public class School {
 
         students.get(newStudentID).setCourse(courses.get(newCourseID));
 
-        if(courses.get(newCourseID).getMoney_earned()==0.0){
-            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getPrice());
-        }else{
-            courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
-                    +courses.get(newCourseID).getPrice());
-        }
+        courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
+                +courses.get(newCourseID).getPrice());
     }
     private String checkID(String id, Map<String, ?> map, Runnable showMethod) {
         String newID = id;
@@ -115,6 +112,19 @@ public class School {
             newID = scanner.nextLine();
         }
         return newID;
+    }
+
+    public void lookupCourse(String courseID){
+
+        String newCourseID = checkID(courseID, courses, this::showCoursesMethod);
+        String[] header = {"ID", "Courses","Teacher", "Price", "MoneyEarned"};
+
+        String[][] data = courses.values().stream()
+                .filter(course -> course.getCourseId().equals(courseID))
+                .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
+                .toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+        
     }
 
 }
