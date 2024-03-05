@@ -230,6 +230,33 @@ public class SchoolTest {
         assertEquals(expectedNormalized, actualNormalized);
     }
 
+    @Test
+    @DisplayName("Should be the same lookUp table result")
+    void School_lookupTeacherMethodReturnASCIITable() {
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        String uuidDummyTeacher = dummyAnne.getTeacherId();
+        String uuiddummyTeacherName = dummyAnne.getName();
+        String uuiddummyTeacherSalary = String.valueOf(dummyAnne.getSalary());
+
+        DummySchool.lookupTeacher(dummyAnne.getTeacherId());
+
+        String expectedOutput = String.format(
+                "╔══════════════════════════════════════╤═════════╤════════╗%n" +
+                        "║ ID                                   │ Teacher │ Salary ║%n" +
+                        "╠══════════════════════════════════════╪═════════╪════════╣%n" +
+                        "║ %-36s │ %-7s │ %-6s ║%n" +
+                        "╚══════════════════════════════════════╧═════════╧════════╝%n%n",
+                uuidDummyTeacher, uuiddummyTeacherName,uuiddummyTeacherSalary);
+
+
+        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
+        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
+        assertEquals(expectedNormalized, actualNormalized);
+    }
+
+
 
 
 
