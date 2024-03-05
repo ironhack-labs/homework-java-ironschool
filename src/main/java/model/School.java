@@ -73,7 +73,6 @@ public class School {
         return totalEarned;
     }
 
-
     public void showTeachersMethod() {
         String[] header = {"ID", "Teachers"};
         String[][] data = teachers.values().stream().map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName()}).toArray(String[][]::new);
