@@ -1,6 +1,7 @@
 package model;
 
 import com.mitchtalmadge.asciidata.table.ASCIITable;
+import com.mitchtalmadge.asciidata.table.formats.ASCIITableFormat;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -128,6 +129,19 @@ public class School {
         return scanner.next();
     }
 
+    public void lookupCourse(String courseID) {
+
+        String newCourseID = checkID(courseID, courses);
+        String[] header = {"ID", "Courses", "Teacher", "Price", "MoneyEarned"};
+
+        String[][] data = courses.values().stream()
+                .filter(course -> course.getCourseId().equals(courseID))
+                .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),
+                        String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
+                .toArray(String[][]::new);
+        System.out.println(ASCIITable.fromData(header, data));
+
+    }
 
     public void lookupStudent(String studentID) {
 
