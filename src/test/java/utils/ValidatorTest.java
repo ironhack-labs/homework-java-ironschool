@@ -56,32 +56,47 @@ class ValidatorTest {
     @DisplayName("Should validate correct numbers")
     @ValueSource(strings = {"1", "2", "5"})
     void isNumberValid_with_max_when_correct_number(String number) {
-        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
-        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
-        assertTrue(Validator.isNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
+        assertTrue(Validator.isPositiveNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
+        assertTrue(Validator.isPositiveNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
+        assertTrue(Validator.isPositiveNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
     }
 
     @ParameterizedTest
     @DisplayName("Should not validate wrong numbers")
     @ValueSource(strings = {"0", "o", "80", "100", "-12000"})
     void isNumberValid_with_max_when_wrong_number(String number) {
-        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
-        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
-        assertFalse(Validator.isNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
+        assertFalse(Validator.isPositiveNumberValid(number, MaxValue.MAX_COURSES_TO_CREATE.getValue()));
+        assertFalse(Validator.isPositiveNumberValid(number, MaxValue.MAX_TEACHER_TO_CREATE.getValue()));
+        assertFalse(Validator.isPositiveNumberValid(number, MaxValue.MAX_STUDENT_TO_CREATE.getValue()));
     }
 
     @ParameterizedTest
     @DisplayName("Should validate correct numbers")
     @ValueSource(strings = {"25000", "30000", "50000"})
     void isNumberValid_without_max_when_correct_number(String number) {
-        assertTrue(Validator.isNumberValid(number, 0));
+        assertTrue(Validator.isPositiveNumberValid(number, 0));
     }
 
     @ParameterizedTest
-    @DisplayName("Should validate correct numbers")
+    @DisplayName("Should not validate wrong numbers")
     @ValueSource(strings = {"-25000", "-30000", "0"})
     void isNumberValid_without_max_when_wrong_number(String number) {
-        assertFalse(Validator.isNumberValid(number, 0));
+        assertFalse(Validator.isPositiveNumberValid(number, 0));
+    }
+
+
+    @ParameterizedTest
+    @DisplayName("Should validate correct decimals numbers bigger than 0")
+    @ValueSource(strings = {"2500.5", "3.2", "50.57"})
+    void isDecimalNumberValid_when_correct_number(String decimalNumber) {
+        assertTrue(Validator.isPositiveDecimalNumberValid(decimalNumber));
+    }
+
+    @ParameterizedTest
+    @DisplayName("Should not validate wrong decimals numbers")
+    @ValueSource(strings = {"-25.2", "-30.0", "0.0", "0", "-0.3"})
+    void isDecimalNumberValid_when_wrong_number(String decimalNumber) {
+        assertFalse(Validator.isPositiveDecimalNumberValid(decimalNumber));
     }
 
 }

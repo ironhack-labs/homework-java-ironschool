@@ -1,4 +1,5 @@
 package model;
+
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Teacher {
         this.name = name;
         this.salary = salary;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

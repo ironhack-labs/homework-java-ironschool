@@ -51,14 +51,14 @@ public class Menu {
         }
     }
 
-    public static float getSalary() {
+    public static double getSalary() {
         Scanner scanner = new Scanner(System.in);
         String salary;
         do {
             System.out.println("Enter the salary: ");
             salary = scanner.next();
-        } while (!Validator.isNumberValid(salary, 0));
-        return Integer.parseInt(salary);
+        } while (!Validator.isPositiveDecimalNumberValid(salary));
+        return Double.parseDouble(salary);
     }
 
     public static String getValidNameFor(String entityType) {
@@ -97,7 +97,7 @@ public class Menu {
         do {
             System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
             number = scanner.next();
-        } while (!Validator.isNumberValid(number, max));
+        } while (!Validator.isPositiveNumberValid(number, max));
         return Integer.parseInt(number);
     }
 
