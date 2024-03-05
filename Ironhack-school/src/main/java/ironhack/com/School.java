@@ -132,4 +132,22 @@ public class School {
     private Teacher findTeacherById(String teacherId) {
         return teacher_map.get(teacherId);
     }
+
+    public void showMoneySpentByStudent(String studentId) {
+        double totalMoneySpent = 0.0;
+
+        Student student = student_map.get(studentId);
+
+        if (student == null) {
+            throw new IllegalArgumentException("Student not found");
+        }
+
+        List<Course> courses = student.getCourseList();
+        for (Course course : courses) {
+            totalMoneySpent += course.getPrice();
+        }
+
+        System.out.println(totalMoneySpent);
+    }
+
 }
