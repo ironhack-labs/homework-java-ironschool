@@ -1,12 +1,9 @@
-import com.github.lalyos.jfiglet.FigletFont;
-
-import model.Teacher;
-
+import com.github.lalyos.jfiglet.FigletFont;import model.Course;
 import model.School;
 import model.Student;
-
+import model.Teacher;
+import utils.Command;
 import utils.MainMenuOption;
-import utils.MaxValue;
 import utils.Validator;
 
 import java.util.NoSuchElementException;
@@ -19,16 +16,19 @@ public class Menu {
     private static School school;
 
     public static void main(String[] args) {
-        school = createSchool();
+        // school = createSchool();
+        // showPrincipalMenuAndRetrieveOption(scanner)
 
-        int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-        registerTeachers(numberOfTeachers);
+        // int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        // registerTeachers(numberOfTeachers);
 
-        int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
-        registerStudents(numberOfStudents);
+        // int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+        // registerStudents(numberOfStudents);
 
-        //int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        //System.out.println("Option Selected: " + showPrincipalMenuAndRetrieveOption(scanner));
+        // int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        // registerCourses(numberOfCourses);
+
+        menuOfCommands();
     }
 
     public static School createSchool() {
@@ -51,14 +51,31 @@ public class Menu {
         }
     }
 
-    public static float getSalary() {
+    private static void registerCourses(int numberOfCourses) {
+        for (int i = 0; i < numberOfCourses; i++) {
+            Course course = new Course(getValidNameFor("course"), getPrice());
+            school.addCourse(course);
+        }
+    }
+
+    public static double getSalary() {
         Scanner scanner = new Scanner(System.in);
         String salary;
         do {
             System.out.println("Enter the salary: ");
             salary = scanner.next();
-        } while (!Validator.isNumberValid(salary, 0));
-        return Integer.parseInt(salary);
+        } while (!Validator.isPositiveDecimalNumberValid(salary));
+        return Double.parseDouble(salary);
+    }
+
+    public static double getPrice() {
+        Scanner scanner = new Scanner(System.in);
+        String price;
+        do {
+            System.out.println("Enter the price: ");
+            price = scanner.next();
+        } while (!Validator.isPositiveDecimalNumberValid(price));
+        return Double.parseDouble(price);
     }
 
     public static String getValidNameFor(String entityType) {
@@ -97,7 +114,7 @@ public class Menu {
         do {
             System.out.printf("Enter the number of %s to create (max-%d): %n", value, max);
             number = scanner.next();
-        } while (!Validator.isNumberValid(number, max));
+        } while (!Validator.isPositiveNumberValid(number, max));
         return Integer.parseInt(number);
     }
 
@@ -118,6 +135,19 @@ public class Menu {
             }
         }
         return selectedOption;
+    }
+
+    public static void menuOfCommands() {
+        Scanner scanner = new Scanner(System.in);
+        long max = Stream.of(Command.values()).count();
+        Stream.of(Command.values()).forEach(opt -> System.out.println(opt.getIndex() + " - " + opt.getDescription()));
+
+        String commandIndex;
+        do {
+            System.out.println("Enter a command: ");
+            commandIndex = scanner.next();
+        } while (!commandIndex.equals("0") && !Validator.isPositiveNumberValid(commandIndex, (int) max - 1));
+
     }
 
 }
