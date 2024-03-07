@@ -1,10 +1,12 @@
-import com.github.lalyos.jfiglet.FigletFont;import model.Course;
+import com.github.lalyos.jfiglet.FigletFont;
+import model.Course;
 import model.School;
 import model.Student;
 import model.Teacher;
 import utils.Command;
 import utils.MainMenuOption;
 import utils.Validator;
+import utils.MaxValue;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -16,17 +18,17 @@ public class Menu {
     private static School school;
 
     public static void main(String[] args) {
-        // school = createSchool();
+        school = createSchool();
         // showPrincipalMenuAndRetrieveOption(scanner)
 
-        // int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-        // registerTeachers(numberOfTeachers);
+        int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+        registerTeachers(numberOfTeachers);
 
-        // int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
-        // registerStudents(numberOfStudents);
+        int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+        registerStudents(numberOfStudents);
 
-        // int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        // registerCourses(numberOfCourses);
+        int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+        registerCourses(numberOfCourses);
 
         menuOfCommands();
     }
@@ -140,14 +142,17 @@ public class Menu {
     public static void menuOfCommands() {
         Scanner scanner = new Scanner(System.in);
         long max = Stream.of(Command.values()).count();
-        Stream.of(Command.values()).forEach(opt -> System.out.println(opt.getIndex() + " - " + opt.getDescription()));
+
 
         String commandIndex;
         do {
+            Stream.of(Command.values()).forEach(opt -> System.out.println(opt.getIndex() + " - " + opt.getDescription()));
             System.out.println("Enter a command: ");
             commandIndex = scanner.next();
-        } while (!commandIndex.equals("0") && !Validator.isPositiveNumberValid(commandIndex, (int) max - 1));
+            school.executeCommand(commandIndex);
+        } while (!commandIndex.equals("0"));
 
+        //while (!commandIndex.equals("0") && !Validator.isPositiveNumberValid(commandIndex, (int) max - 1));
     }
 
 }

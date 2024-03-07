@@ -8,7 +8,7 @@ public enum Command {
     ASSIGN ("2", "Assign teacher in a course"),
     SHOW_COURSES("3", "Show courses"),
     LOOKUP_COURSE("4", "Look up for a course"),
-    SHOW_STUDENTS("5", "Show courses"),
+    SHOW_STUDENTS("5", "Show students"),
     LOOKUP_STUDENT("6", "Look up for a student"),
     SHOW_TEACHERS("7", "Show teachers"),
     LOOKUP_TEACHER("8", "Look up for a teacher"),
