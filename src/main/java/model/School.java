@@ -1,7 +1,6 @@
 package model;
 
 import com.mitchtalmadge.asciidata.table.ASCIITable;
-import com.mitchtalmadge.asciidata.table.formats.ASCIITableFormat;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -104,27 +103,21 @@ public class School {
     }
 
     private String checkID(String id, Map<String, ?> map) {
-        if (map == teachers) {
-            while (!map.containsKey(id)) {
+        while (!map.containsKey(id)) {
+            if (map == teachers) {
                 showTeachersMethod();
-                id = getNewID("Please insert a valid teacher ID from the list shown above: ");
-            }
-        } else if (map == courses) {
-            while (!map.containsKey(id)) {
+            } else if (map == courses) {
                 showCoursesMethod();
-                id = getNewID("Please insert a valid course ID from the list shown above: ");
-            }
-        } else if (map == students) {
-            while (!map.containsKey(id)) {
+            } else if (map == students) {
                 showStudentsMethod();
-                id = getNewID("Please insert a valid student ID from the list shown above: ");
             }
+            id = getNewID();
         }
         return id;
     }
 
-    private String getNewID(String message) {
-        System.out.println(message);
+    private String getNewID() {
+        System.out.println("Please insert a valid ID from the list shown above: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }

@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -171,34 +173,6 @@ public class SchoolTest {
     }
 
     @Test
-    @DisplayName("Check Assign Method when IDs are not valid")
-    void School_enrollOneStudentAtCourse_NegativeTest(){
-
-        School balmes = new School("Jaume Balmes");
-        Teacher john = new Teacher("John", 1200.00);
-        Course englishCourseA1 = new Course("English A1", 300.00);
-        Student peter = new Student("Peter", "False Street 123", "testing@testcase.es");
-
-        balmes.addTeacher(john);
-        balmes.addStudent(peter);
-        balmes.addCourse(englishCourseA1);
-
-        balmes.enrollStudentMethod("INVALID_ID", englishCourseA1.getCourseId());
-
-        assertEquals(300, englishCourseA1.getMoney_earned());
-        assertEquals(englishCourseA1, peter.getCourse());
-
-        Student bruce = new Student("Bruce", "False Street 123", "testing@testcase.es");
-        balmes.addStudent(bruce);
-        balmes.enrollStudentMethod(bruce.getStudentId(), englishCourseA1.getCourseId());
-
-        assertEquals(600, englishCourseA1.getMoney_earned());
-        assertEquals(englishCourseA1, bruce.getCourse());
-    }
-
-
-
-    @Test
     @DisplayName("Should be the same lookUp table result")
     void School_lookupCoursesMethodReturnASCIITable() {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -282,6 +256,21 @@ public class SchoolTest {
         String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
         String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
         assertEquals(expectedNormalized, actualNormalized);
+    }
+
+    @Test
+    @DisplayName("Simulation of a valid ID entered via console")
+    void testEnrollStudentWithInvalidID_insertValid() {
+
+        String validID = dummyStudent.getStudentId() + "\n";
+        InputStream validIN = new ByteArrayInputStream(validID.getBytes());
+        System.setIn(validIN);
+        DummySchool.enrollStudent("nonexistentStudentID", dummyCourse.getCourseId());
+        System.setIn(System.in);
+
+        assertEquals(7500.0, dummyCourse.getMoney_earned());
+        assertEquals(dummyCourse, dummyStudent.getCourse());
+
     }
 
 
