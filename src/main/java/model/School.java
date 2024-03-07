@@ -112,13 +112,6 @@ public class School {
 
     private String checkID(String id, Map<String, ?> map) {
         while (!map.containsKey(id)) {
-            if (map == teachers) {
-                //showTeachersMethod();
-            } else if (map == courses) {
-                //showCoursesMethod();
-            } else if (map == students) {
-                //showStudentsMethod();
-            }
             id = getNewID();
         }
         return id;
@@ -148,7 +141,7 @@ public class School {
         String[] header = {"ID", "Courses", "Teacher", "Price", "MoneyEarned"};
 
         String[][] data = courses.values().stream()
-                .filter(course -> course.getCourseId().equals(courseID))
+                .filter(course -> course.getCourseId().equals(newCourseID))
                 .map(course -> new String[]{course.getCourseId(), course.getName(), course.getTeacher().getName(),
                         String.valueOf(course.getPrice()), String.valueOf(course.getMoney_earned())})
                 .toArray(String[][]::new);
@@ -164,7 +157,7 @@ public class School {
         String[] header = {"ID", "Student", "Enrolled Course", "Email-Student", "Student Address"};
 
         String[][] data = students.values().stream()
-                .filter(student -> student.getStudentId().equals(studentID))
+                .filter(student -> student.getStudentId().equals(newStudentID))
                 .map(student -> new String[]{student.getStudentId(), student.getName(), student.getCourse().getName(),
                         student.getEmail(), student.getAddress()})
                 .toArray(String[][]::new);
@@ -180,7 +173,7 @@ public class School {
         String[] header = {"ID", "Teacher", "Salary"};
 
         String[][] data = teachers.values().stream()
-                .filter(teacher -> teacher.getTeacherId().equals(teacherID))
+                .filter(teacher -> teacher.getTeacherId().equals(newStudentID))
                 .map(teacher -> new String[]{teacher.getTeacherId(), teacher.getName(), String.valueOf(teacher.getSalary())})
                 .toArray(String[][]::new);
         System.out.println(ASCIITable.fromData(header, data));
@@ -191,19 +184,11 @@ public class School {
         switch (commandInput){
             case "1":
                 //ENROLL [STUDENT_ID] [COURSE_ID]
-                System.out.println("Enter student ID:");
-                String studentID = scanner.next();
-                System.out.println("Enter course ID:");
-                String courseID = scanner.next();
-                enrollStudent(studentID, courseID);
+                enrollStudent("", "");
                 break;
             case "2":
                 //ASSIGN [TEACHER_ID] [COURSE_ID]
-                System.out.println("Enter teacher ID:");
-                String teacher = scanner.next();
-                System.out.println("Enter course ID:");
-                String course =  scanner.next();
-                assignTeacherToCourse(teacher, course);
+                assignTeacherToCourse("", "");
                 break;
             case  "3":
                 //SHOW COURSES
@@ -211,9 +196,7 @@ public class School {
                 break;
             case "4":
                 //LOOKUP COURSE [COURSE_ID]
-                System.out.println("Enter course ID:");
-                String courseId = scanner.next();
-                lookupCourse(courseId);
+                lookupCourse("");
                 break;
             case "5":
                 //SHOW STUDENTS
@@ -221,9 +204,7 @@ public class School {
                 break;
             case "6":
                 //LOOKUP STUDENT [STUDENT_ID]
-                System.out.println("Enter student ID:");
-                String studentId = scanner.next();
-                lookupStudent(studentId);
+                lookupStudent("");
                 break;
             case "7":
                 //SHOW TEACHERS
@@ -231,15 +212,15 @@ public class School {
                 break;
             case "8":
                 //LOOKUP TEACHER [TEACHER_ID]
-                System.out.println("Enter teacher ID:");
-                String teacherId = scanner.next();
-                lookupTeacher(teacherId);
+                lookupTeacher("");
                 break;
             case "9":
                 //SHOW PROFIT
                 double Result = getTotalProfit();
                 System.out.println(Result);
                 break;
+            default:
+                System.out.println("The valid range is from 0 to 9");
         }
 
     }
