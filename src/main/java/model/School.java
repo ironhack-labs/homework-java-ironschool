@@ -178,5 +178,62 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
+    public void executeCommand(String commandInput){
+        Scanner scanner = new Scanner(System.in);
+        switch (commandInput){
+            case "1":
+                //ENROLL [STUDENT_ID] [COURSE_ID]
+                System.out.println("Enter student ID:");
+                String studentID = scanner.next();
+                System.out.println("Enter course ID:");
+                String courseID = scanner.next();
+                enrollStudent(studentID, courseID);
+                break;
+            case "2":
+                //ASSIGN [TEACHER_ID] [COURSE_ID]
+                System.out.println("Enter teacher ID:");
+                String teacher = scanner.next();
+                System.out.println("Enter course ID:");
+                String course =  scanner.next();
+                assignTeacherToCourse(teacher, course);
+                break;
+            case  "3":
+                //SHOW COURSES
+                showCoursesMethod();
+                break;
+            case "4":
+                //LOOKUP COURSE [COURSE_ID]
+                System.out.println("Enter course ID:");
+                String courseId = scanner.next();
+                lookupCourse(courseId);
+                break;
+            case "5":
+                //SHOW STUDENTS
+                showStudentsMethod();
+                break;
+            case "6":
+                //LOOKUP STUDENT [STUDENT_ID]
+                System.out.println("Enter student ID:");
+                String studentId = scanner.next();
+                lookupStudent(studentId);
+                break;
+            case "7":
+                //SHOW TEACHERS
+                showTeachersMethod();
+                break;
+            case "8":
+                //LOOKUP TEACHER [TEACHER_ID]
+                System.out.println("Enter teacher ID:");
+                String teacherId = scanner.next();
+                lookupTeacher(teacherId);
+                break;
+            case "9":
+                //SHOW PROFIT
+                double Result = getTotalProfit();
+                System.out.println(Result);
+                break;
+        }
+
+    }
 }
 
