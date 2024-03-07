@@ -123,6 +123,15 @@ public class School {
         return id;
     }
 
+    public void assignTeacherToCourse(String teacherID, String courseID) {
+        String validateTeacherID = checkID(teacherID, teachers);
+        String validateCourseID = checkID(courseID, courses);
+
+        courses.get(validateCourseID).setTeacher(teachers.get(validateTeacherID));
+
+    }
+
+
     private String getNewID(String message) {
         System.out.println(message);
         Scanner scanner = new Scanner(System.in);
