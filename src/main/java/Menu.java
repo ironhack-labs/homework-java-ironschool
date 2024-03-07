@@ -5,6 +5,7 @@ import model.Teacher;
 import utils.Command;
 import utils.MainMenuOption;
 import utils.Validator;
+import utils.MaxValue;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -16,17 +17,17 @@ public class Menu {
     private static School school;
 
     public static void main(String[] args) {
-        // school = createSchool();
+         school = createSchool();
         // showPrincipalMenuAndRetrieveOption(scanner)
 
-        // int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
-        // registerTeachers(numberOfTeachers);
+         int numberOfTeachers = getNumberOfEntity("teachers", MaxValue.MAX_TEACHER_TO_CREATE.getValue());
+         registerTeachers(numberOfTeachers);
 
-        // int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
-        // registerStudents(numberOfStudents);
+         int numberOfStudents = getNumberOfEntity("students", MaxValue.MAX_STUDENT_TO_CREATE.getValue());
+         registerStudents(numberOfStudents);
 
-        // int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
-        // registerCourses(numberOfCourses);
+         int numberOfCourses = getNumberOfEntity("courses", MaxValue.MAX_COURSES_TO_CREATE.getValue());
+         registerCourses(numberOfCourses);
 
         menuOfCommands();
     }

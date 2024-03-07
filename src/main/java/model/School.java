@@ -113,7 +113,7 @@ public class School {
     private String checkID(String id, Map<String, ?> map) {
         while (!map.containsKey(id)) {
             if (map == teachers) {
-                showTeachersMethod();
+                //showTeachersMethod();
             } else if (map == courses) {
                 //showCoursesMethod();
             } else if (map == students) {
@@ -125,14 +125,14 @@ public class School {
     }
 
     public void assignTeacherToCourse(String teacherID, String courseID) {
+        showTeachersMethod();
         String validateTeacherID = checkID(teacherID, teachers);
+        showCoursesMethod();
         String validateCourseID = checkID(courseID, courses);
 
         courses.get(validateCourseID).setTeacher(teachers.get(validateTeacherID));
 
     }
-
-
 
     private String getNewID() {
         System.out.println("Please insert a valid ID from the list shown above: ");
@@ -141,6 +141,8 @@ public class School {
     }
 
     public void lookupCourse(String courseID) {
+
+        showCoursesMethod();
 
         String newCourseID = checkID(courseID, courses);
         String[] header = {"ID", "Courses", "Teacher", "Price", "MoneyEarned"};
@@ -156,6 +158,8 @@ public class School {
 
     public void lookupStudent(String studentID) {
 
+        showStudentsMethod();
+
         String newStudentID = checkID(studentID, students);
         String[] header = {"ID", "Student", "Enrolled Course", "Email-Student", "Student Address"};
 
@@ -169,6 +173,8 @@ public class School {
     }
 
 	public void lookupTeacher(String teacherID) {
+
+        showTeachersMethod();
 
         String newStudentID = checkID(teacherID, teachers);
         String[] header = {"ID", "Teacher", "Salary"};
