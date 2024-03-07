@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -92,13 +93,20 @@ public class School {
 
     public void enrollStudent(String studentID, String courseID) {
 
+        showStudentsMethod();
         String newStudentID = checkID(studentID, students);
+        showCoursesMethod();
         String newCourseID = checkID(courseID, courses);
 
-        students.get(newStudentID).setCourse(courses.get(newCourseID));
+        Student student = students.get(newStudentID);
+        Course course = courses.get(newCourseID);
 
-        courses.get(newCourseID).setMoney_earned(courses.get(newCourseID).getMoney_earned()
-                + courses.get(newCourseID).getPrice());
+        student.setCourse(course);
+        course.setMoney_earned(course.getMoney_earned() + course.getPrice());
+
+        System.out.println("The student " + student.getName() + " have been enrolled the course "
+                + course.getName() +"."
+        );
 
     }
 
@@ -107,9 +115,9 @@ public class School {
             if (map == teachers) {
                 showTeachersMethod();
             } else if (map == courses) {
-                showCoursesMethod();
+                //showCoursesMethod();
             } else if (map == students) {
-                showStudentsMethod();
+                //showStudentsMethod();
             }
             id = getNewID();
         }

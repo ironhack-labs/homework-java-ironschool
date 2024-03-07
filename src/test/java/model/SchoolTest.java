@@ -34,6 +34,8 @@ public class SchoolTest {
         DummySchool.addStudent(dummyStudent);
     }
 
+
+
     @Test
     @DisplayName("two different schools should have two different ids")
     void School_multipleInstancesOfSchoolDifferentIds() {
@@ -262,14 +264,23 @@ public class SchoolTest {
     @DisplayName("Simulation of a valid ID entered via console")
     void testEnrollStudentWithInvalidID_insertValid() {
 
-        String validID = dummyStudent.getStudentId() + "\n";
+        School balmes = new School("Jaume Balmes");
+        Teacher john = new Teacher("John", 1200.00);
+        Course englishCourseA1 = new Course("English A1", 300.00);
+        Student peter = new Student("Peter", "False Street 123", "testing@testcase.es");
+        balmes.addTeacher(john);
+        balmes.addCourse(englishCourseA1);
+        balmes.addStudent(peter);
+
+
+        String validID = peter.getStudentId() + "\n";
         InputStream validIN = new ByteArrayInputStream(validID.getBytes());
         System.setIn(validIN);
-        DummySchool.enrollStudent("nonexistentStudentID", dummyCourse.getCourseId());
+        balmes.enrollStudent("nonexistentStudentID", englishCourseA1.getCourseId());
         System.setIn(System.in);
 
-        assertEquals(7500.0, dummyCourse.getMoney_earned());
-        assertEquals(dummyCourse, dummyStudent.getCourse());
+        assertEquals(300, englishCourseA1.getMoney_earned());
+        assertEquals(englishCourseA1, peter.getCourse());
 
     }
 
