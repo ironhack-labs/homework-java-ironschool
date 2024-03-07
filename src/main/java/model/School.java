@@ -1,13 +1,13 @@
 package model;
 
 import com.mitchtalmadge.asciidata.table.ASCIITable;
+import com.mitchtalmadge.asciidata.table.formats.ASCIITableFormat;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -123,6 +123,16 @@ public class School {
         }
         return id;
     }
+
+    public void assignTeacherToCourse(String teacherID, String courseID) {
+        String validateTeacherID = checkID(teacherID, teachers);
+        String validateCourseID = checkID(courseID, courses);
+
+        courses.get(validateCourseID).setTeacher(teachers.get(validateTeacherID));
+
+    }
+
+
 
     private String getNewID() {
         System.out.println("Please insert a valid ID from the list shown above: ");
