@@ -26,6 +26,7 @@ public class Main {
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
 
+        School school = new School(schoolName, teachers, courses, students);
 
         int choiceMenu;
 

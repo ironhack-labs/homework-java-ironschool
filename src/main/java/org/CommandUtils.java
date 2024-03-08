@@ -17,28 +17,34 @@ public class CommandUtils {
         });
     }
 
-    public static void lookUp(HashMap<String, ?> map, String targetId){
-        boolean founded = false;
-
-        for (HashMap.Entry<String, ?> entry : map.entrySet()) {
-            String id = entry.getKey();
-            Object obj = entry.getValue();
-
-            if (obj instanceof Teacher && id.equals(targetId)) {
-                System.out.println(((Teacher)obj).getInfo());
-                founded = true;
-                break;
-            } else if (obj instanceof Course && id.equals(targetId)) {
-                System.out.println(((Course)obj).getInfo());
-                founded = true;
-                break;
-            } else if (obj instanceof Student && id.equals(targetId)) {
-                System.out.println(((Student)obj).getInfo());
-                founded = true;
-                break;
-            }
-        }
-        if (!founded)
-            System.out.println("Invalid ID.");
+    public static Teacher lookUpTeacher(HashMap<String, Teacher> map, String targetId){
+       Teacher teacher = map.get(targetId);
+       if (teacher != null){
+           return teacher;
+       } else {
+           System.out.println("Invalid ID.");
+           return null;
+       }
     }
+
+    public static Student lookUpStudent(HashMap<String, Student> map, String targetId){
+        Student student = map.get(targetId);
+        if (student != null){
+            return student;
+        } else {
+            System.out.println("Invalid ID.");
+            return null;
+        }
+    }
+
+    public static Course lookUpCourse(HashMap<String, Course> map, String targetId){
+        Course course = map.get(targetId);
+        if (course != null){
+            return course;
+        } else {
+            System.out.println("Invalid ID.");
+            return null;
+        }
+    }
+
 }
