@@ -43,30 +43,15 @@ public class Command {
         //find course by id, getCourseMap()
         Course course = School.getCourseById(courseId, school.getCourseMap());
         //find teacher by teacher id, getTeacherMap()
-        Teacher teacher = School.getTeacherById(teacherId, school.getTeacherMap());
+        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
         //set teacher to course
         if(course == null){
-            System.out.println("Course doesn't exist");
+            throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
             System.out.println("teacher assigned!");
         }
     }
-
-
-
-    public List<Course> showCourses(){}
-
-    public List<Student> showStudents(){}
-
-    public List<Teacher> showTeachers(){}
-
-    public Course lookupCourse(String courseId){}
-
-    // **Name has typo**
-    public Student lookupStundent(String studentId){}
-
-    public Teacher lookupTeacher(String teacherId){}
 
     public double showProfit(School school) throws IllegalArgumentException {
         double totalMoneyEarned = 0;
