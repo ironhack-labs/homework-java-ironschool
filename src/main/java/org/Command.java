@@ -41,7 +41,7 @@ public class Command {
         }
     }
 
-    public static void assignTeacher(String teacherId, String courseId, School school){
+    public static Course assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()
         Course course = School.getCourseById(courseId, school.getCourseMap());
         //find teacher by teacher id, getTeacherMap()
@@ -51,8 +51,7 @@ public class Command {
             throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
-            // TODO remove esto ya se controla en el front.
-            System.out.println("teacher assigned!");
+            return course;
         }
     }
 
