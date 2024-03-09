@@ -23,28 +23,30 @@ public class App {
             System.out.println("how many teachers should be created?");
             int teacher_number = validate_number_of(scanner);
             System.out.println(teacher_number);
-            create_teachers(scanner, teacher_number);
+            List<Teacher> teachers =create_teachers(scanner, teacher_number);
 
             System.out.println("how many courses should be created?");
             int courses_number = validate_number_of(scanner);
             System.out.println(courses_number);
+            List<Course> courses =create_course(scanner, courses_number);
+
 
             System.out.println("how many students should be created?");
             int students_number = validate_number_of(scanner);
-            // TODO validate more than 0
             System.out.println(students_number);
+            List<Student> students =create_students(scanner, students_number);
 
-            // more than 0 and
+
             is_finish = true;
 
         } while (!is_finish);
     }
 
-    public static void create_teachers(Scanner scanner, int teacher_number) {
+    public static List<Teacher> create_teachers(Scanner scanner, int teacher_number) {
 
         List<Teacher> teachers_list = new ArrayList<>();
-        for (int i = 1; i < teacher_number; i++) {
-            System.out.println("Let's create teacher {i}");
+        for (int i = 0; i < teacher_number; i++) {
+            System.out.println("Let's create teacher "+(i+1));
             System.out.println("Enter Name:");
             String teacher_name = scanner.nextLine();
 
@@ -52,9 +54,48 @@ public class App {
             int teacher_salary = validate_number_of(scanner);
             // Validate Range of Salaries
             teachers_list.add(new Teacher(teacher_name, teacher_salary));
-            // school.setListToTeacherMap(teachers);
         }
+        return teachers_list;
+        //school.setListToTeacherMap(teachers);
 
     }
+
+    public static List<Course> create_course(Scanner scanner, int course_number) {
+
+        List<Course> course_list = new ArrayList<>();
+        for (int i = 0; i < course_number; i++) {
+            System.out.println("Let's create a course "+(i+1));
+            System.out.println("Enter Name:");
+            String course_name = scanner.nextLine();
+
+            System.out.println("Enter Price: ");
+            double price = 3.14;
+
+            course_list.add(new Course(course_name,price));
+        }
+        return course_list;
+
+    }
+
+    public static List<Student> create_students(Scanner scanner, int students_number) {
+
+        List<Student> students_list = new ArrayList<>();
+        for (int i = 0; i < students_number; i++) {
+            System.out.println("Let's create student "+(i+1));
+            System.out.println("Enter Name:");
+            String student_name = scanner.nextLine();
+
+            System.out.println("Enter Address: ");
+            String address = scanner.nextLine();
+
+            System.out.println("Enter Email: ");
+            String email = scanner.nextLine();
+
+            students_list.add(new Student(student_name,address, email));
+        }
+        return students_list;
+
+    }
+
 
 }

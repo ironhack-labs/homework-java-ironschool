@@ -15,8 +15,7 @@ public class Utils {
         do{
             String number_string=scanner.nextLine();
             try{
-                int number= Integer.parseInt(number_string);
-                return number;
+                return Integer.parseInt(number_string);
             } catch (NumberFormatException e){
                 System.out.println("Enter a valid number");
             }
@@ -24,4 +23,5 @@ public class Utils {
         }while(is_finish);
         return 0;
     }
+
 }
