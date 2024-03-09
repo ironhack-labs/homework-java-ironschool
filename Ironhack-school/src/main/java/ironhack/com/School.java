@@ -134,20 +134,16 @@ public class School {
     }
 
     public void showMoneySpentByStudent(String studentId) {
-        double totalMoneySpent = 0.0;
-
         Student student = student_map.get(studentId);
-
-        if (student == null) {
-            throw new IllegalArgumentException("Student not found");
+        if (student != null) {
+            double totalMoneySpent = 0.0;
+            List<Course> courses = student.getCourseList();
+            for (Course course : courses) {
+                totalMoneySpent += course.getPrice();
+            }
+            System.out.println(totalMoneySpent);
+        } else {
+            System.out.println("Student not found");
         }
-
-        List<Course> courses = student.getCourseList();
-        for (Course course : courses) {
-            totalMoneySpent += course.getPrice();
-        }
-
-        System.out.println(totalMoneySpent);
     }
-
 }
