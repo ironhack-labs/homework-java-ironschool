@@ -53,6 +53,4 @@ public class School {
     public HashMap<String, Student> getStudentMap() {
         return this.studentMap;
     }
-
-
 }

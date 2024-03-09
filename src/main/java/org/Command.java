@@ -51,6 +51,7 @@ public class Command {
             throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
+            teacher.setCourse(course);
             return course;
         }
     }

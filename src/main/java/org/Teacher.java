@@ -4,6 +4,7 @@ public class Teacher {
     private String id;
     private String name;
     private double salary;
+    private Course course;
     private static int idCounter = 1;
 
     public Teacher(String name, double salary) {
@@ -19,7 +20,6 @@ public class Teacher {
         this.id = "T" + String.valueOf(idCounter++);
     }
 
-    //setters
     public void setName(String name) {
         this.name = name;
     }
@@ -28,7 +28,10 @@ public class Teacher {
         this.salary = salary;
     }
 
-    //getters
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public String getTeacherId() {
         return this.id;
     }
@@ -41,10 +44,16 @@ public class Teacher {
         return this.salary;
     }
 
-    //TODO Agregar
-    public String getInfo(){
-        return ("Teacher - ID: " + getTeacherId() + " | Name: " +
-            getName() + " | Salary: " + getSalary());
+    public Course getCourse() {
+        return this.course;
     }
 
+    public String getInfo(){
+        String result = "Teacher - ID: " + getTeacherId() + " | Name: " +
+            getName() + " | Salary: " + getSalary();
+        if (course != null){
+            result = result + " | Course: " + getCourse();
+        }
+        return result;
+    }
 }
