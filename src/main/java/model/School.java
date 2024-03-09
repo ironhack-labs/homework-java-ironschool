@@ -181,29 +181,30 @@ public class School {
 
     public void showStudentsByCourseID(String courseID) {
         Course course = courses.get(courseID);
-        if (course != null) {
-            System.out.println("Students enrolled in the course '" + course.getName() + "':");
-            boolean found = false;
-            String[] header = {"ID", "Name", "Email"};
-            String[][] data = new String[students.size()][3];
-            int index = 0;
-            for (Student student : students.values()) {
-                if (student.getCourse() != null && student.getCourse().getCourseId().equals(courseID)) {
-                    found = true;
-                    data[index][0] = student.getStudentId();
-                    data[index][1] = student.getName();
-                    data[index][2] = student.getEmail();
-                    index++;
-                }
-            }
-            if (found) {
-                System.out.println(ASCIITable.fromData(header, data));
-            } else {
-                System.out.println("No students enrolled in the course.");
-            }
-        } else {
-            System.out.println("Course with ID '" + courseID + "' not found.");
+        if (course == null) {
+            System.out.printf("Course with ID '%s' not found.%n", courseID);
+            return;
         }
+        System.out.printf("Students enrolled in the course '%s':%n", course.getName());
+        boolean found = false;
+        String[] header = {"ID", "Name", "Email"};
+        String[][] data = new String[students.size()][3];
+        int index = 0;
+        for (Student student : students.values()) {
+            if (student.getCourse() != null && student.getCourse().getCourseId().equals(courseID)) {
+                found = true;
+                data[index][0] = student.getStudentId();
+                data[index][1] = student.getName();
+                data[index][2] = student.getEmail();
+                index++;
+            }
+        }
+        if (found) {
+            System.out.println(ASCIITable.fromData(header, data));
+        } else {
+            System.out.println("No students enrolled in the course.");
+        }
+
     }
 
     public void executeCommand(String commandInput) {
