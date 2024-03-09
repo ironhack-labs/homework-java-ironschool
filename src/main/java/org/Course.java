@@ -82,8 +82,8 @@ public class Course {
     public String getInfo(){
         return "Course - ID: " + getCourseId() + " | Name: "
                 + getName() + " | Price: " + getPrice() + "$"
-                + " | Total earned: " + getMoney_earned() + "$"
-                + " | Taught by: " + getTeacher().getName();
+                + " | Total earned: " + getMoney_earned() + "$";
+        //        + " | Taught by: " + getTeacher().getName();
     }
 
 }

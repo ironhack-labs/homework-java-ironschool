@@ -54,11 +54,14 @@ public class Main {
                         System.out.println(printBlue("Enter the id of the course:"));
                         courseId = scanner.nextLine();
                         System.out.println("Please wait, enrolling student...");
+                        
                         // TODO- tratar de poner un elapse time o algo para que espere.
                         System.out.println("");
                         System.out.println("");
                     try{
                         enrollStudent(studentId, courseId, school);
+                        // TODO agregar el nombre del estudiante y curso en el print
+                        // TODO enrolar multiples alumnos (extra)
                         System.out.println(printYellow("Congratulations! Your student has been successfully enrolled to the course."));
                         System.out.println("");
                     }catch(IllegalArgumentException e){

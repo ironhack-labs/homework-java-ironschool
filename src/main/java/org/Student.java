@@ -61,6 +61,7 @@ public class Student {
     }
 
     // Helper
+    //TODO - Agregar Courses info (extra)
     public String getInfo() {
         return("Student - ID: " + this.studentId + " | Name: " + getName() +
                 " | Address: " + getAddress() + " | Email: " + getEmail());
