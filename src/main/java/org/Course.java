@@ -66,7 +66,6 @@ public class Course {
     public double getMoney_earned() {
         return money_earned;
     }
-    //se llama desde otra clase cada vez que se asigna un student
     public void updateMoney_earned(double money_earned) {
         this.money_earned = money_earned;
     }
@@ -80,10 +79,18 @@ public class Course {
     }
 
     public String getInfo(){
-        return "Course - ID: " + getCourseId() + " | Name: "
-                + getName() + " | Price: " + getPrice() + "$"
-                + " | Total earned: " + getMoney_earned() + "$";
-        //        + " | Taught by: " + getTeacher().getName();
+        if(this.getTeacher() == null){
+            return "Course - ID: " + getCourseId() + " | Name: "
+                    + getName() + " | Price: " + getPrice() + "$"
+                    + " | Total earned: " + getMoney_earned() + "$"
+                    + " | No teacher assigned";
+        } else {
+            return "Course - ID: " + getCourseId() + " | Name: "
+                    + getName() + " | Price: " + getPrice() + "$"
+                    + " | Total earned: " + getMoney_earned() + "$"
+                    + " | Taught by: " + getTeacher().getName();
+        }
+
     }
 
 }
