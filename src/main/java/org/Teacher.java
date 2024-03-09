@@ -20,7 +20,6 @@ public class Teacher {
         this.id = "T" + String.valueOf(idCounter++);
     }
 
-    //setters
     public void setName(String name) {
         this.name = name;
     }
@@ -33,7 +32,6 @@ public class Teacher {
         this.course = course;
     }
 
-    //getters
     public String getTeacherId() {
         return this.id;
     }
