@@ -16,35 +16,28 @@ public class CommandUtils {
             }
         });
     }
-//TODO - lanzar una exception - Julia
+
     public static Teacher lookUpTeacher(HashMap<String, Teacher> map, String targetId){
        Teacher teacher = map.get(targetId);
-       if (teacher != null){
-           return teacher;
-       } else {
-           System.out.println("Invalid ID.");
-           return null;
+       if (teacher == null){
+           throw new IllegalArgumentException("Invalid teacher ID");
        }
+       return teacher;
     }
 
     public static Student lookUpStudent(HashMap<String, Student> map, String targetId){
         Student student = map.get(targetId);
-        if (student != null){
-            return student;
-        } else {
-            System.out.println("Invalid ID.");
-            return null;
+        if (student == null){
+            throw new IllegalArgumentException("Invalid student ID");
         }
+        return student;
     }
 
     public static Course lookUpCourse(HashMap<String, Course> map, String targetId){
         Course course = map.get(targetId);
-        if (course != null){
-            return course;
-        } else {
-            System.out.println("Invalid ID.");
-            return null;
+        if (course == null){
+            throw new IllegalArgumentException("Invalid course ID");
         }
+        return course;
     }
-
 }
