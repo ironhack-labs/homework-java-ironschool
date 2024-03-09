@@ -105,7 +105,7 @@ public class School {
         course.setMoney_earned(course.getMoney_earned() + course.getPrice());
 
         System.out.println("The student " + student.getName() + " have been enrolled the course "
-                + course.getName() +"."
+                + course.getName() + "."
         );
 
     }
@@ -165,7 +165,7 @@ public class School {
 
     }
 
-	public void lookupTeacher(String teacherID) {
+    public void lookupTeacher(String teacherID) {
 
         showTeachersMethod();
 
@@ -179,9 +179,37 @@ public class School {
         System.out.println(ASCIITable.fromData(header, data));
     }
 
-    public void executeCommand(String commandInput){
+    public void showStudentsByCourseID(String courseID) {
+        Course course = courses.get(courseID);
+        if (course == null) {
+            System.out.printf("Course with ID '%s' not found.%n", courseID);
+            return;
+        }
+        System.out.printf("Students enrolled in the course '%s':%n", course.getName());
+        boolean found = false;
+        String[] header = {"ID", "Name", "Email"};
+        String[][] data = new String[students.size()][3];
+        int index = 0;
+        for (Student student : students.values()) {
+            if (student.getCourse() != null && student.getCourse().getCourseId().equals(courseID)) {
+                found = true;
+                data[index][0] = student.getStudentId();
+                data[index][1] = student.getName();
+                data[index][2] = student.getEmail();
+                index++;
+            }
+        }
+        if (found) {
+            System.out.println(ASCIITable.fromData(header, data));
+        } else {
+            System.out.println("No students enrolled in the course.");
+        }
+
+    }
+
+    public void executeCommand(String commandInput) {
         Scanner scanner = new Scanner(System.in);
-        switch (commandInput){
+        switch (commandInput) {
             case "1":
                 //ENROLL [STUDENT_ID] [COURSE_ID]
                 enrollStudent("", "");
@@ -190,7 +218,7 @@ public class School {
                 //ASSIGN [TEACHER_ID] [COURSE_ID]
                 assignTeacherToCourse("", "");
                 break;
-            case  "3":
+            case "3":
                 //SHOW COURSES
                 showCoursesMethod();
                 break;
@@ -219,10 +247,18 @@ public class School {
                 double Result = getTotalProfit();
                 System.out.println(Result);
                 break;
+            case "10":
+                //SHOW STUDENTS BY [COURSE_ID]
+                System.out.println("Enter the course ID:");
+                String courseID = scanner.next();
+                showStudentsByCourseID(courseID);
+                break;
             default:
-                System.out.println("The valid range is from 0 to 9");
+                System.out.println("The valid range is from 0 to 10");
         }
 
     }
+
+
 }
 

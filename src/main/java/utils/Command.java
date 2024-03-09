@@ -13,6 +13,7 @@ public enum Command {
     SHOW_TEACHERS("7", "Show teachers"),
     LOOKUP_TEACHER("8", "Look up for a teacher"),
     SHOW_PROFIT("9", "Show profit"),
+    SHOW_STUDENTS_BY_COURSE_ID("10", "Show students by course ID"),
     EXIT("0", "Exit program");
 
     private final String index;
