@@ -54,14 +54,5 @@ public class School {
         return this.studentMap;
     }
 
-    // prueba para ver si funciona
-    public static Course getCourseById(String id, HashMap<String, Course> courseMap){
-        for (Map.Entry<String, Course> entry : courseMap.entrySet()) {
-            if (entry.getValue().getCourseId().equals(id)) {
-                return entry.getValue();
-            }
-        }
 
-        return null;  //volver a pedir id al usuario...
-    }
 }

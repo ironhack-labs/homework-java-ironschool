@@ -43,7 +43,7 @@ public class Command {
 
     public static Course assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()
-        Course course = School.getCourseById(courseId, school.getCourseMap());
+        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
         //find teacher by teacher id, getTeacherMap()
         Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
         //set teacher to course
