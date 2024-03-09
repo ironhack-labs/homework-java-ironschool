@@ -1,10 +1,7 @@
 import lombok.Data;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 @Data
 public class Application {
@@ -15,18 +12,15 @@ public class Application {
 
     public Application() {
         createSchoolName();
-
         setTeacherList(teacherDetails());
         setStudentList(studentDetails());
         setCourseList(courseDetails());
     }
 
     public void run() {
+        String response = " ";
         Commands commands = new Commands(this.getCourseList(), this.getStudentList(), this.getTeacherList());
-        while (true) {
-            String commandStr = scanner.nextLine();
-            commands.commandSelector(CommandEnum.SHOW_COURSES);
-        }
+        Selector(commands);
     }
 
     private static void createSchoolName() {
@@ -139,6 +133,68 @@ public class Application {
 
         return coursesMap;
 
+    }
+
+    public static void Selector(Commands comandos){
+        while(true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println(("Do you want to use a command? (y/n)"));
+            String response = scanner.next();
+            scanner.nextLine();
+            if (response.equals("y")) {
+                System.out.println("Choose a command:\n");
+                System.out.println("1. Enroll\n");
+                System.out.println("2. Assign\n");
+                System.out.println("3. Show courses\n");
+                System.out.println("4. Lookup course\n");
+                System.out.println("5. Show students\n");
+                System.out.println("6. Lookup student\n");
+                System.out.println("7. Show teachers\n");
+                System.out.println("8. Lookup teacher\n");
+                System.out.println("9. Show profit\n");
+                try {
+                    int commandoption = scanner.nextInt();
+                    switch (commandoption) {
+                        case 1:
+                            comandos.commandSelector(CommandEnum.ENROLL);
+                            break;
+                        case 2:
+                            comandos.commandSelector(CommandEnum.ASSIGN);
+                            break;
+                        case 3:
+                            comandos.commandSelector(CommandEnum.SHOW_COURSES);
+                            break;
+                        case 4:
+                            comandos.commandSelector(CommandEnum.LOOKUP_COURSE);
+                            break;
+                        case 5:
+                            comandos.commandSelector(CommandEnum.SHOW_STUDENTS);
+                            break;
+                        case 6:
+                            comandos.commandSelector(CommandEnum.LOOKUP_STUDENT);
+                            break;
+                        case 7:
+                            comandos.commandSelector(CommandEnum.SHOW_TEACHERS);
+                            break;
+                        case 8:
+                            comandos.commandSelector(CommandEnum.LOOKUP_TEACHER);
+                            break;
+                        case 9:
+                            comandos.commandSelector(CommandEnum.SHOW_PROFIT);
+                            break;
+                        default:
+                            System.err.println("The option selected is not available");
+                            break;
+                    }
+                } catch (InputMismatchException ime) {
+                    System.err.println("The option selected is not available");
+                }
+            } else if (response.equals("n")) {
+                return;
+            } else {
+                System.err.println("You typed a non-valid option");
+            }
+        }
     }
 }
 
