@@ -253,8 +253,6 @@ public class School {
                 String courseID = scanner.next();
                 showStudentsByCourseID(courseID);
                 break;
-            default:
-                System.out.println("The valid range is from 0 to 10");
         }
 
     }
