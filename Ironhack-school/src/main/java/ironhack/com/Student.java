@@ -1,6 +1,8 @@
 package ironhack.com;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -14,6 +16,7 @@ public class Student extends Person {
         super(name);
         this.address = address;
         this.email = email;
+        courseList = new ArrayList<>();
     }
 
     public Student(String name, String address, String email, List<Course> courseList) {
@@ -29,5 +32,9 @@ public class Student extends Person {
                 + ", Address: " + getAddress()
                 + ", Email: " + getEmail()
                 + ", Courses: " + (getCourseList() != null ? getCourseList().toString() : "N/A"));
+    }
+
+    public void enrollInCourse(Course course) {
+        this.courseList.add(course);
     }
 }
