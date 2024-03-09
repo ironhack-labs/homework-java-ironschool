@@ -178,6 +178,26 @@ public class Main {
                     System.out.println(printYellow("Closing program."));
                     scanner.close();
                     break;
+
+                case 11:
+                    System.out.println("These are all the courses available");
+                    showAll(school.getCourseMap());
+                    System.out.println("");
+                    System.out.println(printBlue("Enter the id of the course:"));
+                    scanner.nextLine();
+                    courseId = scanner.nextLine();
+                    System.out.println("Please wait, removing teacher from course.");
+                    System.out.println("");
+                    System.out.println("");
+                    try{
+                        removeTeacherFromCourse(courseId, school);
+                        System.out.println(printYellow("Congratulations! Your teacher has been successfully removed from the course."));
+
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Error: "+e.getMessage());
+                    }
+
+                    break;
             }
 
         }while(choiceMenu != 10);

@@ -1,6 +1,7 @@
 package org;
 
 
+import java.util.Objects;
 
 public class Command {
 
@@ -15,6 +16,7 @@ public class Command {
         System.out.println("8. Search for a specific teacher");
         System.out.println("9. Show profit");
         System.out.println("10. Exit program");
+        System.out.println("11. Remove teacher from course");
         System.out.print("Enter your choice: ");
     }
 
@@ -52,6 +54,59 @@ public class Command {
         } else {
             course.setTeacher(teacher);
             return course;
+        }
+    }
+
+    public static void removeTeacherFromCourse(String courseId, School school){
+        //find course by id, getCourseMap()
+        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+        //find teacher by teacher id, getTeacherMap()
+        if(course == null){
+            throw new IllegalArgumentException("Course doesn't exist!");
+        } else {
+            course.removeTeacher();
+            //return course;
+        }
+    }
+    public static void unenrollStudent(String studentId, String courseId, School school){
+        // Gets student by looking through students map
+        Student student = CommandUtils.lookUpStudent(school.getStudentMap(), studentId);
+        // Gets course by looking through courses map
+        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+        // Checks if the course and the student exist
+        if (student != null && course != null) {
+            // Check if the student is not enrolled in the course
+            if (!Objects.equals(student.getCourse().getCourseId(), courseId)) {
+                throw new IllegalArgumentException("Student is not enrolled in this course.");
+            }
+            // añadir metodo de quitar curso del Student
+            student.removeCourse(course);
+            // Updates money earned in the course based on its price
+            course.updateMoney_earned(course.getMoney_earned()-course.getPrice());
+        } else {
+            throw new IllegalArgumentException("Invalid student or course ID.");
+        }
+    }
+
+    public static void enrollStudents(List<String> studentsIds, String courseId, School school) {
+        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+        for(String id : studentsIds){
+            Student student = CommandUtils.lookUpStudent(school.getStudentMap(), id);
+            // Checks if the course and the student exist
+            if (student != null && course != null) {
+                // Check if the student is already enrolled in another course
+                if (student.getCourse() != null) {
+                    throw new IllegalArgumentException("Student is already enrolled in a course.");
+                }
+
+                // Enrolls student in the course
+                student.setCourse(course);
+
+                // Updates money earned in the course based on its price
+                course.updateMoney_earned(course.getPrice());
+            } else {
+                throw new IllegalArgumentException("Invalid student or course ID.");
+            }
         }
     }
 
