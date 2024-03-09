@@ -25,7 +25,7 @@ public class Main {
         itemCreator("teacher", schoolName, teachers, null);
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
-// TODO hay un bug en student - Se crea con id C1 en vez de S1.
+// TODO hay un bug en student - Se crea con id C1 en vez de S1 - lo cambie en el codigo pero hablarlo
         School school = new School(schoolName, teachers, courses, students);
 
         int choiceMenu;
@@ -40,38 +40,51 @@ public class Main {
 
             switch(choiceMenu){
                 case 1:
-                        // TODO print todos los ids de los students junto con su nombre asi el usuario lo puede ver
+                        //TODO ponerle un color
+                        System.out.println("These are all the students that join "+schoolName+" school.");
+                        showAll(school.getStudentMap());
+                        System.out.println("");
                         System.out.println(printBlue("Enter the id of the student:"));
                         scanner.nextLine();
                         studentId = scanner.nextLine();
-
-                        // TODO agregar verificacion de si el id agregado es correcto
-
+                        System.out.println("");
+                        System.out.println("These are all the courses available");
+                        showAll(school.getCourseMap());
+                        System.out.println("");
                         System.out.println(printBlue("Enter the id of the course:"));
                         courseId = scanner.nextLine();
-                        System.out.println("Please wait, enrolling student.");
-
+                        System.out.println("Please wait, enrolling student...");
+                        // TODO- tratar de poner un elapse time o algo para que espere.
+                        System.out.println("");
+                        System.out.println("");
                     try{
                         enrollStudent(studentId, courseId, school);
-                        System.out.println(printPurple("Congratulations! Your student has been successfully enrolled to the course."));
-
+                        System.out.println(printYellow("Congratulations! Your student has been successfully enrolled to the course."));
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
 
                     break;
                 case 2:
+                    System.out.println("These are all the teachers that work for "+schoolName+" school.");
+                    showAll(school.getTeacherMap());
+                    System.out.println("");
                     System.out.println(printBlue("Enter the id of the teacher:"));
                     scanner.nextLine();
                     teacherId = scanner.nextLine();
-
+                    System.out.println("");
+                    System.out.println("These are all the courses available");
+                    showAll(school.getCourseMap());
+                    System.out.println("");
                     System.out.println(printBlue("Enter the id of the course:"));
                     courseId = scanner.nextLine();
                     System.out.println("Please wait, assigning teacher to the course.");
-
+                    System.out.println("");
+                    System.out.println("");
                     try{
                         assignTeacher(teacherId, courseId, school);
-                        System.out.println(printPurple("Congratulations! Your teacher has been successfully assigned to the course."));
+                        System.out.println(printYellow("Congratulations! Your teacher has been successfully assigned to the course."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -80,9 +93,10 @@ public class Main {
                     break;
                 case 3:
                     try{
-
+                        System.out.println("These are all the courses available:");
                         showAll(school.getCourseMap());
-
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -94,7 +108,6 @@ public class Main {
 
                     try{
                         Course course = lookUpCourse(school.getCourseMap(),courseId);
-                        //assert course != null;
                         System.out.println(course.getInfo());
 
                     }catch(IllegalArgumentException e){
@@ -103,8 +116,10 @@ public class Main {
                     break;
                 case 5:
                     try{
+                        System.out.println("These are all the students enrolled:");
                         showAll(school.getStudentMap());
-
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -124,8 +139,10 @@ public class Main {
                     break;
                 case 7:
                     try{
+                        System.out.println("These are all the teachers that work at the school:");
                         showAll(school.getTeacherMap());
-
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -144,12 +161,12 @@ public class Main {
                     }
                     break;
                 case 9:
-                    System.out.println("The profit of the school is " + showProfit(school));
-                    ;
+                    double profit = showProfit(school);
+                    System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
                     break;
 
                 case 10:
-                    System.out.println("Closing program.");
+                    System.out.println(printYellow("Closing program."));
                     scanner.close();
                     break;
             }
