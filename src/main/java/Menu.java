@@ -148,7 +148,7 @@ public class Menu {
         do {
             System.out.println("\nCommand's list");
             Stream.of(Command.values()).forEach(opt -> System.out.println(opt.getIndex() + " - " + opt.getDescription()));
-            System.out.println("\nEnter a command (1 - 10): ");
+            System.out.println("\nEnter a command (1 - 12): ");
             commandIndex = scanner.next();
             school.executeCommand(commandIndex);
         } while (!commandIndex.equals("0"));
