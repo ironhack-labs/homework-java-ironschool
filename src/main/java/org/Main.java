@@ -2,8 +2,8 @@ package org;
 import java.util.*;
 
 import static org.Command.*;
-import static org.CommandUtils.showAll;
-import static org.CommandUtils.lookUp;
+import static org.CommandUtils.*;
+
 public class Main {
     public static void main(String[] args) {
         String schoolName = "";
@@ -25,7 +25,7 @@ public class Main {
         itemCreator("teacher", schoolName, teachers, null);
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
-
+// TODO hay un bug en student - Se crea con id C1 en vez de S1.
         School school = new School(schoolName, teachers, courses, students);
 
         int choiceMenu;
@@ -40,16 +40,19 @@ public class Main {
 
             switch(choiceMenu){
                 case 1:
-                    System.out.println(printBlue("Enter the id of the student:"));
-                    scanner.nextLine();
-                    studentId = scanner.nextLine();
+                        // TODO print todos los ids de los students junto con su nombre asi el usuario lo puede ver
+                        System.out.println(printBlue("Enter the id of the student:"));
+                        scanner.nextLine();
+                        studentId = scanner.nextLine();
 
-                    System.out.println(printBlue("Enter the id of the course:"));
-                    scanner.nextLine();
-                    courseId = scanner.nextLine();
+                        // TODO agregar verificacion de si el id agregado es correcto
+
+                        System.out.println(printBlue("Enter the id of the course:"));
+                        courseId = scanner.nextLine();
+                        System.out.println("Please wait, enrolling student.");
 
                     try{
-                        enrollStudent(studentId, courseId);
+                        enrollStudent(studentId, courseId, school);
                         System.out.println(printPurple("Congratulations! Your student has been successfully enrolled to the course."));
 
                     }catch(IllegalArgumentException e){
@@ -63,10 +66,9 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     System.out.println(printBlue("Enter the id of the course:"));
-                    scanner.nextLine();
                     courseId = scanner.nextLine();
+                    System.out.println("Please wait, assigning teacher to the course.");
 
-                    //Donde se guarda la nueva school?
                     try{
                         assignTeacher(teacherId, courseId, school);
                         System.out.println(printPurple("Congratulations! Your teacher has been successfully assigned to the course."));
@@ -78,8 +80,8 @@ public class Main {
                     break;
                 case 3:
                     try{
-                        // TODO Argument HashMap de Strings con los Datos de Courses
-                        System.out.println(printPurple(showAll(school.getCourseMap())));
+
+                        showAll(school.getCourseMap());
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -91,8 +93,9 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        //TODO Agregar un esperando o buscando? - Victoria
-                        System.out.println(printPurple(lookUp(school.getCourseMap(), courseId)));
+                        Course course = lookUpCourse(school.getCourseMap(),courseId);
+                        //assert course != null;
+                        System.out.println(course.getInfo());
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -100,9 +103,7 @@ public class Main {
                     break;
                 case 5:
                     try{
-                        // TODO Argument HashMap de Strings con los Datos de Stundents
-
-                        System.out.println(printPurple(showAll(school.getStudentsMap())));
+                        showAll(school.getStudentMap());
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -114,8 +115,8 @@ public class Main {
                     studentId = scanner.nextLine();
 
                     try{
-
-                        System.out.println(printPurple(lookUp(school.getStudentsMap(), studentId)));
+                        Student student = lookUpStudent(school.getStudentMap(),studentId);
+                        System.out.println(printPurple(student.getInfo()));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -123,8 +124,8 @@ public class Main {
                     break;
                 case 7:
                     try{
-                        // TODO Argument HashMap de Strings con los Datos de Teachers
-                        System.out.println(printPurple(showAll(school.getTeachersMap())));
+                        showAll(school.getTeacherMap());
+
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -135,16 +136,16 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     try{
-
-                        System.out.println(printPurple(lookUp(school.getTeachersMap(), studentId)));
+                        Teacher teacher = lookUpTeacher(school.getTeacherMap(), teacherId);
+                        System.out.println(printPurple(teacher.getInfo()));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
                     break;
                 case 9:
-                    System.out.println("The profit of the school");
-                    showProfit(school);
+                    System.out.println("The profit of the school is " + showProfit(school));
+                    ;
                     break;
 
                 case 10:
@@ -244,6 +245,7 @@ public class Main {
             }
         }
         is_num = false;
+        /*
         System.out.println(printBlue("Select an associated teacher:"));
         System.out.println("0 - No teacher associated");
         for (int i = 0; i < teachers.size(); i++) {
@@ -265,9 +267,12 @@ public class Main {
         if (teacherSelection == 0) {
             // course = new Course(name, price, (double) 0);
         } else {
-            course = new Course(name, price, (double) 0, teachers.get(teacherSelection-1));
+            course = new Course(name, price, (double) 0);
         }
-        course.getInfo();
+        */
+        // TODO added por victoria porque petaba
+        Course course = new Course(name, price, (double) 0);
+        //course.getInfo();
         courses.add(course);
     }
 

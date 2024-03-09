@@ -19,7 +19,7 @@ public class Student {
     }
 
     private void assignCourseId(){
-        this.studentId = "C" + String.valueOf(idCounter++);
+        this.studentId = "S" + String.valueOf(idCounter++);
     }
 
     // Getters

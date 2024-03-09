@@ -13,6 +13,8 @@ public class Command {
         System.out.println("6. Search for a specific student");
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
+        System.out.println("9. Show profit");
+        System.out.println("10. Exit program");
         System.out.print("Enter your choice: ");
     }
 
@@ -49,11 +51,12 @@ public class Command {
             throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
+            // TODO remove esto ya se controla en el front.
             System.out.println("teacher assigned!");
         }
     }
 
-    public double showProfit(School school) throws IllegalArgumentException {
+    public static double showProfit(School school) throws IllegalArgumentException {
         double totalMoneyEarned = 0;
         double totalTeacherSalaries = 0;
 
