@@ -34,5 +34,9 @@ public class App
         System.out.println("\nEnroll");
         school.enroll(students.get(0).getId(), courses.get(0).getId());
 
+        System.out.println("\nLookUp");
+        school.lookupTeacher(teachers.get(0).getId());
+        school.lookupCourse(courses.get(0).getId());
+        school.lookupStudent(students.get(0).getId());
     }
 }

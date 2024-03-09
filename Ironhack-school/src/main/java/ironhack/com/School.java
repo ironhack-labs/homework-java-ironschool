@@ -25,8 +25,8 @@ public class School {
         });
     }
 
-    public Student lookupStudent(String studentId) {
-        return student_map.get(studentId);
+    public void lookupStudent(String studentId) {
+        student_map.get(studentId).printInfo();
     }
 
     public void setListToStudentMap(List<Student> students) {
@@ -61,8 +61,8 @@ public class School {
         });
     }
 
-    public Course lookupCourse(String courseId) {
-        return course_map.get(courseId);
+    public void lookupCourse(String courseId) {
+        course_map.get(courseId).printInfo();
     }
 
     public void showTeachers() {
@@ -71,8 +71,8 @@ public class School {
         });
     }
 
-    public Teacher lookupTeacher(String teacherId) {
-        return teacher_map.get(teacherId);
+    public void lookupTeacher(String teacherId) {
+        teacher_map.get(teacherId).printInfo();
     }
 
     public double calculateProfit() {
