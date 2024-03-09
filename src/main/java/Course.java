@@ -2,7 +2,8 @@
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 @Getter
 @Setter
@@ -13,7 +14,7 @@ public class Course {
     private double price;
     private double money_earned;
     private Teacher teacher;
-    private HashMap<String, Course> courseList = new HashMap<String, Course>();
+    private List<Student> students = new ArrayList<>();
 
 
     public Course(String name, double price) {
@@ -22,7 +23,7 @@ public class Course {
         setPrice(price);
     }
 
-    public void courseEnroll(Student student, Course x){
-        courseList.put(student.getStudentId(), x);
+    public void courseEnroll(Student student){
+        students.add(student);
     }
 }

@@ -38,7 +38,7 @@ public class Application {
         do {
             System.out.print(String.format("How many %s are there in the school: ", schoolComponents));
             while (!scanner.hasNextInt()) {
-                System.out.println(String.format("Please enter a valid number for the %s ", schoolComponents));
+                System.err.println(String.format("Please enter a valid number for the %s ", schoolComponents));
                 scanner.next();
             }
             number = scanner.nextInt();

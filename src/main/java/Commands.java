@@ -59,7 +59,7 @@ public class Commands {
 
                     });
                     try {
-                        studentID = scanner.next();
+                        teacherID = scanner.next();
                         assign(teacherID, courseID);
                     }catch(IllegalArgumentException iae){
                         System.err.println("The option introduced is not correct");
@@ -133,7 +133,8 @@ public class Commands {
     public void enroll(String studentID, String courseID) {
         Student student = studentList.get(studentID);
         Course course = courseList.get(courseID);
-        course.courseEnroll(student, course);
+        course.courseEnroll(student);
+        student.setCourse(course);
 
         // Increase money earned
         course.setMoney_earned(course.getMoney_earned() + course.getPrice());
@@ -161,7 +162,10 @@ public class Commands {
             System.out.println("Course Name: " + courseList.get(courseID).getName());
             System.out.println("Course Price: " + courseList.get(courseID).getPrice());
             System.out.println("Course Money Earned: " + courseList.get(courseID).getMoney_earned());
-            System.out.println("Course Teacher: " + courseList.get(courseID).getTeacher().getName());
+            if (courseList.get(courseID).getTeacher() == null) {
+                System.out.println("Course Teacher: " + "No teacher assigned");
+            } else {
+            System.out.println("Course Teacher: " + courseList.get(courseID).getTeacher().getName()); }
         }
     }
     public void ShowStudents(){ //This command will display a list of all students
@@ -179,7 +183,10 @@ public class Commands {
             System.out.println("Student Name: " + studentList.get(studentID).getName());
             System.out.println("Student Address: " + studentList.get(studentID).getAddress());
             System.out.println("Student Email: " + studentList.get(studentID).getEmail());
-            System.out.println("Student Course: " + studentList.get(studentID).getCourse().getName());
+            if (studentList.get(studentID).getCourse() == null) {
+                System.out.println("Student Course: " + "No course enrolled");
+            }else{
+                System.out.println("Student Course: " + studentList.get(studentID).getCourse().getName());}
         }
     }
 
