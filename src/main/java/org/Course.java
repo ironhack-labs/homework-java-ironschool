@@ -19,7 +19,6 @@ public class Course {
         setName(name);
         setPrice(price);
         this.money_earned = 0;
-        //setMoney_earned(money_earned);//no se asigna manualmente
         this.teacher = null;
     }
 
@@ -84,19 +83,8 @@ public class Course {
         return "Course - ID: " + getCourseId() + " | Name: "
                 + getName() + " | Price: " + getPrice() + "$"
                 + " | Total earned: " + getMoney_earned() + "$"
-                + " | Taught by: " + getTeacher();
-        //falta añadir getter del name del Teacher
+                + " | Taught by: " + getTeacher().getName();
     }
 
-    // TODO - move to Utils
-    public static String getAllCourses(List<Course> courseList){
-        StringBuilder allCoursesInfo = new StringBuilder();
-        for (Course course : courseList) {
-            allCoursesInfo.append(course.getInfo()).append("\n");
-        }
-
-        return allCoursesInfo.toString();
-
-    }
 }
 

@@ -13,67 +13,47 @@ public class Command {
         System.out.println("6. Search for a specific student");
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
-        System.out.println("9. Show Profit");
         System.out.print("Enter your choice: ");
     }
 
-    public static void enrollStudent(String studentId, String courseId) {
-        // Create an instance of the Command class so we don't have to change lookups to static
-        Command command = new Command();
+    public static void enrollStudent(String studentId, String courseId, School school) {
+        // Gets student by looking through students map
+        Student student = CommandUtils.lookUpStudent(school.getStudentMap(), studentId);
+        // Gets course by looking through courses map
+        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
 
-        // Call the lookupCourse method on the instance
-        Course course = command.lookupCourse(courseId);
+        // Checks if the course and the student exist
+        if (student != null && course != null) {
+            // Check if the student is already enrolled in another course
+            if (student.getCourse() != null) {
+                throw new IllegalArgumentException("Student is already enrolled in a course.");
+            }
 
-        // Check if the course exists and the student is not enrolled in another course
-        if (course == null) {
-            throw new IllegalArgumentException("Invalid course.");
+            // Enrolls student in the course
+            student.setCourse(course);
+
+            // Updates money earned in the course based on its price
+            course.updateMoney_earned(course.getPrice());
+        } else {
+            throw new IllegalArgumentException("Invalid student or course ID.");
         }
-
-        // Get the student by id -> **fix name typo**
-        Student student = command.lookupStudent(studentId);
-
-        // Check if the student is already enrolled in the course
-        if (student.getCourse() != null) {
-            throw new IllegalArgumentException("Student is already enrolled in a course.");
-        }
-
-        // Enroll student in the course
-        student.setCourse(course);
-
-        // Update money earned in the course based on its price
-        course.updateMoney_earned(course.getPrice());
     }
 
     public static void assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()
         Course course = School.getCourseById(courseId, school.getCourseMap());
         //find teacher by teacher id, getTeacherMap()
-        Teacher teacher = School.getTeacherById(teacherId, school.getTeacherMap());
+        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
         //set teacher to course
         if(course == null){
-            System.out.println("Course doesn't exist");
+            throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
             System.out.println("teacher assigned!");
         }
     }
 
-
-
-    //public List<Course> showCourses(){}
-
-    //public List<Student> showStudents(){}
-
-    //public List<Teacher> showTeachers(){}
-
-    //public Course lookupCourse(String courseId){}
-
-    // **Name has typo**
-    //public Student lookupStundent(String studentId){}
-
-    //public Teacher lookupTeacher(String teacherId){}
-
-    public static double showProfit(School school) throws IllegalArgumentException {
+    public double showProfit(School school) throws IllegalArgumentException {
         double totalMoneyEarned = 0;
         double totalTeacherSalaries = 0;
 
@@ -94,8 +74,5 @@ public class Command {
             throw new IllegalArgumentException("An error occurred while calculating profit: " + e.getMessage());
         }
     }
-
-
-
 
 }
