@@ -19,7 +19,7 @@ public class Student {
     }
 
     private void assignCourseId(){
-        this.studentId = "C" + String.valueOf(idCounter++);
+        this.studentId = "S" + String.valueOf(idCounter++);
     }
 
     // Getters
@@ -61,6 +61,7 @@ public class Student {
     }
 
     // Helper
+    //TODO - Agregar Courses info (extra)
     public String getInfo() {
         return("Student - ID: " + this.studentId + " | Name: " + getName() +
                 " | Address: " + getAddress() + " | Email: " + getEmail());

@@ -1,6 +1,9 @@
 package org;
 import java.util.*;
 
+import static org.Command.*;
+import static org.CommandUtils.*;
+
 public class Main {
     public static void main(String[] args) {
         String schoolName = "";
@@ -22,15 +25,14 @@ public class Main {
         itemCreator("teacher", schoolName, teachers, null);
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
-
+// TODO hay un bug en student - Se crea con id C1 en vez de S1 - lo cambie en el codigo pero hablarlo
         School school = new School(schoolName, teachers, courses, students);
 
         int choiceMenu;
-        Command command = new Command();
 
         do{
 
-            command.displayCommands();
+            displayCommands();
             choiceMenu = scanner.nextInt();
             String studentId;
             String courseId;
@@ -38,52 +40,66 @@ public class Main {
 
             switch(choiceMenu){
                 case 1:
-                    System.out.println(printBlue("Enter the id of the student:"));
-                    scanner.nextLine();
-                    studentId = scanner.nextLine();
-
-                    System.out.println(printBlue("Enter the id of the course:"));
-                    scanner.nextLine();
-                    courseId = scanner.nextLine();
-
+                        //TODO ponerle un color
+                        System.out.println("These are all the students that join "+schoolName+" school.");
+                        showAll(school.getStudentMap());
+                        System.out.println("");
+                        System.out.println(printBlue("Enter the id of the student:"));
+                        scanner.nextLine();
+                        studentId = scanner.nextLine();
+                        System.out.println("");
+                        System.out.println("These are all the courses available");
+                        showAll(school.getCourseMap());
+                        System.out.println("");
+                        System.out.println(printBlue("Enter the id of the course:"));
+                        courseId = scanner.nextLine();
+                        System.out.println("Please wait, enrolling student...");
+                        
+                        // TODO- tratar de poner un elapse time o algo para que espere.
+                        System.out.println("");
+                        System.out.println("");
                     try{
-                        command.enrollStudent(studentId, courseId);
-
-                        System.out.println(printPurple("Congratulations! Your student has been successfully enrolled to the course."));
-
+                        enrollStudent(studentId, courseId, school);
+                        // TODO agregar el nombre del estudiante y curso en el print
+                        // TODO enrolar multiples alumnos (extra)
+                        System.out.println(printYellow("Congratulations! Your student has been successfully enrolled to the course."));
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
-
                     }
 
                     break;
                 case 2:
+                    System.out.println("These are all the teachers that work for "+schoolName+" school.");
+                    showAll(school.getTeacherMap());
+                    System.out.println("");
                     System.out.println(printBlue("Enter the id of the teacher:"));
                     scanner.nextLine();
                     teacherId = scanner.nextLine();
-
+                    System.out.println("");
+                    System.out.println("These are all the courses available");
+                    showAll(school.getCourseMap());
+                    System.out.println("");
                     System.out.println(printBlue("Enter the id of the course:"));
-                    scanner.nextLine();
                     courseId = scanner.nextLine();
-
+                    System.out.println("Please wait, assigning teacher to the course.");
+                    System.out.println("");
+                    System.out.println("");
                     try{
-                        command.assignTeacher(teacherId, courseId);
-
-                        System.out.println(printPurple("Congratulations! Your teacher has been successfully assigned to the course."));
+                        assignTeacher(teacherId, courseId, school);
+                        System.out.println(printYellow("Congratulations! Your teacher has been successfully assigned to the course."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
-
                     }
 
                     break;
                 case 3:
                     try{
-
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-                       // System.out.println(printPurple(command.showCourses()));
-
-
+                        System.out.println("These are all the courses available:");
+                        showAll(school.getCourseMap());
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -94,12 +110,8 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        Course course = command.lookupCourse(courseId);
-
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-
-                        //TODO Agregar un esperando o buscando? - Victoria
-                        //System.out.println(printPurple(course));
+                        Course course = lookUpCourse(school.getCourseMap(),courseId);
+                        System.out.println(course.getInfo());
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -107,9 +119,10 @@ public class Main {
                     break;
                 case 5:
                     try{
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-
-                        //System.out.println(printPurple(showStudents()));
+                        System.out.println("These are all the students enrolled:");
+                        showAll(school.getStudentMap());
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -120,10 +133,8 @@ public class Main {
                     studentId = scanner.nextLine();
 
                     try{
-                        Student student = command.lookupStundent(studentId);
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-
-                        //System.out.println(printPurple(student));
+                        Student student = lookUpStudent(school.getStudentMap(),studentId);
+                        System.out.println(printPurple(student.getInfo()));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -131,8 +142,10 @@ public class Main {
                     break;
                 case 7:
                     try{
-                        // TODO check como se definio esta funcion e implementarla - Victoria
-                        //System.out.println(printPurple(showTeachers()));
+                        System.out.println("These are all the teachers that work at the school:");
+                        showAll(school.getTeacherMap());
+                        System.out.println("");
+                        System.out.println("");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -143,157 +156,27 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     try{
-                        Teacher teacher = command.lookupTeacher(teacherId);
-                        //System.out.println(printPurple(teacher));
+                        Teacher teacher = lookUpTeacher(school.getTeacherMap(), teacherId);
+                        System.out.println(printPurple(teacher.getInfo()));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
                     break;
                 case 9:
-                    System.out.println("Closing program.");
+                    double profit = showProfit(school);
+                    System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
+                    break;
+
+                case 10:
+                    System.out.println(printYellow("Closing program."));
                     scanner.close();
                     break;
             }
 
-        }while(choiceMenu != 9);
+        }while(choiceMenu != 10);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private static void itemCreator(String type, String schoolName, List collection, List teachers) {
         boolean is_num = false;
@@ -382,6 +265,7 @@ public class Main {
             }
         }
         is_num = false;
+        /*
         System.out.println(printBlue("Select an associated teacher:"));
         System.out.println("0 - No teacher associated");
         for (int i = 0; i < teachers.size(); i++) {
@@ -403,9 +287,12 @@ public class Main {
         if (teacherSelection == 0) {
             // course = new Course(name, price, (double) 0);
         } else {
-            course = new Course(name, price, (double) 0, teachers.get(teacherSelection-1));
+            course = new Course(name, price, (double) 0);
         }
-        course.getInfo();
+        */
+        // TODO added por victoria porque petaba
+        Course course = new Course(name, price, (double) 0);
+        //course.getInfo();
         courses.add(course);
     }
 

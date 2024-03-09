@@ -16,7 +16,7 @@ public class CommandUtils {
             }
         });
     }
-
+//TODO - lanzar una exception - Julia
     public static Teacher lookUpTeacher(HashMap<String, Teacher> map, String targetId){
        Teacher teacher = map.get(targetId);
        if (teacher != null){

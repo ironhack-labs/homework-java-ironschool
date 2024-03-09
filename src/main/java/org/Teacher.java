@@ -41,6 +41,7 @@ public class Teacher {
         return this.salary;
     }
 
+    //TODO Agregar
     public String getInfo(){
         return ("Teacher - ID: " + getTeacherId() + " | Name: " +
             getName() + " | Salary: " + getSalary());
