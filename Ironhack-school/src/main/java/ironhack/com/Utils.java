@@ -15,7 +15,13 @@ public class Utils {
         do{
             String number_string=scanner.nextLine();
             try{
-                return Integer.parseInt(number_string);
+                int number = Integer.parseInt(number_string);
+                if(number >0){
+                    return number;
+                }
+                else{
+                    System.out.println("Enter a valid number");
+                }
             } catch (NumberFormatException e){
                 System.out.println("Enter a valid number");
             }
