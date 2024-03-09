@@ -10,10 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SchoolTest {
 
@@ -175,7 +172,7 @@ public class SchoolTest {
         assertEquals(englishCourseA1, bruce.getCourse());
     }
 
-    /*
+
     @Test
     @DisplayName("Should be the same lookUp table result")
     void School_lookupCoursesMethodReturnASCIITable() {
@@ -193,83 +190,67 @@ public class SchoolTest {
 
         DummySchool.lookupCourse(dummyCourse.getCourseId());
 
-        String expectedOutput = String.format(
-                "╔══════════════════════════════════════╤═════════════════════════════════════════╤═════════╤════════╤═════════════╗%n" +
-                        "║ ID                                   │ Courses                                 │ Teacher │ Price  │ MoneyEarned ║%n" +
-                        "╠══════════════════════════════════════╪═════════════════════════════════════════╪═════════╪════════╪═════════════╣%n" +
-                        "║ %-36s │ %-36s │ %-4s │ %-6s │ %-6s ║%n" +
-                        "╚══════════════════════════════════════╧═════════════════════════════════════════╧═════════╧════════╧═════════════╝%n%n",
-                uuidDummyCourse, uuidDummyNameCourse,uuidDummyTeacherName, uuidDummyCoursePrice, uuidDummyCourseMoneyEarned);
+        String consoleOutput = outputStreamCaptor.toString();
 
+        assertTrue(consoleOutput.contains(uuidDummyCourse), "Console output should contain UUID: " + uuidDummyCourse);
+        assertTrue(consoleOutput.contains(uuidDummyNameCourse), "Console output should contain UUID: " + uuidDummyNameCourse);
+        assertTrue(consoleOutput.contains(uuidDummyTeacherName), "Console output should contain UUID: " + uuidDummyTeacherName);
+        assertTrue(consoleOutput.contains(uuidDummyCoursePrice), "Console output should contain UUID: " + uuidDummyCoursePrice);
+        assertTrue(consoleOutput.contains(uuidDummyCourseMoneyEarned), "Console output should contain UUID: " + uuidDummyCourseMoneyEarned);
 
-        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
-        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
-        System.setIn(System.in);
-        assertEquals(expectedNormalized, actualNormalized);
+        System.setOut(System.out);
     }
 
     @Test
     @DisplayName("Should be the same lookUp table result")
     void School_lookupStudentMethodReturnASCIITable() {
 
-        DummySchool.enrollStudent(dummyStudent.getStudentId(), dummyCourse.getCourseId());
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
 
+        DummySchool.enrollStudent(dummyStudent.getStudentId(), dummyCourse.getCourseId());
+
         String uuidDummyStudent = dummyStudent.getStudentId();
-        String dummyStudentName = dummyStudent.getName();
-        String dummyStudentEmail = dummyStudent.getEmail();
+        String uuidDummyStudentName = dummyStudent.getName();
+        String uuidDummyStudentEmail = dummyStudent.getEmail();
         String uuidDummyEnrolledCourse = dummyStudent.getCourse().getName();
-        String dummyStudentAddress = dummyStudent.getAddress();
+        String uuidDummyStudentAddress = dummyStudent.getAddress();
 
         DummySchool.lookupStudent(dummyStudent.getStudentId());
 
-        String expectedOutput = String.format(
-                "╔══════════════════════════════════════╤═════════╤═════════════════════════════════════════╤═══════════════════╤═════════════════════════════╗%n" +
-                        "║ ID                                   │ Student │ Enrolled Course                        │ Email-Student     │ Student Address             ║%n" +
-                        "╠══════════════════════════════════════╪═════════╪═════════════════════════════════════════╪═══════════════════╪═════════════════════════════╣%n" +
-                        "║ %-36s │ %-7s │ %-36s │ %-17s │ %-27s ║%n" +
-                        "╚══════════════════════════════════════╧═════════╧═════════════════════════════════════════╧═══════════════════╧═════════════════════════════╝%n%n",
-                uuidDummyStudent, dummyStudentName,uuidDummyEnrolledCourse, dummyStudentEmail, dummyStudentAddress);
+        String consoleOutput = outputStreamCaptor.toString();
 
+        assertTrue(consoleOutput.contains(uuidDummyStudent), "Console output should contain UUID: " + uuidDummyStudent);
+        assertTrue(consoleOutput.contains(uuidDummyStudentName), "Console output should contain student name: " + uuidDummyStudentName);
+        assertTrue(consoleOutput.contains(uuidDummyStudentEmail), "Console output should contain student email: " + uuidDummyStudentEmail);
+        assertTrue(consoleOutput.contains(uuidDummyEnrolledCourse), "Console output should contain enrolled course: " + uuidDummyEnrolledCourse);
+        assertTrue(consoleOutput.contains(uuidDummyStudentAddress), "Console output should contain student address: " + uuidDummyStudentAddress);
 
-        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
-        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
-        System.setIn(System.in);
-        assertEquals(expectedNormalized, actualNormalized);
+        System.setOut(System.out);
     }
 
     @Test
     @DisplayName("Should be the same lookUp table result")
     void School_lookupTeacherMethodReturnASCIITable() {
 
-        DummySchool.lookupTeacher(dummyAnne.getTeacherId());
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
+
+        DummySchool.lookupTeacher(dummyAnne.getTeacherId());
 
         String uuidDummyTeacher = dummyAnne.getTeacherId();
         String uuiddummyTeacherName = dummyAnne.getName();
         String uuiddummyTeacherSalary = String.valueOf(dummyAnne.getSalary());
 
+        String consoleOutput = outputStreamCaptor.toString();
 
+        assertTrue(consoleOutput.contains(uuidDummyTeacher), "Console output should contain UUID: " + uuidDummyTeacher);
+        assertTrue(consoleOutput.contains(uuiddummyTeacherName), "Console output should contain teacher name: " + uuiddummyTeacherName);
+        assertTrue(consoleOutput.contains(uuiddummyTeacherSalary), "Console output should contain teacher salary: " + uuiddummyTeacherSalary);
 
-        String expectedOutput = String.format(
-                "╔══════════════════════════════════════╤═════════╤════════╗%n" +
-                        "║ ID                                   │ Teacher │ Salary ║%n" +
-                        "╠══════════════════════════════════════╪═════════╪════════╣%n" +
-                        "║ %-36s │ %-7s │ %-6s ║%n" +
-                        "╚══════════════════════════════════════╧═════════╧════════╝%n%n",
-                uuidDummyTeacher, uuiddummyTeacherName,uuiddummyTeacherSalary);
+        System.setOut(System.out);
 
-
-        String expectedNormalized = expectedOutput.replaceAll("\\s", "").replaceAll("\\\\", "");
-        String actualNormalized = outputStreamCaptor.toString().replaceAll("\\s", "").replaceAll("\\\\", "");
-        System.setIn(System.in);
-        assertEquals(expectedNormalized, actualNormalized);
     }
-
-     */
-
 
     @Test
     @DisplayName("Simulation of a valid ID entered via console")
