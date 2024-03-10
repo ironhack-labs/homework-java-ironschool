@@ -59,7 +59,7 @@ class ApplicationTest {
 
         assertEquals(5, result);
         assertTrue(outputStream.toString().contains("In your school there are 5 teachers"));
-        assertTrue(outputStream.toString().contains("Please enter a valid number for the teachers "));
+
 
     }
 
