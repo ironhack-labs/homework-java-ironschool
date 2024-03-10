@@ -23,107 +23,150 @@ public class Commands {
         String studentID = "";
         String courseID = "";
         String teacherID = "";
+        Boolean validOption = false;
         Scanner scanner = new Scanner(System.in);
         switch (commandAction){
             case ENROLL:
-                System.out.println("Which course do you want to enroll? (write the id):\n");
-                courseList.forEach((key,value) -> {
-                    System.out.println(key + " = " + value.getName() + " ");
-                });
-                try {
-                    courseID = scanner.next();
+                do {
+                    System.out.println("Which course do you want to enroll? (write the id):\n");
+                    courseList.forEach((key, value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try {
+                        courseID = scanner.next();
+                        if (courseList.containsKey(courseID)) {
+                            validOption = true;
+                        }else{
+                            System.err.println("The course introduced does not exist");
+                        }
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }while(validOption == false);
+                validOption = false;
+                do {
                     System.out.println("Which student do you want to enroll in this course? (write the id):\n");
-                    studentList.forEach((key,value) -> {
-                        System.out.println(key + " = " + value.getName()+ " ");
+                    studentList.forEach((key, value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
                     });
                     try {
                         studentID = scanner.next();
-                        enroll(studentID, courseID);
+                        if (studentList.containsKey(studentID)) {
+                            enroll(studentID, courseID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The student introduced does not exist");
+                        }
+                    } catch (IllegalArgumentException iae) {
+                        System.err.println("The option introduced is not correct");
+                    }
+                }while(validOption == false);
+                break;
+            case ASSIGN:
+                do {
+                    System.out.println("In which course do you want to assign a teacher? (write the id):\n");
+                    courseList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try{
+                        courseID = scanner.next();
+                        if(courseList.containsKey(courseID)){
+                            validOption = true;
+                        }else{
+                            System.err.println("The course introduced does not exist");
+                        }
                     }catch(IllegalArgumentException iae){
                         System.err.println("The option introduced is not correct");
                     }
-                }catch(IllegalArgumentException iae){
-                    System.err.println("The option introduced is not correct");
-                }
-                break;
-            case ASSIGN:
-                System.out.println("In which course do you want to assign a teacher? (write the id):\n");
-                courseList.forEach((key,value) -> {
-                    System.out.println(key + " = " + value.getName() + " ");
-                });
-                try{
-                    courseID = scanner.next();
+                }while(validOption == false);
+                validOption = false;
+                do{
                     System.out.println("Which teacher do you want to assign to this course? (write the id):\n");
                     teacherList.forEach((key,value) -> {
                         System.out.println(key + " = " + value.getName()+ " ");
-
                     });
                     try {
                         teacherID = scanner.next();
-                        assign(teacherID, courseID);
+                        if(teacherList.containsKey(teacherID)){
+                            assign(teacherID, courseID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The teacher introduced does not exist");
+                        }
                     }catch(IllegalArgumentException iae){
                         System.err.println("The option introduced is not correct");
                     }
-                }catch(IllegalArgumentException iae){
-                    System.err.println("The option introduced is not correct");
-                }
+                }while(validOption == false);
                 break;
-
             case SHOW_COURSES:
                 ShowCourses();
                 break;
-
             case LOOKUP_COURSE:
-                System.out.println("Which course do you want to look up? (write the id):\n");
-                courseList.forEach((key,value) -> {
-                    System.out.println(key + " = " + value.getName() + " ");
-                });
-                try{
-                    courseID = scanner.next();
-                    LookupCourse(courseID);
-                }catch(IllegalArgumentException iae){
-                    System.err.println("The option introduced is not correct");
-                }
+                do{
+                    System.out.println("Which course do you want to look up? (write the id):\n");
+                    courseList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try{
+                        courseID = scanner.next();
+                        if(courseList.containsKey(courseID)){
+                            LookupCourse(courseID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The course introduced does not exist");
+                        }
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }while(validOption == false);
                 break;
-
             case SHOW_STUDENTS:
                 ShowStudents();
                 break;
-
             case LOOKUP_STUDENT:
-                System.out.println("Which student do you want to look up? (write the id):\n");
-                studentList.forEach((key,value) -> {
-                    System.out.println(key + " = " + value.getName() + " ");
-                });
-                try{
-                    studentID = scanner.next();
-                    LookupStudent(studentID);
-                }catch(IllegalArgumentException iae){
-                    System.err.println("The option introduced is not correct");
-                }
+                do{
+                    System.out.println("Which student do you want to look up? (write the id):\n");
+                    studentList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try{
+                        studentID = scanner.next();
+                        if(studentList.containsKey(studentID)){
+                            LookupStudent(studentID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The student introduced does not exist");
+                        }
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }while(validOption == false);
                 break;
-
             case SHOW_TEACHERS:
                 ShowTeachers();
                 break;
-
             case LOOKUP_TEACHER:
-                System.out.println("Which teacher do you want to look up? (write the id):\n");
-                teacherList.forEach((key,value) -> {
-                    System.out.println(key + " = " + value.getName() + " ");
-                });
-                try{
-                    teacherID = scanner.next();
-                    LookupTeacher(teacherID);
-                }catch(IllegalArgumentException iae){
-                    System.err.println("The option introduced is not correct");
-                }
+                do{
+                    System.out.println("Which teacher do you want to look up? (write the id):\n");
+                    teacherList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try{
+                        teacherID = scanner.next();
+                        if(teacherList.containsKey(teacherID)){
+                            LookupTeacher(teacherID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The teacher introduced does not exist");
+                        }
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                }while(validOption == false);
                 break;
-
             case SHOW_PROFIT:
                 ShowProfit();
                 break;
-
             default:
                 System.err.println("The command selected is not available");
                 break;
