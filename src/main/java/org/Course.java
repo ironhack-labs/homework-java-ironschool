@@ -78,6 +78,10 @@ public class Course {
         return this.teacher;
     }
 
+    public void removeTeacher(){
+        this.teacher = null;
+    }
+
     public String getInfo(){
         if(this.getTeacher() == null){
             return "Course - ID: " + getCourseId() + " | Name: "

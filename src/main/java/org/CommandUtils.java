@@ -3,6 +3,7 @@ package org;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class CommandUtils {
     public static void showAll(HashMap<String, ?> map){
@@ -16,6 +17,20 @@ public class CommandUtils {
             }
         });
     }
+
+    public static void showStudentCourses(String studentId, School school){
+        Student student = lookUpStudent(school.getStudentMap(), studentId);
+        //excepcion en lookUpStudent???
+        if(student == null){
+            throw new IllegalArgumentException("Student doesn't exist!");
+        }
+        List<Course> courses = student.getCourse();
+        for(Course course : courses){
+            System.out.println(course.getInfo());
+        }
+    }
+
+
 //TODO - lanzar una exception - Julia
     public static Teacher lookUpTeacher(HashMap<String, Teacher> map, String targetId){
        Teacher teacher = map.get(targetId);

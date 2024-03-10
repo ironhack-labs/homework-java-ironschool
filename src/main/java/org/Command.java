@@ -1,6 +1,8 @@
 package org;
 
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Command {
@@ -15,8 +17,10 @@ public class Command {
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
         System.out.println("9. Show profit");
-        System.out.println("10. Exit program");
-        System.out.println("11. Remove teacher from course");
+        System.out.println("10. Remove teacher from course");
+        System.out.println("11. Unenroll student from course");
+        System.out.println("12. Enroll a list of students to course");
+        System.out.println("13. Exit program");
         System.out.print("Enter your choice: ");
     }
 
@@ -29,12 +33,18 @@ public class Command {
         // Checks if the course and the student exist
         if (student != null && course != null) {
             // Check if the student is already enrolled in another course
-            if (student.getCourse() != null) {
+            //**************mas cambios lista courses
+//            if (student.getCourse() != null) {
+//                throw new IllegalArgumentException("Student is already enrolled in a course.");
+//            }
+            if (student.getCourse().contains(course)) {
                 throw new IllegalArgumentException("Student is already enrolled in a course.");
             }
 
+
             // Enrolls student in the course
-            student.setCourse(course);
+            //student.setCourse(course); añadido!!
+            student.addCourse(course);
 
             // Updates money earned in the course based on its price
             course.updateMoney_earned(course.getPrice());
@@ -43,29 +53,50 @@ public class Command {
         }
     }
 
-    public static Course assignTeacher(String teacherId, String courseId, School school){
+//    public static Course assignTeacher(String teacherId, String courseId, School school){
+//        //find course by id, getCourseMap()
+//        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+//        //find teacher by teacher id, getTeacherMap()
+//        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
+//        //set teacher to course
+//        if(course == null){
+//            throw new IllegalArgumentException("Course doesn't exist!");
+//        } else {
+//            course.setTeacher(teacher);
+//            return course;
+//        }
+//    }
+
+    public static void assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()
         Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
-        //find teacher by teacher id, getTeacherMap()
-        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
         //set teacher to course
         if(course == null){
             throw new IllegalArgumentException("Course doesn't exist!");
-        } else {
-            course.setTeacher(teacher);
-            return course;
         }
+
+        //find teacher by teacher id, getTeacherMap()
+        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
+
+        if(teacher == null){
+            throw new IllegalArgumentException("Teacher doesn't exist!");
+        }
+        course.setTeacher(teacher);
+        //teacher.setCourse(course);
     }
 
     public static void removeTeacherFromCourse(String courseId, School school){
         //find course by id, getCourseMap()
         Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
-        //find teacher by teacher id, getTeacherMap()
+
         if(course == null){
             throw new IllegalArgumentException("Course doesn't exist!");
-        } else {
+        } else if (course.getTeacher() == null){
+            throw new IllegalArgumentException("No teacher assigned to this course!");
+        }
+
+        else {
             course.removeTeacher();
-            //return course;
         }
     }
     public static void unenrollStudent(String studentId, String courseId, School school){
@@ -75,18 +106,32 @@ public class Command {
         Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
         // Checks if the course and the student exist
         if (student != null && course != null) {
-            // Check if the student is not enrolled in the course
-            if (!Objects.equals(student.getCourse().getCourseId(), courseId)) {
+            // Check if the student is enrolled in the given course
+            if (isStudentEnrolledInCourse(student, courseId)) {
+                // Remove the course from the student
+                student.removeCourse(course);
+
+                // Update money earned in the course based on its price
+                course.updateMoney_earned(course.getMoney_earned() - course.getPrice());
+            } else {
                 throw new IllegalArgumentException("Student is not enrolled in this course.");
             }
-            // añadir metodo de quitar curso del Student
-            student.removeCourse(course);
-            // Updates money earned in the course based on its price
-            course.updateMoney_earned(course.getMoney_earned()-course.getPrice());
         } else {
             throw new IllegalArgumentException("Invalid student or course ID.");
         }
     }
+
+    // Helper method to check if a student is enrolled in a given course
+    public static boolean isStudentEnrolledInCourse(Student student, String courseId) {
+        List<Course> courses = student.getCourse();
+        for (Course course : courses) {
+            if (Objects.equals(course.getCourseId(), courseId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void enrollStudents(List<String> studentsIds, String courseId, School school) {
         Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
@@ -94,13 +139,10 @@ public class Command {
             Student student = CommandUtils.lookUpStudent(school.getStudentMap(), id);
             // Checks if the course and the student exist
             if (student != null && course != null) {
-                // Check if the student is already enrolled in another course
-                if (student.getCourse() != null) {
-                    throw new IllegalArgumentException("Student is already enrolled in a course.");
-                }
+            //no comprobar si uno ya está matriculado, se vuelve a matricular
 
                 // Enrolls student in the course
-                student.setCourse(course);
+                student.addCourse(course);
 
                 // Updates money earned in the course based on its price
                 course.updateMoney_earned(course.getPrice());
@@ -108,6 +150,15 @@ public class Command {
                 throw new IllegalArgumentException("Invalid student or course ID.");
             }
         }
+    }
+    //añadirlo al comando Show all courses?:
+    public static void showStudentsOfCourse(String courseId, Map<String,Student> studentsMap){
+
+        studentsMap.forEach((id, student) -> {
+            if(isStudentEnrolledInCourse(student, courseId)){
+                System.out.println(student.getInfo());
+            }
+        });
     }
 
     public static double showProfit(School school) throws IllegalArgumentException {

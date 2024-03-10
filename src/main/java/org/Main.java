@@ -93,7 +93,11 @@ public class Main {
                     System.out.println("");
                     try{
                         assignTeacher(teacherId, courseId, school);
-                        System.out.println(printYellow("Congratulations! Your teacher has been successfully assigned to the course."));
+                        String printTeacher = CommandUtils.lookUpCourse(school.getCourseMap(), courseId).getTeacher().getName();
+                        System.out.println(printYellow("Congratulations! "
+                                +  printTeacher
+                                + " has been successfully assigned to "
+                                + CommandUtils.lookUpCourse(school.getCourseMap(), courseId).getName()  + "."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
@@ -173,13 +177,7 @@ public class Main {
                     double profit = showProfit(school);
                     System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
                     break;
-
                 case 10:
-                    System.out.println(printYellow("Closing program."));
-                    scanner.close();
-                    break;
-
-                case 11:
                     System.out.println("These are all the courses available");
                     showAll(school.getCourseMap());
                     System.out.println("");
@@ -190,17 +188,120 @@ public class Main {
                     System.out.println("");
                     System.out.println("");
                     try{
+                        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+                        String printTeacher = (course != null && course.getTeacher() != null)
+                                ? course.getTeacher().getName()
+                                : null;
+
                         removeTeacherFromCourse(courseId, school);
-                        System.out.println(printYellow("Congratulations! Your teacher has been successfully removed from the course."));
+
+                        System.out.println(printYellow("Congratulations! "
+                                + printTeacher
+                                + " has been successfully removed from "
+                                + CommandUtils.lookUpCourse(school.getCourseMap(), courseId).getName()  + "."));
 
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
 
                     break;
+                case 11:
+                    System.out.println("These are all the students that join "+schoolName+" school.");
+                    showAll(school.getStudentMap());
+                    System.out.println("");
+                    System.out.println(printBlue("Enter the id of the student:"));
+                    scanner.nextLine();
+
+                    studentId = scanner.next();
+                    System.out.println("");
+
+                    try{
+                        System.out.println("These are all the courses the student is enrolled in:");
+                        CommandUtils.showStudentCourses(studentId, school);
+                        System.out.println("");
+                        System.out.println(printBlue("Enter the id of the course:"));
+                        scanner.nextLine();
+                        courseId = scanner.nextLine();
+                        System.out.println("Please wait, removing student from course.");
+                        System.out.println("");
+                        System.out.println("");
+                        Student student = CommandUtils.lookUpStudent(school.getStudentMap(), studentId);
+                        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+                        String printStudent = (course != null && student != null)
+                                ? student.getName()
+                                : null;
+                        unenrollStudent(studentId, courseId, school);
+                        System.out.println(printYellow("Congratulations! "
+                                + printStudent
+                                + " has been successfully unenrolled from "
+                                + CommandUtils.lookUpCourse(school.getCourseMap(), courseId).getName()  + "."));
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Error: "+e.getMessage());
+                    }
+                    break;
+                case 12:
+                    System.out.println("These are all the students that join "+schoolName+" school.");
+                    showAll(school.getStudentMap());
+                    System.out.println("");
+
+                    int numberStudents = 0;
+                    int maxStudents = school.getStudentMap().size();
+
+                    while (true) {
+                        try {
+                            System.out.println("How many students do you want to add?");
+                            numberStudents = scanner.nextInt();
+
+                            if (numberStudents > 0 && numberStudents <= maxStudents) {
+                                scanner.nextLine();
+                                break;
+                            } else {
+                                throw new IllegalArgumentException("Error: Number of students to add must be greater than 0 and less or equal to " + maxStudents);
+                            }
+                        } catch (InputMismatchException e) {
+                            scanner.nextLine();
+                            System.err.println("Oops! You need to enter a valid number.");
+                        } catch (IllegalArgumentException e) {
+                            scanner.nextLine();
+                            System.err.println(e.getMessage());
+                        }
+                    }
+
+                    List<String> studentList = new ArrayList<>();
+                    for (int i = 0; i < numberStudents; i++) {
+                        System.out.println("Enter the id of the student:");
+                        studentId = scanner.nextLine();
+                        studentList.add(studentId);
+                    }
+
+                    System.out.println("These are all the courses available:");
+                    showAll(school.getCourseMap());
+                    System.out.println("");
+                    System.out.println(printBlue("Enter the id of the course:"));
+                    courseId = scanner.nextLine();
+                    System.out.println("Please wait, enrolling students...");
+                    // TODO- tratar de poner un elapse time o algo para que espere.
+                    System.out.println("");
+                    System.out.println("");
+                    try{
+                        enrollStudents(studentList, courseId, school);
+                        // TODO agregar el nombre del estudiante y curso en el print
+                        // TODO enrolar multiples alumnos (extra)
+                        System.out.println(printYellow("Congratulations! Your students have been successfully enrolled to "
+                                + CommandUtils.lookUpCourse(school.getCourseMap(), courseId).getName()  + "."));
+
+                        System.out.println("");
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Error: "+e.getMessage());
+                    }
+                    break;
+                case 13:
+                    System.out.println(printYellow("Closing program."));
+                    scanner.close();
+                    break;
             }
 
-        }while(choiceMenu != 10);
+        }while(choiceMenu != 13);
 
     }
 

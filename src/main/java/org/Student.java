@@ -1,5 +1,7 @@
 package org;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Student {
@@ -7,7 +9,8 @@ public class Student {
     private String name;
     private String address;
     private String email;
-    private Course course;
+    //private Course course;
+    private List<Course> enrolledCourses;
     private static int idCounter = 1;
 
     // Constructor
@@ -16,6 +19,8 @@ public class Student {
         setName(name);
         setAddress(address);
         setEmail(email);
+        enrolledCourses = new ArrayList<>();
+
     }
 
     private void assignCourseId(){
@@ -38,9 +43,12 @@ public class Student {
     public String getEmail() {
         return email;
     }
-
-    public Course getCourse() {
-        return course;
+    //añadido!!
+    public List<Course> getCourse() {
+        return enrolledCourses;
+    }
+    public void removeCourse(Course course){
+        enrolledCourses.remove(course);
     }
 
     // Setters
@@ -56,14 +64,39 @@ public class Student {
         this.email = email;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    //public void setCourse(Course course) {
+        //this.course = course;
+    //}
+    public void addCourse(Course course){
+        enrolledCourses.add(course);
     }
 
     // Helper
     //TODO - Agregar Courses info (extra)
     public String getInfo() {
-        return("Student - ID: " + this.studentId + " | Name: " + getName() +
-                " | Address: " + getAddress() + " | Email: " + getEmail());
+        if(enrolledCourses.isEmpty()){
+            return "Student - ID: " + this.studentId + " | Name: " + getName() +
+                    " | Address: " + getAddress() + " | Email: " + getEmail();
+        } else {
+            return "Student - ID: " + this.studentId + " | Name: " + getName() +
+                    " | Address: " + getAddress() + " | Email: " + getEmail()
+                    + " | Enrolled in: " + getInfoCourses();
+        }
+
+    }
+
+    public String getInfoCourses(){
+        StringBuilder coursesInfo = new StringBuilder();
+
+        for (Course course : enrolledCourses) {
+            coursesInfo.append(course.getName()).append(", ");
+        }
+
+        // Remove the trailing comma and space
+        if (coursesInfo.length() > 0) {
+            coursesInfo.setLength(coursesInfo.length() - 2);
+        }
+
+        return coursesInfo.toString();
     }
 }
