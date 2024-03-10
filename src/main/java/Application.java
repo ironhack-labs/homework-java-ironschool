@@ -23,7 +23,7 @@ public class Application {
         Selector(commands);
     }
 
-    private static void createSchoolName() {
+    public static void createSchoolName() {
         System.out.println("Welcome to the School Application");
         while (true) {
             try {
@@ -42,7 +42,7 @@ public class Application {
         }
     }
 
-    private static int numberOfComponents(SchoolComponents schoolComponents) {
+    public static int numberOfComponents(SchoolComponents schoolComponents) {
         int number;
 
         do {
@@ -68,7 +68,7 @@ public class Application {
 
     }
 
-    private Map<String,Teacher> teacherDetails() {
+    public static Map<String,Teacher> teacherDetails() {
         Map<String,Teacher> teachersMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.TEACHERS);
         scanner.nextLine();
@@ -89,7 +89,7 @@ public class Application {
 
     }
 
-    private Map<String,Student> studentDetails() {
+    public static Map<String,Student> studentDetails() {
         Map<String,Student> studentMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.STUDENTS);
         scanner.nextLine();
@@ -110,7 +110,7 @@ public class Application {
 
 
 
-    private Map<String,Course> courseDetails() {
+    public static Map<String,Course> courseDetails() {
         Map<String,Course> coursesMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.COURSES);
         scanner.nextLine();
@@ -193,7 +193,7 @@ public class Application {
         }
     }
 
-    private String validateInput(String fieldName, String emptyErrorMessage, String invalidErrorMessage) {
+    public static String validateInput(String fieldName, String emptyErrorMessage, String invalidErrorMessage) {
         String input = "";
         while (true) {
             try {
@@ -213,7 +213,7 @@ public class Application {
         }
     }
 
-    private double validateDoubleInput(String fieldName, String errorMessage) {
+    public static double validateDoubleInput(String fieldName, String errorMessage) {
         double input = 0;
         boolean validInput = false;
         while (!validInput) {
