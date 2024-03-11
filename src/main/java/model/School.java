@@ -53,7 +53,7 @@ public class School {
         return getTotalEarned() - computeSalaries();
     }
 
-    private double computeSalaries() {
+    public double computeSalaries() {
         double totalSpent = 0;
         for (Map.Entry<String, Teacher> entry : teachers.entrySet()) {
             Teacher teacher = entry.getValue();
@@ -63,7 +63,7 @@ public class School {
         return totalSpent;
     }
 
-    private double getTotalEarned() {
+    public double getTotalEarned() {
         double totalEarned = 0;
         for (Map.Entry<String, Course> entry : courses.entrySet()) {
             Course course = entry.getValue();
@@ -105,7 +105,7 @@ public class School {
         course.setMoney_earned(course.getMoney_earned() + course.getPrice());
 
         System.out.println("The student " + student.getName() + " have been enrolled the course "
-                + course.getName() + "."
+                + course.getName() + ".\n"
         );
 
     }
@@ -252,6 +252,14 @@ public class School {
                 System.out.println("Enter the course ID:");
                 String courseID = scanner.next();
                 showStudentsByCourseID(courseID);
+                break;
+            case "11":
+                //SHOW MONEY SPENT
+                System.out.println("The total money spent amounts to: " + String.valueOf(computeSalaries()));
+                break;
+            case "12":
+                //SHOW MONEY EARNED
+                System.out.println("The total money earned amounts to: " + String.valueOf(getTotalEarned()));
                 break;
         }
 
