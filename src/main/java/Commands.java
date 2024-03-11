@@ -2,15 +2,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 @Setter
 @Getter
 public class Commands {
-    private Map<String, Course> courseList = new HashMap<>();
-    private Map<String, Student> studentList = new HashMap<>();
-    private Map<String, Teacher> teacherList = new HashMap<>();
+    private Map<String, Course> courseList = new LinkedHashMap<>();
+    private Map<String, Student> studentList = new LinkedHashMap<>();
+    private Map<String, Teacher> teacherList = new LinkedHashMap<>();
 
 
     public Commands(Map<String, Course> courseList, Map<String, Student> studentList, Map<String, Teacher> teacherList) {
