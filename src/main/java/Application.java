@@ -148,6 +148,7 @@ public class Application {
                 System.out.println("7. Show teachers\n");
                 System.out.println("8. Lookup teacher\n");
                 System.out.println("9. Show profit\n");
+                System.out.println("10. Show course enrolled students\n");
                 try {
                     int commandoption = scanner.nextInt();
                     switch (commandoption) {
@@ -177,6 +178,9 @@ public class Application {
                             break;
                         case 9:
                             comandos.commandSelector(CommandEnum.SHOW_PROFIT);
+                            break;
+                        case 10:
+                            comandos.commandSelector(CommandEnum.SHOW_COURSE_STUDENTS);
                             break;
                         default:
                             System.err.println("The option selected is not available");
