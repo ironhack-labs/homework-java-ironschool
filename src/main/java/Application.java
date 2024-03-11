@@ -17,6 +17,30 @@ public class Application {
         setCourseList(courseDetails());
     }
 
+    public Map<String, Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(Map<String, Course> courseList) {
+        this.courseList = courseList;
+    }
+
+    public Map<String, Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(Map<String, Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public Map<String, Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(Map<String, Teacher> teacherList) {
+        this.teacherList = teacherList;
+    }
+
     public void run() {
         String response = " ";
         Commands commands = new Commands(this.getCourseList(), this.getStudentList(), this.getTeacherList());
