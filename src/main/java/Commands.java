@@ -1,10 +1,7 @@
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 @Setter
 @Getter
@@ -168,6 +165,25 @@ public class Commands {
             case SHOW_PROFIT:
                 ShowProfit();
                 break;
+            case SHOW_COURSE_STUDENTS:
+                do{
+                    System.out.println("Which course do you want to look up? (write the id):\n");
+                    courseList.forEach((key,value) -> {
+                        System.out.println(key + " = " + value.getName() + " ");
+                    });
+                    try{
+                        courseID = scanner.next();
+                        if(courseList.containsKey(courseID)){
+                            ShowCourseStudents(courseID);
+                            validOption = true;
+                        }else{
+                            System.err.println("The course introduced does not exist");
+                        }
+                    }catch(IllegalArgumentException iae){
+                        System.err.println("The option introduced is not correct");
+                    }
+                } while(!validOption);
+                break;
             default:
                 System.err.println("The command selected is not available");
                 break;
@@ -263,6 +279,20 @@ public class Commands {
         }
 
         System.out.println("Total profit: " + profit + "€");
+    }
+
+    public void ShowCourseStudents(String courseID){ //This command will list the students enrolled in the given course
+        Course course = courseList.get(courseID);
+        List<Student> students = course.getStudents();
+
+        if (students.isEmpty()) {
+            System.out.println(course.getName() + " has no students enrolled");
+            return ;
+        }
+        System.out.println(course.getName() + " students:");
+        for (Student student : students) {
+            System.out.println(student.getStudentId() + ": " + student.getName());
+        }
     }
 }
 
