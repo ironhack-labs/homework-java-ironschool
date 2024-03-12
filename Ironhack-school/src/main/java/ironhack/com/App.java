@@ -34,8 +34,5 @@ public class App
         System.out.println("\nEnroll");
         school.enroll(students.get(0).getId(), courses.get(0).getId());
 
-        System.out.println("\nShow students by course");
-        school.showStudentsByCourseId(courses.get(0).getId());
-
     }
 }
