@@ -14,15 +14,22 @@ public class Command {
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
         System.out.println("9. Show profit");
-        System.out.println("10. Exit program");
+        System.out.println("10. Add new course");
+        System.out.println("11. Add new student");
+        System.out.println("12. Add new teacher");
+        System.out.println("13. Remove teacher from course");
+        System.out.println("14. Unenroll student from course");
+        System.out.println("15. Enroll a list of students to course");
+        System.out.println("16. Exit program");
+
         System.out.print("Enter your choice: ");
     }
 
     public static void enrollStudent(String studentId, String courseId, School school) {
         // Gets student by looking through students map
-        Student student = CommandUtils.lookUpStudent(school.getStudentMap(), studentId);
+        Student student = CommandUtils.getStudentById(school.getStudentMap(), studentId);
         // Gets course by looking through courses map
-        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+        Course course = CommandUtils.getCourseById(school.getCourseMap(), courseId);
 
         // Checks if the course and the student exist
         if (student != null && course != null) {
@@ -43,15 +50,14 @@ public class Command {
 
     public static Course assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()
-        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
+        Course course = CommandUtils.getCourseById(school.getCourseMap(), courseId);
         //find teacher by teacher id, getTeacherMap()
-        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
+        Teacher teacher = CommandUtils.getTeacherById(school.getTeacherMap(), teacherId);
         //set teacher to course
         if(course == null){
             throw new IllegalArgumentException("Course doesn't exist!");
         } else {
             course.setTeacher(teacher);
-            teacher.setCourse(course);
             return course;
         }
     }
@@ -77,5 +83,4 @@ public class Command {
             throw new IllegalArgumentException("An error occurred while calculating profit: " + e.getMessage());
         }
     }
-
 }

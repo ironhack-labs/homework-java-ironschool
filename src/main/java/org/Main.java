@@ -2,6 +2,7 @@ package org;
 import java.util.*;
 
 import static org.Command.*;
+import static org.CommandAddNewItem.*;
 import static org.CommandUtils.*;
 
 public class Main {
@@ -48,14 +49,14 @@ public class Main {
                 case 1:
                         //TODO ponerle un color
                         System.out.println("These are all the students that join "+schoolName+" school.");
-                        showAll(school.getStudentMap());
+                        showAllStudents(school.getStudentMap());
                         System.out.println("");
                         System.out.println(printBlue("Enter the id of the student:"));
                         scanner.nextLine();
                         studentId = scanner.nextLine();
                         System.out.println("");
                         System.out.println("These are all the courses available:");
-                        showAll(school.getCourseMap());
+                        showAllCourses(school.getCourseMap());
                         System.out.println("");
                         System.out.println(printBlue("Enter the id of the course:"));
                         courseId = scanner.nextLine();
@@ -77,14 +78,14 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("These are all the teachers that work for "+schoolName+" school.");
-                    showAll(school.getTeacherMap());
+                    showAllTeachers(school.getTeacherMap());
                     System.out.println("");
                     System.out.println(printBlue("Enter the id of the teacher:"));
                     scanner.nextLine();
                     teacherId = scanner.nextLine();
                     System.out.println("");
                     System.out.println("These are all the courses available");
-                    showAll(school.getCourseMap());
+                    showAllCourses(school.getCourseMap());
                     System.out.println("");
                     System.out.println(printBlue("Enter the id of the course:"));
                     courseId = scanner.nextLine();
@@ -103,7 +104,7 @@ public class Main {
                 case 3:
                     try{
                         System.out.println("These are all the courses available:");
-                        showAll(school.getCourseMap());
+                        showAllCourses(school.getCourseMap());
                         System.out.println("");
                         System.out.println("");
                     }catch(IllegalArgumentException e){
@@ -116,9 +117,7 @@ public class Main {
                     courseId = scanner.nextLine();
 
                     try{
-                        Course course = lookUpCourse(school.getCourseMap(),courseId);
-                        System.out.println(course.getInfo());
-
+                        lookUpCourse(school.getCourseMap(),courseId);
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -126,7 +125,7 @@ public class Main {
                 case 5:
                     try{
                         System.out.println("These are all the students enrolled:");
-                        showAll(school.getStudentMap());
+                        showAllStudents(school.getStudentMap());
                         System.out.println("");
                         System.out.println("");
                     }catch(IllegalArgumentException e){
@@ -139,9 +138,7 @@ public class Main {
                     studentId = scanner.nextLine();
 
                     try{
-                        Student student = lookUpStudent(school.getStudentMap(),studentId);
-                        System.out.println(printPurple(student.getInfo()));
-
+                        lookUpStudent(school.getStudentMap(),studentId);
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -149,7 +146,7 @@ public class Main {
                 case 7:
                     try{
                         System.out.println("These are all the teachers that work at the school:");
-                        showAll(school.getTeacherMap());
+                        showAllTeachers(school.getTeacherMap());
                         System.out.println("");
                         System.out.println("");
                     }catch(IllegalArgumentException e){
@@ -162,9 +159,7 @@ public class Main {
                     teacherId = scanner.nextLine();
 
                     try{
-                        Teacher teacher = lookUpTeacher(school.getTeacherMap(), teacherId);
-                        System.out.println(printPurple(teacher.getInfo()));
-
+                        lookUpTeacher(school.getTeacherMap(), teacherId);
                     }catch(IllegalArgumentException e){
                         System.out.println("Error: "+e.getMessage());
                     }
@@ -173,14 +168,32 @@ public class Main {
                     double profit = showProfit(school);
                     System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
                     break;
-
                 case 10:
+                    addNewCourse(school);
+                    break;
+                case 11:
+                    addNewStudent(school);
+                    break;
+                case 12:
+                    addNewTeacher(school);
+                    break;
+                case 13:
+
+                    break;
+                case 14:
+
+                    break;
+                case 15:
+
+                    break;
+                case 16:
                     System.out.println(printYellow("Closing program."));
                     scanner.close();
                     break;
+
             }
 
-        }while(choiceMenu != 10);
+        }while(choiceMenu != 16);
 
     }
 

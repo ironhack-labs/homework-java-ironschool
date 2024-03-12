@@ -12,8 +12,6 @@ public class Course {
     private double money_earned;
     private Teacher teacher = null;
     private static int idCounter = 1;
-    private static final double MIN_PRICE = 100;
-    private static final double MAX_PRICE = 1000;
 
     public Course(String name, double price, double money_earned) {
         assignCourseId();
@@ -36,15 +34,7 @@ public class Course {
     }
 
     public void setPrice(double price) {
-        if(isValidPrice(price)){
-            this.price = price;
-        } else {
-            System.out.println("Price should be between " + MIN_PRICE +" and " + MAX_PRICE);
-        }
-    }
-
-    private boolean isValidPrice(double price){
-        return !(price < MIN_PRICE) && !(price > MAX_PRICE);
+        this.price = price;
     }
 
     public String getName() {
