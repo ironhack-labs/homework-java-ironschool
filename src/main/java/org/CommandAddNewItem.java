@@ -68,3 +68,27 @@ public class CommandAddNewItem {
         school.getStudentMap().put(student.getStudentId(), student);
     }
 }
+
+/*              case 10:
+                    addNewCourse(school);
+
+                    break;
+                case 11:
+                    addNewStudent(school);
+                    break;
+                case 12:
+                    addNewTeacher(school);
+                    break;
+                case 13:
+                    System.out.println(printYellow("Closing program."));
+                    scanner.close();
+                    break;
+
+
+
+        System.out.println("10. Add new course");
+        System.out.println("11. Add new student");
+        System.out.println("12. Add new teacher");
+        System.out.println("13. Exit program");
+        System.out.print("Enter your choice: ");
+                    */
