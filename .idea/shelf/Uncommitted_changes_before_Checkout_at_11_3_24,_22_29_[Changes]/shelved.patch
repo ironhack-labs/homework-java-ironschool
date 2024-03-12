@@ -1,0 +1,60 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Default ignored files\n/shelf/\n/workspace.xml\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision ad4b7edd47241cca602d690cade7aefa428eba3a)
++++ b/.idea/.gitignore	(date 1710192181630)
+@@ -1,3 +1,12 @@
+ # Default ignored files
+ /shelf/
+ /workspace.xml
++/jarRepositories.xml
++/compiler.xml
++/encodings.xml
++/misc.xml
++/vcs.xml
++/homework-java-ironschool.iml
++
++
++
+Index: src/main/java/Course.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\nimport java.util.HashMap;\nimport java.util.UUID;\npublic class Course {\n    private String courseId;\n    private String name;\n\n\n    private double price;\n    private double money_earned;\n    private Teacher teacher;\n    private HashMap<String, Course> courseList = new HashMap<String, Course>();\n\n\n    public Course(String courseId, String name, double price, double money_earned) {\n        setCourseId(courseId);\n        setName(name);\n        setPrice(price);\n    }\n\n    public String getCourseId() {\n        return UUID.randomUUID().toString();\n    }\n\n    public void setCourseId(String courseId) {\n        this.courseId = courseId;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public double getPrice() {\n        return price;\n    }\n\n    public void setPrice(double price) {\n        this.price = price;\n    }\n\n    public double getMoney_earned() {\n        return money_earned;\n    }\n\n    public void setMoney_earned(double money_earned) {\n        this.money_earned = money_earned;\n    }\n\n    public Teacher getTeacher() {\n        return teacher;\n    }\n\n    public void setTeacher(Teacher teacher) {\n        this.teacher = teacher;\n    }\n\n    public void courseEnroll(Student student, Course x){\n        courseList.put(student.getStudentId(), x);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Course.java b/src/main/java/Course.java
+--- a/src/main/java/Course.java	(revision ad4b7edd47241cca602d690cade7aefa428eba3a)
++++ b/src/main/java/Course.java	(date 1710192506278)
+@@ -1,5 +1,7 @@
+ 
++import java.util.ArrayList;
+ import java.util.HashMap;
++import java.util.List;
+ import java.util.UUID;
+ public class Course {
+     private String courseId;
+@@ -9,7 +11,7 @@
+     private double price;
+     private double money_earned;
+     private Teacher teacher;
+-    private HashMap<String, Course> courseList = new HashMap<String, Course>();
++    private List<Student> studentList = new ArrayList<>();
+ 
+ 
+     public Course(String courseId, String name, double price, double money_earned) {
+@@ -58,7 +60,7 @@
+         this.teacher = teacher;
+     }
+ 
+-    public void courseEnroll(Student student, Course x){
+-        courseList.put(student.getStudentId(), x);
++    public void courseEnroll(Student student){
++        studentList.add(student);
+     }
+ }
