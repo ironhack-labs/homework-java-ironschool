@@ -67,8 +67,6 @@
             <scope>test</scope>
         </dependency>
 
-
-
     </dependencies>
 
     <build>
@@ -78,7 +76,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <!-- Additional configuration options can be specified here -->
+                    <argLine>@{argLine} -Xshare:off</argLine>
+                    <parallel>all</parallel>
                 </configuration>
             </plugin>
 
