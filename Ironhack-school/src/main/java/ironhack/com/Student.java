@@ -15,15 +15,22 @@ public class Student extends Person {
     public Student(String name, String address, String email) {
         super(name);
         this.address = address;
-        this.email = email;
+        this.setEmail(email);
         courseList = new ArrayList<>();
     }
 
     public Student(String name, String address, String email, List<Course> courseList) {
         super(name);
         this.address = address;
-        this.email = email;
+        this.setEmail(email);
         this.courseList = courseList;
+    }
+
+    public void setEmail(String email) {
+        if (!Utils.ValidateEmail.isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+        this.email = email;
     }
 
     public void printInfo() {
