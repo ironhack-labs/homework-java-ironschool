@@ -33,22 +33,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JUnit.AppTest.executor": "Run",
-    "JUnit.AppTest.testAssignTeacher.executor": "Run",
-    "JUnit.AppTest.testCreateObjects.executor": "Run",
-    "JUnit.AppTest.testCreateTeacher.executor": "Run",
-    "JUnit.AppTest.testEnrollStudent.executor": "Run",
-    "JUnit.AppTest.testFillInSchool.executor": "Run",
-    "JUnit.AppTest.testLookupMethods.executor": "Run",
-    "JUnit.AppTest.testShowInfoMethods.executor": "Run",
-    "JUnit.AppTest.testShowProfit.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "testing",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Laura Sanchez Ruiz/Desktop/IronHack/Week4 (12.02 - 18.02)/Week4S3/lab-java-system-design"
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
   <component name="RunManager" selected="JUnit.AppTest">
