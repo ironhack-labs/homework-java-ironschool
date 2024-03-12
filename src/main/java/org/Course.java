@@ -11,8 +11,6 @@ public class Course {
     private double money_earned;
     private Teacher teacher;
     private static int idCounter = 1;
-    private static final double MIN_PRICE = 100;
-    private static final double MAX_PRICE = 1000;
 
     public Course(String name, double price, double money_earned) {
         assignCourseId();

@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList; // Import ArrayList class from java.util package
 import java.util.List;
 
-class CommandTest {
+class
+CommandTest {
 
     Command command;
     School school;

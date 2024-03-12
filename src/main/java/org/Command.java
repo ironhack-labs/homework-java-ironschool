@@ -17,10 +17,13 @@ public class Command {
         System.out.println("7. See all teachers");
         System.out.println("8. Search for a specific teacher");
         System.out.println("9. Show profit");
-        System.out.println("10. Remove teacher from course");
-        System.out.println("11. Unenroll student from course");
-        System.out.println("12. Enroll a list of students to course");
-        System.out.println("13. Exit program");
+        System.out.println("10. Add new course");
+        System.out.println("11. Add new student");
+        System.out.println("12. Add new teacher");
+        System.out.println("13. Remove teacher from course");
+        System.out.println("14. Unenroll student from course");
+        System.out.println("15. Enroll a list of students to course");
+        System.out.println("16. Exit program");
         System.out.print("Enter your choice: ");
     }
 
@@ -53,19 +56,6 @@ public class Command {
         }
     }
 
-//    public static Course assignTeacher(String teacherId, String courseId, School school){
-//        //find course by id, getCourseMap()
-//        Course course = CommandUtils.lookUpCourse(school.getCourseMap(), courseId);
-//        //find teacher by teacher id, getTeacherMap()
-//        Teacher teacher = CommandUtils.lookUpTeacher(school.getTeacherMap(), teacherId);
-//        //set teacher to course
-//        if(course == null){
-//            throw new IllegalArgumentException("Course doesn't exist!");
-//        } else {
-//            course.setTeacher(teacher);
-//            return course;
-//        }
-//    }
 
     public static void assignTeacher(String teacherId, String courseId, School school){
         //find course by id, getCourseMap()

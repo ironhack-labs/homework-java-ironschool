@@ -177,7 +177,7 @@ public class Main {
                     double profit = showProfit(school);
                     System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
                     break;
-                case 10:
+                case 13:
                     System.out.println("These are all the courses available");
                     showAll(school.getCourseMap());
                     System.out.println("");
@@ -205,7 +205,7 @@ public class Main {
                     }
 
                     break;
-                case 11:
+                case 14:
                     System.out.println("These are all the students that join "+schoolName+" school.");
                     showAll(school.getStudentMap());
                     System.out.println("");
@@ -239,7 +239,7 @@ public class Main {
                         System.out.println("Error: "+e.getMessage());
                     }
                     break;
-                case 12:
+                case 15:
                     System.out.println("These are all the students that join "+schoolName+" school.");
                     showAll(school.getStudentMap());
                     System.out.println("");
@@ -295,13 +295,13 @@ public class Main {
                         System.out.println("Error: "+e.getMessage());
                     }
                     break;
-                case 13:
+                case 16:
                     System.out.println(printYellow("Closing program."));
                     scanner.close();
                     break;
             }
 
-        }while(choiceMenu != 13);
+        }while(choiceMenu != 16);
 
     }
 
