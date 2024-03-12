@@ -69,12 +69,18 @@ public class Course {
         return this.teacher;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Course course)) return false;
         return Double.compare(getPrice(), course.getPrice()) == 0 && Double.compare(getMoney_earned(), course.getMoney_earned()) == 0 && Objects.equals(getName(), course.getName()) && Objects.equals(getTeacher(), course.getTeacher());
     }
+    public void removeTeacher(){
+        this.teacher = null;
+    }
+
+
 
     @Override
     public int hashCode() {
