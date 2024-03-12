@@ -3,13 +3,14 @@ package org;
 import org.Teacher;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Course {
     private String courseId;
     private String name;
     private double price;
     private double money_earned;
-    private Teacher teacher;
+    private Teacher teacher = null;
     private static int idCounter = 1;
     private static final double MIN_PRICE = 100;
     private static final double MAX_PRICE = 1000;
@@ -78,20 +79,26 @@ public class Course {
         return this.teacher;
     }
 
-    public String getInfo(){
-        if(this.getTeacher() == null){
-            return "Course - ID: " + getCourseId() + " | Name: "
-                    + getName() + " | Price: " + getPrice() + "$"
-                    + " | Total earned: " + getMoney_earned() + "$"
-                    + " | No teacher assigned";
-        } else {
-            return "Course - ID: " + getCourseId() + " | Name: "
-                    + getName() + " | Price: " + getPrice() + "$"
-                    + " | Total earned: " + getMoney_earned() + "$"
-                    + " | Taught by: " + getTeacher().getName();
-        }
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Course course)) return false;
+        return Double.compare(getPrice(), course.getPrice()) == 0 && Double.compare(getMoney_earned(), course.getMoney_earned()) == 0 && Objects.equals(getName(), course.getName()) && Objects.equals(getTeacher(), course.getTeacher());
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPrice(), getMoney_earned(), getTeacher());
+    }
+
+    public String getInfo() {
+        String name = getName().length() > 16 ? getName().substring(0, 15) + " ." : getName();
+        String teacherName = "";
+        if(teacher != null){
+            teacherName = getTeacher().getName().length() > 16 ? getTeacher().getName().substring(0, 15) + " ." : getTeacher().getName();
+        }
+        return String.format(" %-4s│ %-17s │ %-13s│ %-17s ",
+                courseId, name, getPrice(), teacherName);
+    }
 }
 

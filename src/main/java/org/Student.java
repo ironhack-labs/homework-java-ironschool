@@ -1,5 +1,6 @@
 package org;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Student {
@@ -60,10 +61,34 @@ public class Student {
         this.course = course;
     }
 
-    // Helper
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return Objects.equals(getName(), student.getName()) && Objects.equals(getAddress(), student.getAddress()) && Objects.equals(getEmail(), student.getEmail()) && Objects.equals(getCourse(), student.getCourse());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAddress(), getEmail(), getCourse());
+    }
+
+   /* // Helper
     //TODO - Agregar Courses info (extra)
     public String getInfo() {
         return("Student - ID: " + this.studentId + " | Name: " + getName() +
                 " | Address: " + getAddress() + " | Email: " + getEmail());
+    }*/
+
+    public String getInfo() {
+        String name = getName().length() > 17 ? getName().substring(0, 16) + " ." : getName();
+        String address = getAddress().length() > 17 ? getAddress().substring(0, 16) + " ." : getAddress();
+        String email = getEmail().length() > 17 ? getEmail().substring(0, 16) + " ." : getEmail();
+        String courseName = "";
+        if(course != null){
+            courseName = getCourse().getName().length() > 17 ? getCourse().getName().substring(0, 16) + " ." : getCourse().getName();
+        }
+        return String.format(" %-4s│ %-18s │ %-18s │ %-18s │ %-18s ",
+                studentId, name, address, email, courseName);
     }
 }

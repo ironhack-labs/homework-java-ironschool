@@ -1,13 +1,14 @@
 package org;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class School {
     private String name;
-    HashMap<String, Course> courseMap;
-    HashMap<String, Teacher> teacherMap;
-    HashMap<String, Student> studentMap;
+    LinkedHashMap<String, Course> courseMap;
+    LinkedHashMap<String, Teacher> teacherMap;
+    LinkedHashMap<String, Student> studentMap;
 
 
     public School(String name, List<Teacher> listTeacher, List<Course> listCourse, List<Student> listStudent) {
@@ -22,19 +23,19 @@ public class School {
     }
 
     public void setHashmapTeacher(List<Teacher> listTeacher) {
-        teacherMap = new HashMap<>();
+        teacherMap = new LinkedHashMap<>();
         for (Teacher teacher : listTeacher){
             teacherMap.put(teacher.getTeacherId(), teacher);
         }
     }
     public void setHashmapCourse(List<Course> listCourse) {
-        courseMap = new HashMap<>();
+        courseMap = new LinkedHashMap<>();
         for (Course course : listCourse){
             courseMap.put(course.getCourseId(), course);
         }
     }
     public void setHashmapStudent(List<Student> listStudent) {
-        studentMap = new HashMap<>();
+        studentMap = new LinkedHashMap<>();
         for (Student student : listStudent){
             studentMap.put(student.getStudentId(), student);
         }
@@ -43,14 +44,14 @@ public class School {
     public String getName() {
         return this.name;
     }
-    public HashMap<String, Course> getCourseMap() {
+    public LinkedHashMap<String, Course> getCourseMap() {
         return this.courseMap;
     }
-    public HashMap<String, Teacher> getTeacherMap() {
+    public LinkedHashMap<String, Teacher> getTeacherMap() {
         return this.teacherMap;
     }
 
-    public HashMap<String, Student> getStudentMap() {
+    public LinkedHashMap<String, Student> getStudentMap() {
         return this.studentMap;
     }
 }
