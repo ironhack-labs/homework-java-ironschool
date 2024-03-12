@@ -121,6 +121,7 @@ public class Menu {
         do {
             System.out.println("\nCommand's list");
             Stream.of(Command.values()).forEach(opt -> System.out.println(opt.getIndex() + " - " + opt.getDescription()));
+            System.out.print("0 - Exit program");
             System.out.printf("%nEnter a command (1 - %d): ", max);
             commandIndex = scanner.next();
             school.executeCommand(commandIndex);
