@@ -43,6 +43,96 @@
     "last_opened_file_path": "C:/Users/Laura Sanchez Ruiz/Desktop/IronHack/Homeworks/IronSchool/Ironhack-school"
   }
 }]]></component>
+  <component name="RunManager" selected="JUnit.AppTest">
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testAssignTeacher" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
+      <option name="METHOD_NAME" value="testAssignTeacher" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testEnrollStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
+      <option name="METHOD_NAME" value="testEnrollStudent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testShowInfoMethods" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
+      <option name="METHOD_NAME" value="testShowInfoMethods" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testShowProfit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
+      <option name="METHOD_NAME" value="testShowProfit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AppTest" />
+        <item itemvalue="JUnit.AppTest.testShowProfit" />
+        <item itemvalue="JUnit.AppTest.testShowInfoMethods" />
+        <item itemvalue="JUnit.AppTest.testAssignTeacher" />
+        <item itemvalue="JUnit.AppTest.testEnrollStudent" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -60,5 +150,16 @@
       <updated>1708762591629</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
