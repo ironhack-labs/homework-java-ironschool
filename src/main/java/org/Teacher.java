@@ -1,10 +1,13 @@
 package org;
 
+import java.util.List;
+import java.util.Objects;
+
 public class Teacher {
-    private String id;
+    private String studentId;
     private String name;
     private double salary;
-    private Course course;
+    private List<Course> courses;
     private static int idCounter = 1;
 
     public Teacher(String name, double salary) {
@@ -14,10 +17,10 @@ public class Teacher {
     }
 
     public boolean getTeacherById(String idToCheck){
-        return this.id.equals(idToCheck);
+        return this.studentId.equals(idToCheck);
     }
     private void assignTeacherId(){
-        this.id = "T" + String.valueOf(idCounter++);
+        this.studentId = "T" + String.valueOf(idCounter++);
     }
 
     public void setName(String name) {
@@ -28,12 +31,12 @@ public class Teacher {
         this.salary = salary;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     public String getTeacherId() {
-        return this.id;
+        return this.studentId;
     }
 
     public String getName() {
@@ -44,16 +47,29 @@ public class Teacher {
         return this.salary;
     }
 
-    public Course getCourse() {
-        return this.course;
+    public List<Course> getCourses() {
+        return this.courses;
     }
 
-    public String getInfo(){
-        String result = "Teacher - ID: " + getTeacherId() + " | Name: " +
-            getName() + " | Salary: " + getSalary();
-        if (course != null){
-            result = result + " | Course: " + getCourse();
-        }
-        return result;
+    public void addCourseToTeacher(Course course){
+        this.courses.add(course);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Teacher teacher)) return false;
+        return Double.compare(getSalary(), teacher.getSalary()) == 0 && Objects.equals(getName(), teacher.getName()) && Objects.equals(getCourses(), teacher.getCourses());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getSalary(), getCourses());
+    }
+
+    public String getInfo() {
+        String name = getName().length() > 16 ? getName().substring(0, 15) + " ." : getName();
+        return String.format(" %-4s│ %-17s │ %-13s",
+                getTeacherId(), name, getSalary());
     }
 }
