@@ -146,7 +146,7 @@ public class CommandUtils {
 
     public static String printHeaderTableCourse() {
         return  "┌─────┬───────────────────┬──────────────┬───────────────────┐\n" +
-                "│ ID  │ Name              │ Salary       │ Teacher           │";
+                "│ ID  │ Name              │ Price        │ Teacher           │";
     }
 
     public static String printRowSeparatorCourse() {

@@ -3,6 +3,8 @@ package org;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static org.PrintUtils.printBlue;
+
 
 public class CommandAddNewItem {
     public static void addNewTeacher (School school){
@@ -11,9 +13,9 @@ public class CommandAddNewItem {
         double salary = 00.00;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter teacher name:");
+        System.out.println(printBlue("Enter teacher name:"));
         name = scanner.nextLine();
-        System.out.println("Enter teacher salary:");
+        System.out.println(printBlue("Enter teacher salary:"));
         while (!is_num) {
             try {
                 salary = scanner.nextDouble();
@@ -34,9 +36,9 @@ public class CommandAddNewItem {
         double price = 00.00;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter course name:");
+        System.out.println(printBlue("Enter course name:"));
         name = scanner.nextLine();
-        System.out.println("Enter course price:");
+        System.out.println(printBlue("Enter course price:"));
         while (!is_num) {
             try {
                 price = scanner.nextDouble();
@@ -57,38 +59,14 @@ public class CommandAddNewItem {
         String email = "";
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter student name:");
+        System.out.println(printBlue("Enter student name:"));
         name = scanner.nextLine();
-        System.out.println("Enter student adress:");
+        System.out.println(printBlue("Enter student address:"));
         address = scanner.nextLine();
-        System.out.println("Enter student email:");
+        System.out.println(printBlue("Enter student email:"));
         email = scanner.nextLine();
 
         Student student = new Student(name, address, email);
         school.getStudentMap().put(student.getStudentId(), student);
     }
 }
-
-/*              case 10:
-                    addNewCourse(school);
-
-                    break;
-                case 11:
-                    addNewStudent(school);
-                    break;
-                case 12:
-                    addNewTeacher(school);
-                    break;
-                case 13:
-                    System.out.println(printYellow("Closing program."));
-                    scanner.close();
-                    break;
-
-
-
-        System.out.println("10. Add new course");
-        System.out.println("11. Add new student");
-        System.out.println("12. Add new teacher");
-        System.out.println("13. Exit program");
-        System.out.print("Enter your choice: ");
-                    */

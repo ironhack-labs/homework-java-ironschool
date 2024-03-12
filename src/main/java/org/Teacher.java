@@ -13,7 +13,11 @@ public class Teacher {
     public Teacher(String name, double salary) {
         assignTeacherId();
         setName(name);
-        setSalary(salary);
+        try {
+            setSalary(salary);
+        } catch(IllegalArgumentException e){
+            System.out.println("Error: "+e.getMessage());
+        }
     }
 
     public boolean getTeacherById(String idToCheck){
@@ -28,7 +32,11 @@ public class Teacher {
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        if (salary < 0){
+            throw new IllegalArgumentException("Salary can not be negative value");
+        } else {
+            this.salary = salary;
+        }
     }
 
     public void setCourses(List<Course> courses) {

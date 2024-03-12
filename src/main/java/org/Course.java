@@ -16,9 +16,13 @@ public class Course {
     public Course(String name, double price, double money_earned) {
         assignCourseId();
         setName(name);
-        setPrice(price);
-        this.money_earned = 0;
-        this.teacher = null;
+        try {
+            setPrice(price);
+        } catch(IllegalArgumentException e){
+            System.out.println("Error: "+e.getMessage());
+        }
+        setMoney_earned(0.0);
+        setTeacher(null);
     }
 
     public String getCourseId() {
@@ -34,7 +38,11 @@ public class Course {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price < 0) {
+            throw new IllegalArgumentException("Salary can not be negative value");
+        } else {
+            this.price = price;
+        }
     }
 
     public String getName() {
@@ -58,6 +66,10 @@ public class Course {
         return money_earned;
     }
     public void updateMoney_earned(double money_earned) {
+        this.money_earned = money_earned;
+    }
+
+    public void setMoney_earned(double money_earned) {
         this.money_earned = money_earned;
     }
 

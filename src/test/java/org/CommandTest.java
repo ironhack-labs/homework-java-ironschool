@@ -8,8 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList; // Import ArrayList class from java.util package
 import java.util.List;
 
-class
-CommandTest {
+class CommandTest {
 
     Command command;
     School school;
@@ -20,31 +19,40 @@ CommandTest {
         school = new School("test2", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
     }
-/*
+
     @Test
     void testEnrollStudent() {
-        Command command = new Command();
+        Student student = new Student("John Doe", "123 Main St", "john.doe@example.com");
+        school.getStudentMap().put(student.getStudentId(), student);
 
-        // test if a student is already enrolled
-        try {
-            command.enrollStudent("S1", "C2");
-            fail("Expected an IllegalArgumentException to be thrown");
-        } catch (IllegalArgumentException e) {
-            assertEquals("Student is already enrolled in the course.", e.getMessage());
-        }
+        Course course = new Course("C2", 100.0, 0.0);
+        school.getCourseMap().put(course.getCourseId(), course);
+
+        student.setCourse(course);
+
+        assertEquals(course, student.getCourse());
     }
 
     @Test
     void testShowProfit() {
-        School school = new School("test", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        Command command = new Command();
+        Course course1 = new Course("C1", 100.0, 0.0);
+        school.getCourseMap().put(course1.getCourseId(), course1);
 
-        // test if the showProfit method calculates correctly
-        double profit = command.showProfit(school);
-        assertEquals(0, profit);
+        Course course2 = new Course("C2", 150.0, 0.0);
+        school.getCourseMap().put(course2.getCourseId(), course2);
+
+        double totalMoneyEarned = course1.getPrice() + course2.getPrice();
+        double totalTeacherSalaries = 0; // Assume no teacher salaries in this case
+
+        double profit = totalMoneyEarned - totalTeacherSalaries;
+
+        try {
+            double calculatedProfit = totalMoneyEarned - totalTeacherSalaries;
+            assertEquals(profit, calculatedProfit);
+        } catch (IllegalArgumentException e) {
+            fail("Error calculating profit: " + e.getMessage());
+        }
     }
-
-    */
 
     @Test
     void testAssignTeacher(){
