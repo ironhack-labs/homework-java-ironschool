@@ -7,5 +7,6 @@ public enum CommandEnum {
     LOOKUP_STUDENT,
     SHOW_TEACHERS,
     LOOKUP_TEACHER,
-    SHOW_PROFIT
+    SHOW_PROFIT,
+    SHOW_COURSE_STUDENTS
 }
