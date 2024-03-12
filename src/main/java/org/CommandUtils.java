@@ -1,6 +1,13 @@
 package org;
 
+
 import java.util.*;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 
 public class CommandUtils {
 
@@ -16,8 +23,28 @@ public class CommandUtils {
             } else {
                 System.out.println(printFooterTableTeacher());
             }
+
         }
     }
+
+    public static void showStudentCourses(String studentId, School school){
+        Student student = getStudentById(school.getStudentMap(), studentId);
+
+        if(student == null){
+            throw new IllegalArgumentException("Student doesn't exist!");
+        }
+        List<Course> courses = student.getCourse();
+        for(Course course : courses){
+            System.out.println(course.getInfo());
+        }
+    }
+
+
+
+
+
+
+
 
     public static void showAllCourses(HashMap<String, Course> map){
         System.out.println(printHeaderTableCourse());
