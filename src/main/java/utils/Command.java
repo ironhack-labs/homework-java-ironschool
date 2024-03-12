@@ -15,8 +15,7 @@ public enum Command {
     SHOW_PROFIT("9", "Show profit"),
     SHOW_STUDENTS_BY_COURSE_ID("10", "Show students by course ID"),
     SHOW_MONEY_SPENT("11", "Show the total money spent"),
-    SHOW_MONEY_EARNED("12", "Show the total money earned"),
-    EXIT("0", "Exit program");
+    SHOW_MONEY_EARNED("12", "Show the total money earned");
 
     private final String index;
     private final String description;
