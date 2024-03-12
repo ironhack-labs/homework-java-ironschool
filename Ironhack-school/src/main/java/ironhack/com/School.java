@@ -162,18 +162,18 @@ public double calculateProfit() {
     }
 
 
-    public void showMoneySpentByStudent(String studentId) {
+    public double calculateMoneySpentByStudent(String studentId) {
         Student student = student_map.get(studentId);
+        double totalMoneySpent = 0.0;
         if (student != null) {
-            double totalMoneySpent = 0.0;
             List<Course> courses = student.getCourseList();
             for (Course course : courses) {
                 totalMoneySpent += course.getPrice();
             }
-            System.out.println(totalMoneySpent);
         } else {
             System.out.println("Student not found");
         }
+        return totalMoneySpent;
     }
 
 }
