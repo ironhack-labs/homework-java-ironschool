@@ -18,6 +18,12 @@ public class Main {
 
         System.out.println(printBlue("Please, text the name for your school:"));
         schoolName = scanner.nextLine();
+
+        while (schoolName == "") {
+            System.out.println(printRed("School can't be blank"));
+            schoolName = scanner.nextLine();
+
+        }
         System.out.println("");
         System.out.println(printYellow("Perfect, we have created the school: ") + printPurple(schoolName));
         System.out.println("");
@@ -25,7 +31,7 @@ public class Main {
         itemCreator("teacher", schoolName, teachers, null);
         itemCreator("course", schoolName, courses, teachers);
         itemCreator("student", schoolName, students, null);
-// TODO hay un bug en student - Se crea con id C1 en vez de S1 - lo cambie en el codigo pero hablarlo
+
         School school = new School(schoolName, teachers, courses, students);
 
         int choiceMenu;
@@ -48,7 +54,7 @@ public class Main {
                         scanner.nextLine();
                         studentId = scanner.nextLine();
                         System.out.println("");
-                        System.out.println("These are all the courses available");
+                        System.out.println("These are all the courses available:");
                         showAll(school.getCourseMap());
                         System.out.println("");
                         System.out.println(printBlue("Enter the id of the course:"));
@@ -304,7 +310,7 @@ public class Main {
 
         System.out.println(printBlue("Enter student name:"));
         name = scanner.nextLine();
-        System.out.println(printBlue("Enter student adress:"));
+        System.out.println(printBlue("Enter student address:"));
         address = scanner.nextLine();
         System.out.println(printBlue("Enter student email:"));
         email = scanner.nextLine();
@@ -325,4 +331,9 @@ public class Main {
     private static String printYellow(String text) {
         return ConsoleColors.YELLOW + text + ConsoleColors.RESET;
     }
+
+    private static String printRed(String text) {
+        return ConsoleColors.RED + text + ConsoleColors.RESET;
+    }
+
 }
