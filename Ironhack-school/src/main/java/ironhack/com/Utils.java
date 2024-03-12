@@ -1,4 +1,6 @@
 package ironhack.com;
+
+
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -32,7 +34,7 @@ public class Utils {
         }
     }
 
-    public static int validate_number_of(Scanner scanner){
+    public static int validateNumberOf(Scanner scanner){
         boolean is_finish= false;
 
         do{
@@ -51,6 +53,61 @@ public class Utils {
             is_finish=true;
         }while(is_finish);
         return 0;
+    }
+    public static double validateDoubleOf(Scanner scanner){
+        boolean is_finish= false;
+
+        do{
+            String number_string=scanner.nextLine();
+            try{
+                Double number = Double.parseDouble(number_string);
+                if(number >0){
+                    return number;
+                }
+                else{
+                    System.out.println("Enter a valid number ex 250.50");
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Enter a valid number");
+            }
+            is_finish=true;
+        }while(is_finish);
+        return 0;
+    }
+    public static String validateEmailOf(Scanner scanner){
+        boolean is_finish= false;
+
+        do{
+            String email=scanner.nextLine();
+
+                if(!Utils.ValidateEmail.isValidEmail(email)){
+                    System.out.println("Enter a valid email@email.com");
+                }
+                else{
+                    return email;
+                }
+
+            is_finish=true;
+        }while(is_finish);
+        return "none";
+    }
+
+    public static String validateNameOf(Scanner scanner){
+        boolean is_finish= false;
+
+        do{
+            String name=scanner.nextLine();
+
+            if(!Utils.validateName(name)){
+                System.out.println("Enter a valid name, only Letters allowed");
+            }
+            else{
+                return name;
+            }
+
+            is_finish=true;
+        }while(is_finish);
+        return "none";
     }
 
 
