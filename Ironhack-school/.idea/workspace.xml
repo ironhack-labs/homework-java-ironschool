@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="10ffb360-f19c-4272-9ada-3465938789bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ironhack/com/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ironhack/com/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,18 +34,24 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AppTest.executor": "Run",
+    "JUnit.AppTest.testAssignTeacher.executor": "Run",
     "JUnit.AppTest.testCreateObjects.executor": "Run",
     "JUnit.AppTest.testCreateTeacher.executor": "Run",
+    "JUnit.AppTest.testEnrollStudent.executor": "Run",
     "JUnit.AppTest.testFillInSchool.executor": "Run",
+    "JUnit.AppTest.testLookupMethods.executor": "Run",
+    "JUnit.AppTest.testShowInfoMethods.executor": "Run",
+    "JUnit.AppTest.testShowProfit.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "testing",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Laura Sanchez Ruiz/Desktop/IronHack/Week4 (12.02 - 18.02)/Week4S3/lab-java-system-design"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.AppTest.testLookupMethods">
+  <component name="RunManager" selected="JUnit.AppTest">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
@@ -62,7 +67,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testCreateObjects" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.testAssignTeacher" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
         <pattern>
@@ -72,13 +77,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="ironhack.com" />
       <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
-      <option name="METHOD_NAME" value="testCreateObjects" />
+      <option name="METHOD_NAME" value="testAssignTeacher" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testCreateTeacher" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.testEnrollStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
         <pattern>
@@ -88,13 +93,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="ironhack.com" />
       <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
-      <option name="METHOD_NAME" value="testCreateTeacher" />
+      <option name="METHOD_NAME" value="testEnrollStudent" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testFillInSchool" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.testShowInfoMethods" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
         <pattern>
@@ -104,13 +109,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="ironhack.com" />
       <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
-      <option name="METHOD_NAME" value="testFillInSchool" />
+      <option name="METHOD_NAME" value="testShowInfoMethods" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testLookupMethods" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.testShowProfit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
         <pattern>
@@ -120,7 +125,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="ironhack.com" />
       <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
-      <option name="METHOD_NAME" value="testLookupMethods" />
+      <option name="METHOD_NAME" value="testShowProfit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -128,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.testLookupMethods" />
         <item itemvalue="JUnit.AppTest" />
-        <item itemvalue="JUnit.AppTest.testCreateObjects" />
-        <item itemvalue="JUnit.AppTest.testFillInSchool" />
-        <item itemvalue="JUnit.AppTest.testCreateTeacher" />
+        <item itemvalue="JUnit.AppTest.testShowProfit" />
+        <item itemvalue="JUnit.AppTest.testShowInfoMethods" />
+        <item itemvalue="JUnit.AppTest.testAssignTeacher" />
+        <item itemvalue="JUnit.AppTest.testEnrollStudent" />
       </list>
     </recent_temporary>
   </component>

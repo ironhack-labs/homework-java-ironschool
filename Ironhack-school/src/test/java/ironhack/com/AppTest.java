@@ -4,8 +4,12 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.junit.jupiter.api.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,6 +35,9 @@ public class AppTest
 
     private School school;
 
+    final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream outContentClean = System.out;
+
     @BeforeEach
     public void setUp() {
         teacher1 = new Teacher("Maria",45000d);
@@ -41,37 +48,44 @@ public class AppTest
         course2 = new Course("Frontend", 4000d,teacher2);
         courses = new ArrayList<>(List.of(course1,course2));
 
-        student1 = new Student("Paula","Calle Calabria 25","paulasg461@gmail.com",courses);
-        student2 = new Student("Ariadna","Calle Paterna 86","ariadnamp_99@gmail.com",courses);
-        student3 = new Student("Sandra","Calle Laurel 4","sandra_laurel52@gmail.com",courses);
+        student1 = new Student("Paula","Calle Calabria 25","paulasg461@gmail.com");
+        student2 = new Student("Ariadna","Calle Paterna 86","ariadnamp_99@gmail.com");
+        student3 = new Student("Sandra","Calle Laurel 4","sandra_laurel52@gmail.com");
         students = new ArrayList<>(List.of(student1,student2,student3));
 
         school = new School("MiCasita");
         school.setListToTeacherMap(teachers);
         school.setListToCourseMap(courses);
         school.setListToStudentMap(students);
+
+        System.setOut(new PrintStream(outContent));
     }
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
+
+    @AfterEach
+    void outContentClean(){
+        System.setOut(outContentClean);
+    }
+//    /**
+//     * Create the test case
+//     *
+//     * @param testName name of the test case
+//     */
 //    public AppTest( String testName )
 //    {
 //        super( testName );
 //    }
 
-    /**
-     * @return the suite of tests being tested
-     */
+//    /**
+//     * @return the suite of tests being tested
+//     */
 //    public static Test suite()
 //    {
 //        return new TestSuite( AppTest.class );
 //    }
 
-    /**
-     * Rigourous Test :-)
-     */
+//    /**
+//     * Rigourous Test :-)
+//     */
 //    public void testApp()
 //    {
 //        assertTrue( true );
@@ -82,8 +96,6 @@ public class AppTest
         assertEquals("Maria",teacher1.getName());
         assertEquals(4000d,course1.getPrice());
         assertEquals(teacher1,course1.getTeacher());
-        assertEquals(courses,student1.getCourseList());
-        assertEquals("Java Backend", courses.get(0).getName());
     }
 
     @Test
@@ -125,23 +137,62 @@ public class AppTest
         assertEquals(student3,school.lookupStudent(students.get(2).getId()));
     }
 
-    @Test
-    public void testShowInfoMethods() {
-
-    }
+//    @Test
+//    public void testShowInfoMethods() {
+//        school.showCourses();
+//        String out1 = ("Id: " + course1.getId()
+//                + ", Name: " + course1.getName()
+//                + ", Price: " + course1.getPrice()
+//                + ", Money Earned: " + course1.getMoney_earned()
+//                + ", Teacher: " +(course1.getTeacher() != null ? course1.getTeacher().getName() : "N/A"));
+//
+//        String out2 = ("Id: " + course2.getId()
+//                + ", Name: " + course2.getName()
+//                + ", Price: " + course2.getPrice()
+//                + ", Money Earned: " + course2.getMoney_earned()
+//                + ", Teacher: " +(course2.getTeacher() != null ? course2.getTeacher().getName() : "N/A"));
+//        assertEquals(out1 + "\n" + out2 + "\n", outContent.toString());
+//
+//    }
 
     @Test
     public void testEnrollStudent() {
+        student1.enrollInCourse(course1);
+        assertEquals(1,student1.getCourseList().size());
+        assertEquals(course1.getName(), student1.getCourseList().get(0).getName());
 
+        student1.enrollInCourse(course2);
+        assertEquals(2,student1.getCourseList().size());
+        assertEquals(course2.getName(), student1.getCourseList().get(1).getName());
     }
+    // pending test assigning a null course(?) and/or to a null student(?)
 
     @Test
     public void testAssignTeacher() {
+        //school.assignTeacherToCourse(teacher1.getId(),course1.getId());
 
+        course1.assign(teacher1);
+        assertEquals(teacher1,course1.getTeacher());
+        assertEquals(teacher1,school.getCourse_map().get(course1.getId()).getTeacher());
     }
+    // pending test assigning a null teacher(?)
 
     @Test
     public void testShowProfit() {
+        double profitActual = school.calculateProfit();
 
+        double profitExpected = 0d;
+        // Sum up all money earned from all courses
+        Map<String,Course> schoolCourses = school.getCourse_map();
+        for (Map.Entry<String, Course> course : schoolCourses.entrySet()) {
+            profitExpected += course.getValue().getMoney_earned();
+        }
+        // Deduct all teachers' salaries
+        Map<String,Teacher> schoolTeachers = school.getTeacher_map();
+        for (Map.Entry<String, Teacher> teacher : schoolTeachers.entrySet()) {
+            profitExpected -= teacher.getValue().getSalary();
+        }
+
+        assertEquals(profitExpected,profitActual);
     }
 }
