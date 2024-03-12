@@ -15,31 +15,36 @@ class ApplicationTest {
     private final InputStream originalSystemIn = System.in;
     private final PrintStream originalSystemOut = System.out;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String input = "Ironhack School\n";
+    private ByteArrayInputStream input;
+    Application application;
 
 
 
     @BeforeEach
     public void setUpStreams() {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
         System.setOut(new PrintStream(outputStream));
     }
 
     @Test
     public void testCreateSchoolName() {
-        Application.createSchoolName();
-        assertEquals("Welcome to the School Application\r\nPlease enter the name of the school:Your school is: Ironhack School\r\n", outputStream.toString());
+        input = new ByteArrayInputStream("Ironhack School\n".getBytes());
+        System.setIn(input);
+
+        application = new Application();
+        application.createSchoolName();
+        assertEquals("Welcome to the School Application\nPlease enter the name of the school:Your school is: Ironhack School\n", outputStream.toString());
     }
 
     @Test
     public void testNumberOfComponentsWithValidInput() {
-        ByteArrayInputStream input2 = new ByteArrayInputStream("5\n".getBytes());
-        System.setIn(input2);
+        input = new ByteArrayInputStream("5\n".getBytes());
+        System.setIn(input);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        int result = Application.numberOfComponents(SchoolComponents.TEACHERS);
+        application = new Application();
+        int result = application.numberOfComponents(SchoolComponents.TEACHERS);
 
         assertEquals(5, result);
         assertTrue(outputStream.toString().contains("In your school there are 5 teachers"));
@@ -49,13 +54,14 @@ class ApplicationTest {
 
     @Test
     public void testNumberOfComponentsWithInvalidInput() {
-        ByteArrayInputStream input2 = new ByteArrayInputStream("invalid\n5\n".getBytes());
-        System.setIn(input2);
+        input = new ByteArrayInputStream("invalid\n5\n".getBytes());
+        System.setIn(input);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        int result = Application.numberOfComponents(SchoolComponents.TEACHERS);
+        application = new Application();
+        int result = application.numberOfComponents(SchoolComponents.TEACHERS);
 
         assertEquals(5, result);
         assertTrue(outputStream.toString().contains("In your school there are 5 teachers"));

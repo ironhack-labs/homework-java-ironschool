@@ -8,9 +8,13 @@ public class Application {
     private Map<String, Course> courseList = new HashMap<>();
     private Map<String, Student> studentList = new HashMap<>();
     private Map<String, Teacher> teacherList = new HashMap<>();
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public Application() {
+
+    }
+
+    public void SetUp(){
         createSchoolName();
         setTeacherList(teacherDetails());
         setStudentList(studentDetails());
@@ -47,7 +51,7 @@ public class Application {
         Selector(commands);
     }
 
-    public static void createSchoolName() {
+    public void createSchoolName() {
         System.out.println("Welcome to the School Application");
         while (true) {
             try {
@@ -66,7 +70,7 @@ public class Application {
         }
     }
 
-    public static int numberOfComponents(SchoolComponents schoolComponents) {
+    public int numberOfComponents(SchoolComponents schoolComponents) {
         int number;
 
         do {
@@ -92,7 +96,7 @@ public class Application {
 
     }
 
-    public static Map<String,Teacher> teacherDetails() {
+    public Map<String,Teacher> teacherDetails() {
         Map<String,Teacher> teachersMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.TEACHERS);
         scanner.nextLine();
@@ -113,7 +117,7 @@ public class Application {
 
     }
 
-    public static Map<String,Student> studentDetails() {
+    public Map<String,Student> studentDetails() {
         Map<String,Student> studentMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.STUDENTS);
         scanner.nextLine();
@@ -134,7 +138,7 @@ public class Application {
 
 
 
-    public static Map<String,Course> courseDetails() {
+    public Map<String,Course> courseDetails() {
         Map<String,Course> coursesMap = new HashMap<>();
         int number = numberOfComponents(SchoolComponents.COURSES);
         scanner.nextLine();
@@ -155,7 +159,7 @@ public class Application {
 
     }
 
-    public static void Selector(Commands comandos){
+    public void Selector(Commands comandos){
         while(true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println(("Do you want to use a command? (y/n)"));
@@ -221,7 +225,7 @@ public class Application {
         }
     }
 
-    public static String validateInput(String fieldName, String emptyErrorMessage, String invalidErrorMessage) {
+    public String validateInput(String fieldName, String emptyErrorMessage, String invalidErrorMessage) {
         String input = "";
         while (true) {
             try {
@@ -241,7 +245,7 @@ public class Application {
         }
     }
 
-    public static double validateDoubleInput(String fieldName, String errorMessage) {
+    public double validateDoubleInput(String fieldName, String errorMessage) {
         double input = 0;
         boolean validInput = false;
         while (!validInput) {
