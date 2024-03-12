@@ -47,11 +47,11 @@ public class Student {
     public String getEmail() {
         return email;
     }
-    public List<Course> getCourse() {
+
+    public Course getCourse() {return course;}
+
+    public List<Course> getEnrolledCourses() {
         return enrolledCourses;
-    }
-    public void removeCourse(Course course){
-        enrolledCourses.remove(course);
     }
 
     // Setters
@@ -74,6 +74,11 @@ public class Student {
         enrolledCourses.add(course);
     }
 
+    public void removeCourse(Course course){
+        enrolledCourses.remove(course);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,12 +91,6 @@ public class Student {
         return Objects.hash(getName(), getAddress(), getEmail(), getCourse());
     }
 
-   /* // Helper
-    //TODO - Agregar Courses info (extra)
-    public String getInfo() {
-        return("Student - ID: " + this.studentId + " | Name: " + getName() +
-                " | Address: " + getAddress() + " | Email: " + getEmail());
-    }*/
 
     public String getInfo() {
         String name = getName().length() > 17 ? getName().substring(0, 16) + " ." : getName();
@@ -104,14 +103,14 @@ public class Student {
         return String.format(" %-4s│ %-18s │ %-18s │ %-18s │ %-18s ",
                 studentId, name, address, email, courseName);
 
-        if(enrolledCourses.isEmpty()){
-            return "Student - ID: " + this.studentId + " | Name: " + getName() +
-                    " | Address: " + getAddress() + " | Email: " + getEmail();
-        } else {
-            return "Student - ID: " + this.studentId + " | Name: " + getName() +
-                    " | Address: " + getAddress() + " | Email: " + getEmail()
-                    + " | Enrolled in: " + getInfoCourses();
-        }
+//        if(enrolledCourses.isEmpty()){
+//            return "Student - ID: " + this.studentId + " | Name: " + getName() +
+//                    " | Address: " + getAddress() + " | Email: " + getEmail();
+//        } else {
+//            return "Student - ID: " + this.studentId + " | Name: " + getName() +
+//                    " | Address: " + getAddress() + " | Email: " + getEmail()
+//                    + " | Enrolled in: " + getInfoCourses();
+//        }
 
     }
 

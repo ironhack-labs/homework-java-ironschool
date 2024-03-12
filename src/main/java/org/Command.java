@@ -21,7 +21,7 @@ public class Command {
         System.out.println("11. Add new student");
         System.out.println("12. Add new teacher");
         System.out.println("13. Remove teacher from course");
-        System.out.println("14. Unenroll student from course");
+        System.out.println("14. Unroll student from course");
         System.out.println("15. Enroll a list of students to course");
         System.out.println("16. Exit program");
         System.out.print("Enter your choice: ");
@@ -37,16 +37,16 @@ public class Command {
         if (student != null && course != null) {
             // Check if the student is already enrolled in another course
             //**************mas cambios lista courses
-//            if (student.getCourse() != null) {
-//                throw new IllegalArgumentException("Student is already enrolled in a course.");
-//            }
-            if (student.getCourse().contains(course)) {
+           if (student.getCourse() != null) {
+                throw new IllegalArgumentException("Student is already enrolled in a course.");
+            }
+            if (student.getEnrolledCourses().contains(course)) {
                 throw new IllegalArgumentException("Student is already enrolled in a course.");
             }
 
 
             // Enrolls student in the course
-            //student.setCourse(course); añadido!!
+            student.setCourse(course);
             student.addCourse(course);
 
             // Updates money earned in the course based on its price
@@ -112,7 +112,7 @@ public class Command {
 
     // Helper method to check if a student is enrolled in a given course
     public static boolean isStudentEnrolledInCourse(Student student, String courseId) {
-        List<Course> courses = student.getCourse();
+        List<Course> courses = student.getEnrolledCourses();
         for (Course course : courses) {
             if (Objects.equals(course.getCourseId(), courseId)) {
                 return true;
@@ -140,15 +140,6 @@ public class Command {
             }
         }
     }
-    //al final no se uso?
-//    public static void showStudentsOfCourse(String courseId, Map<String,Student> studentsMap){
-//
-//        studentsMap.forEach((id, student) -> {
-//            if(isStudentEnrolledInCourse(student, courseId)){
-//                System.out.println(student.getInfo());
-//            }
-//        });
-//    }
 
     public static double showProfit(School school) throws IllegalArgumentException {
         double totalMoneyEarned = 0;

@@ -27,17 +27,17 @@ public class CommandUtils {
         }
     }
 
-    public static void showStudentCourses(String studentId, School school){
-        Student student = getStudentById(school.getStudentMap(), studentId);
-
-        if(student == null){
-            throw new IllegalArgumentException("Student doesn't exist!");
-        }
-        List<Course> courses = student.getCourse();
-        for(Course course : courses){
-            System.out.println(course.getInfo());
-        }
-    }
+//    public static void showStudentCourses(String studentId, School school){
+//        Student student = getStudentById(school.getStudentMap(), studentId);
+//
+//        if(student == null){
+//            throw new IllegalArgumentException("Student doesn't exist!");
+//        }
+//        List<Course> courses = student.getCourse();
+//        for(Course course : courses){
+//            System.out.println(course.getInfo());
+//        }
+//    }
 
 
 

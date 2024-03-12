@@ -89,7 +89,7 @@ class CommandTest {
         //asignar el course a school
         school.getCourseMap().put(course.getCourseId(), course);
         Command.enrollStudent(student.getStudentId(), course.getCourseId(), school);
-        assertFalse(student.getCourse().contains(student));
+        assertFalse(student.getEnrolledCourses().contains(student));
     }
 
     @Test
@@ -117,8 +117,8 @@ class CommandTest {
         school.getCourseMap().put(course.getCourseId(), course);
 
         Command.enrollStudents(studentList, course.getCourseId(), school);
-        assertTrue(student1.getCourse().contains(course));
-        assertTrue(student2.getCourse().contains(course));
+        assertTrue(student1.getEnrolledCourses().contains(course));
+        assertTrue(student2.getEnrolledCourses().contains(course));
         assertTrue(Command.isStudentEnrolledInCourse(student1, course.getCourseId()));
         assertTrue(Command.isStudentEnrolledInCourse(student2, course.getCourseId()));
 
