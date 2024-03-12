@@ -1,11 +1,8 @@
 package ironhack.com;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 
-import static ironhack.com.ReadCsvInfo.readObjectInfo;
-import static ironhack.com.ReadCsvInfo.readSchoolInfo;
-import static ironhack.com.Utils.validate_number_of;
+import static ironhack.com.Utils.*;
 
 public class App {
     public static void main(String[] args) {
@@ -18,21 +15,21 @@ public class App {
 
             System.out.println("Let's create an School");
             System.out.println("Enter a Name:");
-            scanner.nextLine();
+            String name =validateNameOf(scanner);
 
             System.out.println("how many teachers should be created?");
-            int teacher_number = validate_number_of(scanner);
+            int teacher_number = validateNumberOf(scanner);
             System.out.println(teacher_number);
             List<Teacher> teachers =create_teachers(scanner, teacher_number);
 
             System.out.println("how many courses should be created?");
-            int courses_number = validate_number_of(scanner);
+            int courses_number = validateNumberOf(scanner);
             System.out.println(courses_number);
             List<Course> courses =create_course(scanner, courses_number);
 
 
             System.out.println("how many students should be created?");
-            int students_number = validate_number_of(scanner);
+            int students_number = validateNumberOf(scanner);
             System.out.println(students_number);
             List<Student> students =create_students(scanner, students_number);
 
@@ -48,10 +45,10 @@ public class App {
         for (int i = 0; i < teacher_number; i++) {
             System.out.println("Let's create teacher "+(i+1));
             System.out.println("Enter Name:");
-            String teacher_name = scanner.nextLine();
+            String teacher_name = validateNameOf(scanner);
 
             System.out.println("Enter Salary (Ex 34000): ");
-            int teacher_salary = validate_number_of(scanner);
+            int teacher_salary = validateNumberOf(scanner);
             // Validate Range of Salaries
             teachers_list.add(new Teacher(teacher_name, teacher_salary));
         }
@@ -66,10 +63,10 @@ public class App {
         for (int i = 0; i < course_number; i++) {
             System.out.println("Let's create a course "+(i+1));
             System.out.println("Enter Name:");
-            String course_name = scanner.nextLine();
+            String course_name = validateNameOf(scanner);
 
             System.out.println("Enter Price: ");
-            double price = 3.14;
+            double price = validateDoubleOf(scanner);
 
             course_list.add(new Course(course_name,price));
         }
@@ -83,13 +80,13 @@ public class App {
         for (int i = 0; i < students_number; i++) {
             System.out.println("Let's create student "+(i+1));
             System.out.println("Enter Name:");
-            String student_name = scanner.nextLine();
+            String student_name = validateNameOf(scanner);;
 
             System.out.println("Enter Address: ");
             String address = scanner.nextLine();
 
             System.out.println("Enter Email: ");
-            String email = scanner.nextLine();
+            String email = validateEmailOf(scanner);
 
             students_list.add(new Student(student_name,address, email));
         }
