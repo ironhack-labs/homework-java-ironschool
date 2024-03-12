@@ -3,6 +3,7 @@ package ironhack.com;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,6 +135,27 @@ public class School {
         return teacher_map.get(teacherId);
     }
 
+
+    public void showStudentsByCourseId(String courseId) {
+        Course course = findCourseById(courseId);
+
+        if (course == null) {
+            throw new IllegalArgumentException("Course not found");
+        }
+
+        List<Student> enrolledStudents = new ArrayList<>();
+        for (Student st : student_map.values()) {
+            if (st.getCourseList().contains(course)) {
+                enrolledStudents.add(st);
+            }
+        }
+
+        for (Student st : enrolledStudents) {
+            st.printInfo();
+        }
+    }
+
+
     public void showMoneySpentByStudent(String studentId) {
         Student student = student_map.get(studentId);
         if (student != null) {
@@ -147,4 +169,5 @@ public class School {
             System.out.println("Student not found");
         }
     }
+
 }
