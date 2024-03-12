@@ -13,7 +13,7 @@ public class Student {
     private String name;
     private String address;
     private String email;
-    //private Course course;
+    private Course course;
     private List<Course> enrolledCourses;
     private static int idCounter = 1;
 
@@ -47,7 +47,6 @@ public class Student {
     public String getEmail() {
         return email;
     }
-    //añadido!!
     public List<Course> getCourse() {
         return enrolledCourses;
     }
@@ -68,9 +67,9 @@ public class Student {
         this.email = email;
     }
 
-    //public void setCourse(Course course) {
-        //this.course = course;
-    //}
+    public void setCourse(Course course) {
+        this.course = course;
+    }
     public void addCourse(Course course){
         enrolledCourses.add(course);
     }
@@ -90,7 +89,6 @@ public class Student {
    /* // Helper
     //TODO - Agregar Courses info (extra)
     public String getInfo() {
-<<<<<<< HEAD
         return("Student - ID: " + this.studentId + " | Name: " + getName() +
                 " | Address: " + getAddress() + " | Email: " + getEmail());
     }*/
