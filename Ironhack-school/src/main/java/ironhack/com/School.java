@@ -76,18 +76,24 @@ public class School {
         teacher_map.get(teacherId).printInfo();
     }
 
-    public double calculateProfit() {
-        // TODO: exception handling
-        double profit = 0;
-        for (Course course : course_map.values()) {
-            profit += course.getMoney_earned();
+public double calculateProfit() {
+    double profit = 0;
+    for (Course course : course_map.values()) {
+        if (course == null) {
+            System.out.println("Course not found in the map.");
+            continue;
         }
-        ;
-        for (Teacher teacher : teacher_map.values()) {
-            profit -= teacher.getSalary();
-        }
-        return profit;
+        profit += course.getMoney_earned();
     }
+    for (Teacher teacher : teacher_map.values()) {
+        if (teacher == null) {
+            System.out.println("Teacher not found in the map.");
+            continue;
+        }
+        profit -= teacher.getSalary();
+    }
+    return profit;
+}
 
     public void enroll(String studentId, String courseId) {
         Student student = findStudentById(studentId);
