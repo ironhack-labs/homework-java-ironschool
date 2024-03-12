@@ -7,6 +7,8 @@ import static org.CommandUtils.*;
 
 public class Main {
     public static void main(String[] args) {
+
+
         String schoolName = "";
         List<Teacher> teachers = new ArrayList<>();
         List<Course> courses = new ArrayList<>();
