@@ -50,17 +50,10 @@ public class Course {
     }
 
     public void setName(String name) {
-        if(isValidName(name)){
             this.name = name;
-        } else {
-            System.out.println("Name has to be between 3 and 15 ");
-        }
-
     }
 
-    private boolean isValidName(String name){
-        return name != null && name.length() >= 3 && name.length() <= 15;
-    }
+
 
     public double getMoney_earned() {
         return money_earned;

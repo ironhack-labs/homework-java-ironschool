@@ -48,7 +48,7 @@ public class Command {
 
 
             // Updates money earned in the course based on its price
-            course.updateMoney_earned(course.getPrice());
+            course.updateMoney_earned(course.getMoney_earned() + course.getPrice());
         } else {
             throw new IllegalArgumentException("Invalid student or course ID.");
         }
@@ -134,11 +134,12 @@ public class Command {
                 student.setCourse(course);
 
                 // Updates money earned in the course based on its price
-                course.updateMoney_earned(course.getPrice());
+                course.updateMoney_earned(course.getMoney_earned() + course.getPrice());
             } else {
                 throw new IllegalArgumentException("Invalid student or course ID.");
             }
         }
+
     }
 
     public static double showProfit(School school) throws IllegalArgumentException {
