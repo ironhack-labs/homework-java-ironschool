@@ -63,46 +63,51 @@ public class School {
     }
 
     public void lookupCourse(String courseId) {
-        course_map.get(courseId).printInfo();
+        Course course = course_map.get(courseId);
+        if (course != null) {
+            course.printInfo();
+        } else {
+            System.out.println("Course with ID " + courseId + " not found.");
+        }
     }
 
-public void showTeachers() {
-    if (teacher_map.isEmpty()) {
-        System.out.println("No teachers found.");
-    } else {
-        teacher_map.forEach((id, teacher) -> {
+    public void showTeachers() {
+        if (teacher_map.isEmpty()) {
+            System.out.println("No teachers found.");
+        } else {
+            teacher_map.forEach((id, teacher) -> {
+                teacher.printInfo();
+            });
+        }
+    }
+
+      public void lookupTeacher(String teacherId) {
+        Teacher teacher = teacher_map.get(teacherId);
+        if (teacher != null) {
             teacher.printInfo();
-        });
-    }
-}
-
-  public void lookupTeacher(String teacherId) {
-    Teacher teacher = teacher_map.get(teacherId);
-    if (teacher != null) {
-        teacher.printInfo();
-    } else {
-        System.out.println("Teacher with ID " + teacherId + " not found.");
-    }
-}
-
-public double calculateProfit() {
-    double profit = 0;
-    for (Course course : course_map.values()) {
-        if (course == null) {
-            System.out.println("Course not found in the map.");
-            continue;
+        } else {
+            System.out.println("Teacher with ID " + teacherId + " not found.");
         }
-        profit += course.getMoney_earned();
     }
-    for (Teacher teacher : teacher_map.values()) {
-        if (teacher == null) {
-            System.out.println("Teacher not found in the map.");
-            continue;
+
+    public double calculateProfit() {
+        double profit = 0;
+        for (Course course : course_map.values()) {
+            if (course == null) {
+                System.out.println("Course not found in the map.");
+                continue;
+            }
+            profit += course.getMoney_earned();
         }
-        profit -= teacher.getSalary();
+        for (Teacher teacher : teacher_map.values()) {
+            if (teacher == null) {
+                System.out.println("Teacher not found in the map.");
+                continue;
+            }
+            profit -= teacher.getSalary();
+        }
+        return profit;
     }
-    return profit;
-}
 
     public void enroll(String studentId, String courseId) {
         Student student = findStudentById(studentId);
