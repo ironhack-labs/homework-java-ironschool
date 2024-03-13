@@ -21,7 +21,7 @@ public class Command {
         System.out.println("11. Add new student");
         System.out.println("12. Add new teacher");
         System.out.println("13. Remove teacher from course");
-        System.out.println("14. Unroll student from course");
+        System.out.println("14. Uneroll student from course");
         System.out.println("15. Enroll a list of students to course");
         System.out.println("16. Exit program");
         System.out.print("Enter your choice: ");
@@ -40,14 +40,12 @@ public class Command {
            if (student.getCourse() != null) {
                 throw new IllegalArgumentException("Student is already enrolled in a course.");
             }
-            if (student.getEnrolledCourses().contains(course)) {
-                throw new IllegalArgumentException("Student is already enrolled in a course.");
-            }
+
 
 
             // Enrolls student in the course
             student.setCourse(course);
-            student.addCourse(course);
+
 
             // Updates money earned in the course based on its price
             course.updateMoney_earned(course.getPrice());
@@ -112,13 +110,13 @@ public class Command {
 
     // Helper method to check if a student is enrolled in a given course
     public static boolean isStudentEnrolledInCourse(Student student, String courseId) {
-        List<Course> courses = student.getEnrolledCourses();
-        for (Course course : courses) {
+        Course course = student.getCourse();
             if (Objects.equals(course.getCourseId(), courseId)) {
                 return true;
-            }
+            } else {
+                return false;
         }
-        return false;
+
     }
 
 
@@ -131,7 +129,7 @@ public class Command {
             //no comprobar si uno ya está matriculado, se vuelve a matricular
 
                 // Enrolls student in the course
-                student.addCourse(course);
+                student.setCourse(course);
 
                 // Updates money earned in the course based on its price
                 course.updateMoney_earned(course.getPrice());

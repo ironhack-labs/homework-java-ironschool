@@ -49,6 +49,7 @@ public class Student {
     }
 
     public Course getCourse() {return course;}
+    public void removeCourse(){this.course = null;}
 
     public List<Course> getEnrolledCourses() {
         return enrolledCourses;
