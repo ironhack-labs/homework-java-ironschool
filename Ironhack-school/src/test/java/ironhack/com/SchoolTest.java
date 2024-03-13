@@ -203,4 +203,20 @@ public void testFindStudentById() {
     // Verify that the correct student is returned
     assertEquals(student1, foundStudent);
 }
+
+@Test
+public void testFindCourseById() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a course and add it to the school
+    Course course1 = new Course("Course1", 1000.0);
+    school.getCourse_map().put(course1.getId(), course1);
+
+    // Use the findCourseById method
+    Course foundCourse = school.findCourseById(course1.getId());
+
+    // Verify that the correct course is returned
+    assertEquals(course1, foundCourse);
+}
 }
