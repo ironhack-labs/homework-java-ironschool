@@ -52,4 +52,19 @@ public void testLookupTeacher() {
 
     assertTrue(school.getTeacher_map().containsKey(teacher1.getId()));
 }
+
+@Test
+public void testShowTeachers() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a teacher and add it to the school
+    Teacher teacher1 = new Teacher("Teacher1", 500.0);
+    school.getTeacher_map().put(teacher1.getId(), teacher1);
+
+    // Use the showTeachers method
+    school.showTeachers();
+
+    assertFalse(school.getTeacher_map().isEmpty());
+}
 }

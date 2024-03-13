@@ -66,11 +66,15 @@ public class School {
         course_map.get(courseId).printInfo();
     }
 
-    public void showTeachers() {
+public void showTeachers() {
+    if (teacher_map.isEmpty()) {
+        System.out.println("No teachers found.");
+    } else {
         teacher_map.forEach((id, teacher) -> {
             teacher.printInfo();
         });
     }
+}
 
   public void lookupTeacher(String teacherId) {
     Teacher teacher = teacher_map.get(teacherId);
