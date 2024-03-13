@@ -142,7 +142,7 @@ public double calculateProfit() {
     }
 
 
-    public void showStudentsByCourseId(String courseId) {
+    public List<Student> findStudentsByCourseId(String courseId) {
         Course course = findCourseById(courseId);
 
         if (course == null) {
@@ -156,13 +156,12 @@ public double calculateProfit() {
             }
         }
 
-        for (Student st : enrolledStudents) {
-            st.printInfo();
-        }
+        return enrolledStudents;
+
     }
 
 
-    public double calculateMoneySpentByStudent(String studentId) {
+    public double findMoneySpentByStudent(String studentId) {
         Student student = student_map.get(studentId);
         double totalMoneySpent = 0.0;
         if (student != null) {

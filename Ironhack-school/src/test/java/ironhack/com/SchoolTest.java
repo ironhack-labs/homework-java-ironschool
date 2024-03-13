@@ -3,6 +3,7 @@ package ironhack.com;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -72,11 +73,21 @@ public void testCalculateProfit() {
 }
 
     @Test
-    public void testShowMoneySpentByStudent() {
+    public void testFindMoneySpentByStudent() {
         Set<String> keys = school.getStudent_map().keySet();
         String firstStudentsMapKey = keys.stream().findFirst().orElse(null);
         Student student = school.getStudent_map().get(firstStudentsMapKey);
-        double moneySpent = school.calculateMoneySpentByStudent(student.getId());
+        double moneySpent = school.findMoneySpentByStudent(student.getId());
         assertEquals(1000.0, moneySpent);
     }
+
+    @Test
+    public void testFindStudentsByCourseId() {
+        Set<String> keys = school.getCourse_map().keySet();
+        String firstCoursesMapKey = keys.stream().findFirst().orElse(null);
+        Course course = school.getCourse_map().get(firstCoursesMapKey);
+        List<Student> students = school.findStudentsByCourseId(course.getId());
+        assertEquals(1, students.size());
+    }
+
 }
