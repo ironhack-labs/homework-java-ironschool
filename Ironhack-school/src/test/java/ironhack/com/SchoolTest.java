@@ -1,7 +1,7 @@
 package ironhack.com;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SchoolTest {
 
@@ -36,5 +36,20 @@ public void testCalculateProfit() {
 
     // Check if the profit is as expected
     assertEquals(1500.0, profit);
+}
+
+@Test
+public void testLookupTeacher() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a teacher and add it to the school
+    Teacher teacher1 = new Teacher("Teacher1", 500.0);
+    school.getTeacher_map().put(teacher1.getId(), teacher1);
+
+    // Use the lookupTeacher method to find the teacher
+    school.lookupTeacher(teacher1.getId());
+
+    assertTrue(school.getTeacher_map().containsKey(teacher1.getId()));
 }
 }

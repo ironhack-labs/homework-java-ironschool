@@ -72,9 +72,14 @@ public class School {
         });
     }
 
-    public void lookupTeacher(String teacherId) {
-        teacher_map.get(teacherId).printInfo();
+  public void lookupTeacher(String teacherId) {
+    Teacher teacher = teacher_map.get(teacherId);
+    if (teacher != null) {
+        teacher.printInfo();
+    } else {
+        System.out.println("Teacher with ID " + teacherId + " not found.");
     }
+}
 
 public double calculateProfit() {
     double profit = 0;
