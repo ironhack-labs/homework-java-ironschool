@@ -187,4 +187,20 @@ public void testSchoolConstructor() {
     // Verify that the name is set correctly
     assertEquals("Test School", school.getName());
 }
+
+@Test
+public void testFindStudentById() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a student and add it to the school
+    Student student1 = new Student("Student1", "Address1", "student1@example.com");
+    school.getStudent_map().put(student1.getId(), student1);
+
+    // Use the findStudentById method
+    Student foundStudent = school.findStudentById(student1.getId());
+
+    // Verify that the correct student is returned
+    assertEquals(student1, foundStudent);
+}
 }

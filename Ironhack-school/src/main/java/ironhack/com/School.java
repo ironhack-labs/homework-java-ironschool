@@ -169,8 +169,13 @@ public class School {
         course.assign(teacher);
     }
 
-    private Student findStudentById(String studentId) {
-        return student_map.get(studentId);
+    public Student findStudentById(String studentId) {
+        if (student_map.containsKey(studentId)) {
+            return student_map.get(studentId);
+        } else {
+            System.out.println("Student with ID " + studentId + " not found.");
+            return null;
+        }
     }
 
     private Course findCourseById(String courseId) {
