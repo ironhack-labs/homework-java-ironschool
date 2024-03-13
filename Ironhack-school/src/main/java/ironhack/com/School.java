@@ -187,10 +187,14 @@ public class School {
         }
     }
 
-    private Teacher findTeacherById(String teacherId) {
-        return teacher_map.get(teacherId);
+    public Teacher findTeacherById(String teacherId) {
+        if (teacher_map.containsKey(teacherId)) {
+            return teacher_map.get(teacherId);
+        } else {
+            System.out.println("Teacher with ID " + teacherId + " not found.");
+            return null;
+        }
     }
-
 
     public void showStudentsByCourseId(String courseId) {
         Course course = findCourseById(courseId);

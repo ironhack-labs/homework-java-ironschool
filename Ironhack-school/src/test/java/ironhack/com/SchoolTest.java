@@ -219,4 +219,20 @@ public void testFindCourseById() {
     // Verify that the correct course is returned
     assertEquals(course1, foundCourse);
 }
+
+@Test
+public void testFindTeacherById() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a teacher and add it to the school
+    Teacher teacher1 = new Teacher("Teacher1", 500.0);
+    school.getTeacher_map().put(teacher1.getId(), teacher1);
+
+    // Use the findTeacherById method
+    Teacher foundTeacher = school.findTeacherById(teacher1.getId());
+
+    // Verify that the correct teacher is returned
+    assertEquals(teacher1, foundTeacher);
+}
 }
