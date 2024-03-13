@@ -2,6 +2,8 @@ package ironhack.com;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SchoolTest {
 
@@ -97,5 +99,21 @@ public void testShowCourses() {
 
 
     assertFalse(school.getCourse_map().isEmpty());
+}
+
+@Test
+public void testSetListToTeacherMap() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a list of teachers and add it to the school
+    List<Teacher> teachers = new ArrayList<>();
+    Teacher teacher1 = new Teacher("Teacher1", 500.0);
+    teachers.add(teacher1);
+
+    // Use the setListToTeacherMap method
+    school.setListToTeacherMap(teachers);
+
+    assertFalse(school.getTeacher_map().isEmpty());
 }
 }

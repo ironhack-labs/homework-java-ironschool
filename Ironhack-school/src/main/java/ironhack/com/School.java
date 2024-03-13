@@ -48,12 +48,15 @@ public class School {
     }
 
     public void setListToTeacherMap(List<Teacher> teachers) {
-
-        Map<String, Teacher> teachers_map = new HashMap<>();
-        for (Teacher teacher : teachers) {
-            teachers_map.put(teacher.getId(), teacher);
+        if (teachers.isEmpty()) {
+            System.out.println("No teachers to add.");
+        } else {
+            Map<String, Teacher> teachers_map = new HashMap<>();
+            for (Teacher teacher : teachers) {
+                teachers_map.put(teacher.getId(), teacher);
+            }
+            setTeacher_map(teachers_map);
         }
-        setTeacher_map(teachers_map);
     }
 
     public void showCourses() {
