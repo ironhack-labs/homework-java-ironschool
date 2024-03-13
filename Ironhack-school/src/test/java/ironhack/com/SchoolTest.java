@@ -178,4 +178,13 @@ public void testShowStudents() {
 
     assertFalse(school.getStudent_map().isEmpty());
 }
+
+@Test
+public void testSchoolConstructor() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Verify that the name is set correctly
+    assertEquals("Test School", school.getName());
+}
 }

@@ -17,6 +17,9 @@ public class School {
     private Map<String, Course> course_map = new HashMap<>();
 
     public School(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
         this.name = name;
     }
 
