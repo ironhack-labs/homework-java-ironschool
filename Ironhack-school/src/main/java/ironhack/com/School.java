@@ -100,11 +100,11 @@ public double calculateProfit() {
         Course course = findCourseById(courseId);
 
         if (student == null) {
-            throw new IllegalArgumentException("Student not found.");
+            System.out.println("Student not found.");
         }
 
         if (course == null) {
-            throw new IllegalArgumentException("Course not found.");
+            System.out.println("Course not found.");
         }
 
         student.enrollInCourse(course);
