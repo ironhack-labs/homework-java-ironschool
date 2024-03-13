@@ -72,6 +72,8 @@ public class Command {
         course.setTeacher(teacher);
     }
 
+
+
     public static void removeTeacherFromCourse(String courseId, School school){
         //find course by id, getCourseMap()
         Course course = CommandUtils.getCourseById(school.getCourseMap(), courseId);
@@ -96,7 +98,7 @@ public class Command {
             // Check if the student is enrolled in the given course
             if (isStudentEnrolledInCourse(student, courseId)) {
                 // Remove the course from the student
-                student.removeCourse(course);
+                student.removeCourse();
 
                 // Update money earned in the course based on its price
                 course.updateMoney_earned(course.getMoney_earned() - course.getPrice());

@@ -195,9 +195,9 @@ public class Commands {
                     System.out.println("");
 
                     try{
-//                        System.out.println("These are all the courses the student is enrolled in:");
-//                        CommandUtils.showStudentCourses(studentId, school);
-//                        System.out.println("");
+                        System.out.println("These are all the courses available:");
+                        showAllCourses(school.getCourseMap());
+                        System.out.println("");
                         System.out.println(printBlue("Enter the id of the course:"));
                         scanner.nextLine();
                         courseId = scanner.nextLine();
