@@ -57,9 +57,13 @@ public class School {
     }
 
     public void showCourses() {
-        course_map.forEach((id, course) -> {
-            course.printInfo();
-        });
+        if (course_map.isEmpty()) {
+            System.out.println("No courses found.");
+        } else {
+            course_map.forEach((id, course) -> {
+                course.printInfo();
+            });
+        }
     }
 
     public void lookupCourse(String courseId) {

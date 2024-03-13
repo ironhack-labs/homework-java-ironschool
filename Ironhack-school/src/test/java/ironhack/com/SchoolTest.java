@@ -82,4 +82,20 @@ public void testLookupCourse() {
 
     assertTrue(school.getCourse_map().containsKey(course1.getId()));
 }
+
+@Test
+public void testShowCourses() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a course and add it to the school
+    Course course1 = new Course("Course1", 1000.0);
+    school.getCourse_map().put(course1.getId(), course1);
+
+    // Use the showCourses method
+    school.showCourses();
+
+
+    assertFalse(school.getCourse_map().isEmpty());
+}
 }
