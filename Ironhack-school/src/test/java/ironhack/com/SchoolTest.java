@@ -163,4 +163,19 @@ public void testLookupStudent() {
 
     assertTrue(school.getStudent_map().containsKey(student1.getId()));
 }
+
+@Test
+public void testShowStudents() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a student and add it to the school
+    Student student1 = new Student("Student1", "Address1", "student1@example.com");
+    school.getStudent_map().put(student1.getId(), student1);
+
+    // Use the showStudents method
+    school.showStudents();
+
+    assertFalse(school.getStudent_map().isEmpty());
+}
 }

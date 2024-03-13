@@ -21,9 +21,13 @@ public class School {
     }
 
     public void showStudents() {
-        student_map.forEach((id, student) -> {
-            student.printInfo();
-        });
+        if (student_map.isEmpty()) {
+            System.out.println("No students found.");
+        } else {
+            student_map.forEach((id, student) -> {
+                student.printInfo();
+            });
+        }
     }
 
     public void lookupStudent(String studentId) {
