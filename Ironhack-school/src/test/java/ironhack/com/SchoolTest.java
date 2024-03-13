@@ -132,4 +132,20 @@ public void testSetListToCourseMap() {
 
     assertFalse(school.getCourse_map().isEmpty());
 }
+
+@Test
+public void testSetListToStudentMap() {
+    // Create a school
+    School school = new School("Test School");
+
+    // Create a list of students and add it to the school
+    List<Student> students = new ArrayList<>();
+    Student student1 = new Student("Student1", "Address1", "student1@example.com");
+    students.add(student1);
+
+    // Use the setListToStudentMap method
+    school.setListToStudentMap(students);
+
+    assertFalse(school.getStudent_map().isEmpty());
+}
 }

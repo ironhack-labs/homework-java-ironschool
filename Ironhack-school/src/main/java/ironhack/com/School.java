@@ -31,12 +31,15 @@ public class School {
     }
 
     public void setListToStudentMap(List<Student> students) {
-        Map<String, Student> students_map = new HashMap<>();
-
-        for (Student student : students) {
-            students_map.put(student.getId(), student);
+        if (students.isEmpty()) {
+            System.out.println("No students to add.");
+        } else {
+            Map<String, Student> students_map = new HashMap<>();
+            for (Student student : students) {
+                students_map.put(student.getId(), student);
+            }
+            setStudent_map(students_map);
         }
-        setStudent_map(students_map);
     }
 
     public void setListToCourseMap(List<Course> courses) {
