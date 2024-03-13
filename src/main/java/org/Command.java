@@ -113,7 +113,7 @@ public class Command {
     // Helper method to check if a student is enrolled in a given course
     public static boolean isStudentEnrolledInCourse(Student student, String courseId) {
         Course course = student.getCourse();
-            if (Objects.equals(course.getCourseId(), courseId)) {
+            if (course != null && Objects.equals(course.getCourseId(), courseId)) {
                 return true;
             } else {
                 return false;
