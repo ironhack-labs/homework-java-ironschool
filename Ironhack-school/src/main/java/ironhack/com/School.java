@@ -27,7 +27,12 @@ public class School {
     }
 
     public void lookupStudent(String studentId) {
-        student_map.get(studentId).printInfo();
+        Student student = student_map.get(studentId);
+        if (student != null) {
+            student.printInfo();
+        } else {
+            System.out.println("Student with ID " + studentId + " not found.");
+        }
     }
 
     public void setListToStudentMap(List<Student> students) {
