@@ -14,7 +14,7 @@ public class Student {
     private String address;
     private String email;
     private Course course;
-    private List<Course> enrolledCourses;
+
     private static int idCounter = 1;
 
     // Constructor
@@ -23,7 +23,7 @@ public class Student {
         setName(name);
         setAddress(address);
         setEmail(email);
-        enrolledCourses = new ArrayList<>();
+
 
     }
 
@@ -51,9 +51,7 @@ public class Student {
     public Course getCourse() {return course;}
     public void removeCourse(){this.course = null;}
 
-    public List<Course> getEnrolledCourses() {
-        return enrolledCourses;
-    }
+
 
     // Setters
     public void setName(String name) {
@@ -71,13 +69,9 @@ public class Student {
     public void setCourse(Course course) {
         this.course = course;
     }
-    public void addCourse(Course course){
-        enrolledCourses.add(course);
-    }
 
-    public void removeCourse(Course course){
-        enrolledCourses.remove(course);
-    }
+
+
 
 
     @Override
@@ -115,19 +109,5 @@ public class Student {
 
     }
 
-    public String getInfoCourses(){
-        StringBuilder coursesInfo = new StringBuilder();
 
-        for (Course course : enrolledCourses) {
-            coursesInfo.append(course.getName()).append(", ");
-        }
-
-        // Remove the trailing comma and space
-        if (coursesInfo.length() > 0) {
-            coursesInfo.setLength(coursesInfo.length() - 2);
-        }
-
-        return coursesInfo.toString();
-
-    }
 }
