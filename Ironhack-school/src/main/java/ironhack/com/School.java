@@ -143,11 +143,11 @@ public class School {
         Course course = findCourseById(courseId);
 
         if (student == null) {
-            throw new IllegalArgumentException("Student not found.");
+            System.out.println("Student not found.");
         }
 
         if (course == null) {
-            throw new IllegalArgumentException("Course not found.");
+            System.out.println("Course not found.");
         }
 
         student.enrollInCourse(course);
@@ -199,7 +199,8 @@ public class School {
         }
     }
 
-    public void showStudentsByCourseId(String courseId) {
+
+    public List<Student> findStudentsByCourseId(String courseId) {
         Course course = findCourseById(courseId);
 
         if (course == null) {
@@ -213,24 +214,23 @@ public class School {
             }
         }
 
-        for (Student st : enrolledStudents) {
-            st.printInfo();
-        }
+        return enrolledStudents;
+
     }
 
 
-    public void showMoneySpentByStudent(String studentId) {
+    public double findMoneySpentByStudent(String studentId) {
         Student student = student_map.get(studentId);
+        double totalMoneySpent = 0.0;
         if (student != null) {
-            double totalMoneySpent = 0.0;
             List<Course> courses = student.getCourseList();
             for (Course course : courses) {
                 totalMoneySpent += course.getPrice();
             }
-            System.out.println(totalMoneySpent);
         } else {
             System.out.println("Student not found");
         }
+        return totalMoneySpent;
     }
 
 

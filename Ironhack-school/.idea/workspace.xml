@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10ffb360-f19c-4272-9ada-3465938789bb" name="Changes" comment="Merge updates from develop, add lookupTeacher validation, and testing">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ironhack/com/ReadCsvInfoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ironhack/com/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ironhack/com/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ironhack/com/ReadCsvInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ironhack/com/ReadCsvInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ironhack/com/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ironhack/com/School.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ironhack/com/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ironhack/com/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ironhack/com/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ironhack/com/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ironhack/com/SchoolTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ironhack/com/SchoolTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,19 +72,20 @@
     "Application.App.executor": "Run",
     "JUnit.AppTest.executor": "Run",
     "JUnit.ReadCsvInfoTestTest.executor": "Run",
+    "JUnit.SchoolTest.executor": "Run",
     "JUnit.SchoolTest.testLookupTeacher.executor": "Run",
     "JUnit.SchoolTest.testShowTeachers.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "school__lookups",
+    "git-widget-placeholder": "Merging test__show__money__spent",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Laura Sanchez Ruiz/Desktop/IronHack/Homeworks/IronSchool/Ironhack-school"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.SchoolTest.testShowTeachers">
+  <component name="RunManager" selected="JUnit.SchoolTest">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
@@ -95,22 +101,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testShowProfit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Ironhack-school" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ironhack.com.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ironhack.com" />
-      <option name="MAIN_CLASS_NAME" value="ironhack.com.AppTest" />
-      <option name="METHOD_NAME" value="testShowProfit" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ReadCsvInfoTestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ironhack-school" />
       <extension name="coverage">
@@ -121,6 +111,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="ironhack.com" />
       <option name="MAIN_CLASS_NAME" value="ironhack.com.ReadCsvInfoTestTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SchoolTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ironhack-school" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ironhack.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ironhack.com" />
+      <option name="MAIN_CLASS_NAME" value="ironhack.com.SchoolTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SchoolTest" />
         <item itemvalue="JUnit.SchoolTest.testShowTeachers" />
         <item itemvalue="JUnit.SchoolTest.testLookupTeacher" />
         <item itemvalue="JUnit.ReadCsvInfoTestTest" />
         <item itemvalue="JUnit.AppTest" />
-        <item itemvalue="JUnit.AppTest.testShowProfit" />
       </list>
     </recent_temporary>
   </component>
