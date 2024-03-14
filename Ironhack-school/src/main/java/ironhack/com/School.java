@@ -154,19 +154,17 @@ public class School {
     }
 
     public void assignTeacherToCourse(String teacherId, String courseId) {
+        if (!teacher_map.containsKey(teacherId)) {
+            System.out.println("Teacher with ID " + teacherId + " does not exist.");
+            return;
+        }
+        if (!course_map.containsKey(courseId)) {
+            System.out.println("Course with ID " + courseId + " does not exist.");
+            return;
+        }
         course_map.get(courseId).setTeacher(teacher_map.get(teacherId));
-
-        Teacher teacher = findTeacherById(teacherId);
-        Course course = findCourseById(courseId);
-
-        if (teacher == null) {
-            throw new IllegalArgumentException("Teacher not found.");
-        }
-
-        if (course == null) {
-            throw new IllegalArgumentException("Course not found.");
-        }
-
+        Teacher teacher = teacher_map.get(teacherId);
+        Course course = course_map.get(courseId);
         course.assign(teacher);
     }
 
