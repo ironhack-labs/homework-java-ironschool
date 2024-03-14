@@ -59,6 +59,26 @@ public class Utils {
         return 0;
     }
 
+    public static long validateIdOf(Scanner scanner) {
+        int attempts = 0;
+        int maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            String number_string = scanner.nextLine();
+            try {
+                long number = Long.parseLong(number_string);
+
+                return number;
+
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a valid number");
+            }
+            attempts++;
+        }
+        System.out.println("Exceeded maximum attempts. Exiting.");
+        return 0;
+    }
+
     public static double validateDoubleOf(Scanner scanner) {
         int attempts = 0;
         int maxAttempts = 3;
