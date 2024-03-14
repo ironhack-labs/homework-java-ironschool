@@ -123,14 +123,12 @@ public class School {
         double profit = 0;
         for (Course course : course_map.values()) {
             if (course == null) {
-                System.out.println("Course not found in the map.");
                 continue;
             }
             profit += course.getMoney_earned();
         }
         for (Teacher teacher : teacher_map.values()) {
             if (teacher == null) {
-                System.out.println("Teacher not found in the map.");
                 continue;
             }
             profit -= teacher.getSalary();
