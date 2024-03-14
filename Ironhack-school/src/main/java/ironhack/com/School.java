@@ -142,14 +142,18 @@ public class School {
 
         if (student == null) {
             System.out.println("Student not found.");
+            return;
         }
 
         if (course == null) {
             System.out.println("Course not found.");
+            return;
         }
 
+
         student.enrollInCourse(course);
-      
+
+
         course.setMoney_earned(course.getMoney_earned() + course.getPrice());
     }
 
