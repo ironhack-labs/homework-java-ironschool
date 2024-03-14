@@ -1,6 +1,7 @@
 package ironhack.com;
 
 
+import java.time.Instant;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -8,11 +9,13 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
+
     public static String generateSerialId() {
+        long timestamp = Instant.now().toEpochMilli() % 1000000; // Taking only last 6 digits
+        int hashCode = (int) (Math.random() * 10000); // Generating a random 4-digit number
+        return String.valueOf(timestamp) + String.valueOf(hashCode);
 
-        return UUID.randomUUID().toString();
     }
-
 
     public static boolean validateName(String name) {
         String regex = "^[A-Za-z\\s]+";
