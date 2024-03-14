@@ -17,83 +17,126 @@ public class School {
     private Map<String, Course> course_map = new HashMap<>();
 
     public School(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
         this.name = name;
     }
 
     public void showStudents() {
-        student_map.forEach((id, student) -> {
-            student.printInfo();
-        });
+        if (student_map.isEmpty()) {
+            System.out.println("No students found.");
+        } else {
+            student_map.forEach((id, student) -> {
+                student.printInfo();
+            });
+        }
     }
 
     public void lookupStudent(String studentId) {
-        student_map.get(studentId).printInfo();
+        Student student = student_map.get(studentId);
+        if (student != null) {
+            student.printInfo();
+        } else {
+            System.out.println("Student with ID " + studentId + " not found.");
+        }
     }
 
     public void setListToStudentMap(List<Student> students) {
-        Map<String, Student> students_map = new HashMap<>();
-
-        for (Student student : students) {
-            students_map.put(student.getId(), student);
+        if (students.isEmpty()) {
+            System.out.println("No students to add.");
+        } else {
+            Map<String, Student> students_map = new HashMap<>();
+            for (Student student : students) {
+                students_map.put(student.getId(), student);
+            }
+            setStudent_map(students_map);
         }
-        setStudent_map(students_map);
     }
 
     public void setListToCourseMap(List<Course> courses) {
-        Map<String, Course> courses_map = new HashMap<>();
-        for (Course course : courses) {
-            courses_map.put(course.getId(), course);
+        if (courses.isEmpty()) {
+            System.out.println("No courses to add.");
+        } else {
+            Map<String, Course> courses_map = new HashMap<>();
+            for (Course course : courses) {
+                courses_map.put(course.getId(), course);
+            }
+            setCourse_map(courses_map);
         }
-        setCourse_map(courses_map);
     }
 
     public void setListToTeacherMap(List<Teacher> teachers) {
-
-        Map<String, Teacher> teachers_map = new HashMap<>();
-        for (Teacher teacher : teachers) {
-            teachers_map.put(teacher.getId(), teacher);
+        if (teachers.isEmpty()) {
+            System.out.println("No teachers to add.");
+        } else {
+            Map<String, Teacher> teachers_map = new HashMap<>();
+            for (Teacher teacher : teachers) {
+                teachers_map.put(teacher.getId(), teacher);
+            }
+            setTeacher_map(teachers_map);
         }
-        setTeacher_map(teachers_map);
     }
 
     public void showCourses() {
-        course_map.forEach((id, course) -> {
-            course.printInfo();
-        });
+        if (course_map.isEmpty()) {
+            System.out.println("No courses found.");
+        } else {
+            course_map.forEach((id, course) -> {
+                course.printInfo();
+            });
+        }
     }
 
     public void lookupCourse(String courseId) {
-        course_map.get(courseId).printInfo();
+        Course course = course_map.get(courseId);
+        if (course != null) {
+            course.printInfo();
+        } else {
+            System.out.println("Course with ID " + courseId + " not found.");
+        }
     }
 
     public void showTeachers() {
-        teacher_map.forEach((id, teacher) -> {
+        if (teacher_map.isEmpty()) {
+            System.out.println("No teachers found.");
+        } else {
+            teacher_map.forEach((id, teacher) -> {
+                teacher.printInfo();
+            });
+        }
+    }
+
+      public void lookupTeacher(String teacherId) {
+        Teacher teacher = teacher_map.get(teacherId);
+        if (teacher != null) {
             teacher.printInfo();
-        });
-    }
-
-    public void lookupTeacher(String teacherId) {
-        teacher_map.get(teacherId).printInfo();
-    }
-
-public double calculateProfit() {
-    double profit = 0;
-    for (Course course : course_map.values()) {
-        if (course == null) {
-            System.out.println("Course not found in the map.");
-            continue;
+        } else {
+            System.out.println("Teacher with ID " + teacherId + " not found.");
         }
-        profit += course.getMoney_earned();
     }
-    for (Teacher teacher : teacher_map.values()) {
-        if (teacher == null) {
-            System.out.println("Teacher not found in the map.");
-            continue;
+    public void showProfit(){
+        System.out.println("Current Total Profit:");
+        System.out.println(String.valueOf(calculateProfit())+"€");
+    }
+    public double calculateProfit() {
+        double profit = 0;
+        for (Course course : course_map.values()) {
+            if (course == null) {
+                System.out.println("Course not found in the map.");
+                continue;
+            }
+            profit += course.getMoney_earned();
         }
-        profit -= teacher.getSalary();
+        for (Teacher teacher : teacher_map.values()) {
+            if (teacher == null) {
+                System.out.println("Teacher not found in the map.");
+                continue;
+            }
+            profit -= teacher.getSalary();
+        }
+        return profit;
     }
-    return profit;
-}
 
     public void enroll(String studentId, String courseId) {
         Student student = findStudentById(studentId);
@@ -129,16 +172,31 @@ public double calculateProfit() {
         course.assign(teacher);
     }
 
-    private Student findStudentById(String studentId) {
-        return student_map.get(studentId);
+    public Student findStudentById(String studentId) {
+        if (student_map.containsKey(studentId)) {
+            return student_map.get(studentId);
+        } else {
+            System.out.println("Student with ID " + studentId + " not found.");
+            return null;
+        }
     }
 
-    private Course findCourseById(String courseId) {
-        return course_map.get(courseId);
+    public Course findCourseById(String courseId) {
+        if (course_map.containsKey(courseId)) {
+            return course_map.get(courseId);
+        } else {
+            System.out.println("Course with ID " + courseId + " not found.");
+            return null;
+        }
     }
 
-    private Teacher findTeacherById(String teacherId) {
-        return teacher_map.get(teacherId);
+    public Teacher findTeacherById(String teacherId) {
+        if (teacher_map.containsKey(teacherId)) {
+            return teacher_map.get(teacherId);
+        } else {
+            System.out.println("Teacher with ID " + teacherId + " not found.");
+            return null;
+        }
     }
 
 

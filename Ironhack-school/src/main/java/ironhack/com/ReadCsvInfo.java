@@ -29,17 +29,29 @@ public class ReadCsvInfo {
         return objectList;
     }
 
-    private static <ObjectType> ObjectType createInstance(RoleType type, String[] properties) {
+    public static <ObjectType> ObjectType createInstance(RoleType type, String[] properties) {
         switch (type) {
             case TEACHER:
+                if (!Utils.validateName(properties[0])) {
+                    System.out.println("Invalid teacher name: " + properties[0]);
+                    return null;
+                }
                 @SuppressWarnings("unchecked")
                 ObjectType teacher = (ObjectType) new Teacher(properties[0], Double.parseDouble(properties[1]));
                 return teacher;
             case STUDENT:
+                if (!Utils.validateName(properties[0]) || !Utils.ValidateEmail.isValidEmail(properties[2])) {
+                    System.out.println("Invalid student name or email: " + properties[0] + ", " + properties[2]);
+                    return null;
+                }
                 @SuppressWarnings("unchecked")
                 ObjectType student = (ObjectType) new Student(properties[0], properties[1], properties[2]);
                 return student;
             case COURSE:
+                if (!Utils.validateName(properties[0])) {
+                    System.out.println("Invalid course name: " + properties[0]);
+                    return null;
+                }
                 @SuppressWarnings("unchecked")
                 ObjectType course = (ObjectType) new Course(properties[0], Double.parseDouble(properties[1]));
                 return course;

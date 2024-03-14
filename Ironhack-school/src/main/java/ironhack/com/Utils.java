@@ -1,6 +1,7 @@
 package ironhack.com;
 
 
+import java.time.Instant;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -8,11 +9,13 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static String generateSerialId () {
 
-        return UUID.randomUUID().toString();
+    public static String generateSerialId() {
+        long timestamp = Instant.now().toEpochMilli() % 1000000; // Taking only last 6 digits
+        int hashCode = (int) (Math.random() * 10000); // Generating a random 4-digit number
+        return String.valueOf(timestamp) + String.valueOf(hashCode);
+
     }
-
 
     public static boolean validateName(String name) {
         String regex = "^[A-Za-z\\s]+";
@@ -24,7 +27,7 @@ public class Utils {
     public static class ValidateEmail {
 
         private static final Pattern EMAIL_PATTERN =
-                Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+                Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$");
 
         public static boolean isValidEmail(String email) {
             if (email == null) {
@@ -34,68 +37,74 @@ public class Utils {
         }
     }
 
-    public static int validateNumberOf(Scanner scanner){
-        boolean is_finish= false;
+    public static int validateNumberOf(Scanner scanner, int bigger_than) {
+        int attempts = 0;
+        int maxAttempts = 3;
 
-        do{
-            String number_string=scanner.nextLine();
-            try{
+        while (attempts < maxAttempts) {
+            String number_string = scanner.nextLine();
+            try {
                 int number = Integer.parseInt(number_string);
-                if(number >0){
+                if (number >= bigger_than) {
                     return number;
-                }
-                else{
+                } else {
                     System.out.println("Enter a valid number");
                 }
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Enter a valid number");
             }
-            is_finish=true;
-        }while(is_finish);
+            attempts++;
+        }
+        System.out.println("Exceeded maximum attempts. Exiting.");
         return 0;
     }
-    public static double validateDoubleOf(Scanner scanner){
-        boolean is_finish= false;
 
-        do{
-            String number_string=scanner.nextLine();
-            try{
+    public static double validateDoubleOf(Scanner scanner) {
+        int attempts = 0;
+        int maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            String number_string = scanner.nextLine();
+            try {
                 Double number = Double.parseDouble(number_string);
-                if(number >0){
+                if (number > 0) {
                     return number;
-                }
-                else{
+                } else {
                     System.out.println("Enter a valid number ex 250.50");
                 }
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Enter a valid number");
             }
-            is_finish=true;
-        }while(is_finish);
+            attempts++;
+        }
+        System.out.println("Exceeded maximum attempts. Exiting.");
         return 0;
     }
-    public static String validateEmailOf(Scanner scanner){
-        boolean is_finish= false;
 
-        do{
-            String email=scanner.nextLine();
+    public static String validateEmailOf(Scanner scanner) {
+        int attempts = 0;
+        int maxAttempts = 3;
 
-                if(!Utils.ValidateEmail.isValidEmail(email)){
-                    System.out.println("Enter a valid email@email.com");
-                }
-                else{
-                    return email;
-                }
+        while (attempts < maxAttempts) {
+            String email = scanner.nextLine();
 
-            is_finish=true;
-        }while(is_finish);
-        return "none";
+            if (!Utils.ValidateEmail.isValidEmail(email)) {
+                System.out.println("Enter a valid email@email.com");
+            } else {
+                return email;
+            }
+
+        attempts++;
+        }
+        System.out.println("Exceeded maximum attempts. Exiting.");
+        return "";
     }
 
     public static String validateNameOf(Scanner scanner){
-        boolean is_finish= false;
+        int attempts = 0;
+        int maxAttempts = 3;
 
-        do{
+        while (attempts < maxAttempts) {
             String name=scanner.nextLine();
 
             if(!Utils.validateName(name)){
@@ -104,10 +113,10 @@ public class Utils {
             else{
                 return name;
             }
-
-            is_finish=true;
-        }while(is_finish);
-        return "none";
+            attempts++;
+        }
+        System.out.println("Exceeded maximum attempts. Exiting.");
+        return "";
     }
 
 
