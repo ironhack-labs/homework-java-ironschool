@@ -7,38 +7,71 @@ import static ironhack.com.Utils.*;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        School school = null;
         boolean is_finish = false;
         do {
-
             System.out.println("*******School Management System******");
+            System.out.println("Choose a Command From the List");
+            System.out.println("1-CREATE SCHOOL BY READING CSV");
+            System.out.println("2-CREATE SCHOOL MANUALLY ");
+            System.out.println("3-LAUNCH COMMANDS ");
+            System.out.println("4-EXIT ");
+            String value = scanner.nextLine();
+            switch (value) {
+                case "1":
+                    System.out.println("READING CSV.....");
+                    break;
+                case "2":
+                    school = create_school_by_std_input(scanner);
+                    break;
+                case "3":
+                    if (school != null) {
+                        show_commands_list(scanner, school);
+                    } else {
+                        System.out.println("School has not been initialized. Use command 1 or 2");
+                    }
+                    break;
 
-            System.out.println("Let's create an School");
-            System.out.println("Enter a Name:");
-            String name = validateNameOf(scanner);
+                case "4":
+                    is_finish = true;
+                    System.out.println("SEE YOU SOON!");
+                    break;
 
-            System.out.println("how many teachers should be created?");
-            int teacher_number = validateNumberOf(scanner, 1);
-            System.out.println(teacher_number);
-            List<Teacher> teachers = create_teachers(scanner, teacher_number);
-
-            System.out.println("how many courses should be created?");
-            int courses_number = validateNumberOf(scanner, 1);
-            System.out.println(courses_number);
-            List<Course> courses = create_course(scanner, courses_number);
-
-
-            System.out.println("how many students should be created?");
-            int students_number = validateNumberOf(scanner, 1);
-            System.out.println(students_number);
-            List<Student> students = create_students(scanner, students_number);
-
-            School school = create_school(name, teachers, courses, students);
-            show_commands_list(scanner, school);
-
-            is_finish = true;
+                default:
+                    System.out.println("Invalid input");
+            }
 
         } while (!is_finish);
+
+
+
+
+    }
+
+    public static School create_school_by_std_input(Scanner scanner){
+
+        System.out.println("Let's create an School");
+        System.out.println("Enter a Name:");
+        String name = validateNameOf(scanner);
+
+        System.out.println("how many teachers should be created?");
+        int teacher_number = validateNumberOf(scanner, 1);
+        System.out.println(teacher_number);
+        List<Teacher> teachers = create_teachers(scanner, teacher_number);
+
+        System.out.println("how many courses should be created?");
+        int courses_number = validateNumberOf(scanner, 1);
+        System.out.println(courses_number);
+        List<Course> courses = create_course(scanner, courses_number);
+
+
+        System.out.println("how many students should be created?");
+        int students_number = validateNumberOf(scanner, 1);
+        System.out.println(students_number);
+        List<Student> students = create_students(scanner, students_number);
+
+        return create_school(name, teachers, courses, students);
+
     }
 
     public static List<Teacher> create_teachers(Scanner scanner, int teacher_number) {
@@ -192,6 +225,7 @@ public class App {
                 case "q":
                     is_finish = true;
                     System.out.println("SEE YOU SOON!");
+                    break;
 
                 default:
                     System.out.println("Invalid input");
