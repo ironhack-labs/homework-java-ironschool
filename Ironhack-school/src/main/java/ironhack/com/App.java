@@ -164,18 +164,18 @@ public class App {
                 case "1":
                     System.out.println("1-ENROLL [STUDENT_ID] [COURSE_ID]");
                     System.out.println("Enter a [STUDENT_ID]");
-                    student_id = Integer.toString(validateNumberOf(scanner, 0));
+                    student_id = Long.toString(validateIdOf(scanner));
                     System.out.println("Now Enter a [COURSE_ID]");
-                    course_id = Integer.toString(validateNumberOf(scanner, 0));
+                    course_id = Long.toString(validateIdOf(scanner));
                     school.enroll(student_id, course_id);
 
                     break;
                 case "2":
                     System.out.println("2-ASSIGN [TEACHER_ID] [COURSE_ID]");
                     System.out.println("Enter a [TEACHER_ID]");
-                    teacher_id = Integer.toString(validateNumberOf(scanner, 0));
+                    teacher_id = Long.toString(validateIdOf(scanner));
                     System.out.println("Now Enter a [COURSE_ID]");
-                    course_id = Integer.toString(validateNumberOf(scanner, 0));
+                    course_id = Long.toString(validateIdOf(scanner));
                     school.assignTeacherToCourse(teacher_id, course_id);
                     break;
                 case "3":
@@ -185,7 +185,7 @@ public class App {
                 case "4":
                     System.out.println("4-LOOKUP COURSE [COURSE_ID]");
                     System.out.println("Enter a [COURSE_ID]");
-                    course_id = Integer.toString(validateNumberOf(scanner, 0));
+                    course_id = Long.toString(validateIdOf(scanner));
                     school.lookupCourse(course_id);
                     break;
                 case "5":
@@ -195,7 +195,7 @@ public class App {
                 case "6":
                     System.out.println("6-LOOKUP STUDENT [STUDENT_ID]");
                     System.out.println("Enter a [STUDENT_ID]");
-                    student_id = Integer.toString(validateNumberOf(scanner, 0));
+                    student_id = Long.toString(validateIdOf(scanner));
                     school.lookupStudent(student_id);
                     break;
                 case "7":
@@ -205,7 +205,7 @@ public class App {
                 case "8":
                     System.out.println("8-LOOKUP TEACHER [TEACHER_ID]");
                     System.out.println("Enter a [TEACHER_ID]");
-                    teacher_id = Integer.toString(validateNumberOf(scanner, 0));
+                    teacher_id = Long.toString(validateIdOf(scanner));
                     school.lookupTeacher(teacher_id);
                     break;
                 case "9":
