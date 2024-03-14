@@ -34,11 +34,15 @@ public class Student extends Person {
     }
 
     public void printInfo() {
-        System.out.println("Id: " + getId()
+        System.out.print("Id: " + getId()
                 + ", Name: " + getName()
                 + ", Address: " + getAddress()
                 + ", Email: " + getEmail()
-                + ", Courses: " + (getCourseList() != null ? getCourseList().toString() : "N/A"));
+                + ", Courses: [");
+                for(Course course:getCourseList()){
+                    System.out.print(course.getName()+" ");
+                };
+                System.out.println("]");
     }
 
     public void enrollInCourse(Course course) {
