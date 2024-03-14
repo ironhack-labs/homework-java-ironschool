@@ -54,9 +54,11 @@ public class ReadCsvInfo {
                     return null;
                 }
                 List<Course> courses_list= new ArrayList<>();
-
+                Course posible_course=null;
                 for (String course: parseCourseList(properties[3])){
-                    Course posible_course =findCourseByName(global_course,course);
+                    if(!course.equals("") ){
+                        posible_course = findCourseByName(global_course, course);
+                    }
                     if (posible_course!=null){
                         courses_list.add(posible_course);
                     }
