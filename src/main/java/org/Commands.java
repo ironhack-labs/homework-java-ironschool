@@ -27,51 +27,41 @@ public class Commands {
 
             switch(choiceMenu){
                 case 1:
-                    //TODO ponerle un color
-                    System.out.println("These are all the students that join "+ school.getName()+" school.");
+
+                    System.out.println("These are all the students that join "+ printPurple(school.getName())+" school:");
                     showAllStudents(school.getStudentMap());
-                    System.out.println("");
+
                     System.out.println(printBlue("Enter the id of the student:"));
                     scanner.nextLine();
                     studentId = scanner.nextLine();
-                    System.out.println("");
-                    System.out.println("These are all the courses available:");
+                    System.out.println("\nThese are all the courses available: ");
                     showAllCourses(school.getCourseMap());
-                    System.out.println("");
-                    System.out.println(printBlue("Enter the id of the course:"));
-                    courseId = scanner.nextLine();
-                    System.out.println("Please wait, enrolling student...");
 
-                    // TODO- tratar de poner un elapse time o algo para que espere.
-                    System.out.println("");
-                    System.out.println("");
+                    System.out.println(printBlue("\nEnter the id of the course:"));
+                    courseId = scanner.nextLine();
+                    System.out.println(printBlueBold("Please wait, enrolling student...\n \n"));
+
                     try{
                         enrollStudent(studentId, courseId, school);
-                        // TODO agregar el nombre del estudiante y curso en el print
-                        // TODO enrolar multiples alumnos (extra)
-                        System.out.println(printYellow("Congratulations! Your student has been successfully enrolled to the course."));
-                        System.out.println("");
+                        System.out.println(printYellow("Congratulations! Your student has been successfully enrolled to the course:\n"));
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error: "+e.getMessage());
+                        System.out.println(printRed("Error: "+e.getMessage()));
                     }
 
                     break;
                 case 2:
-                    System.out.println("These are all the teachers that work for "+school.getName()+" school.");
+                    System.out.println("These are all the teachers that work for "+printPurple(school.getName())+" school:");
                     showAllTeachers(school.getTeacherMap());
-                    System.out.println("");
-                    System.out.println(printBlue("Enter the id of the teacher:"));
+
+                    System.out.println(printBlue("\n Enter the id of the teacher:"));
                     scanner.nextLine();
                     teacherId = scanner.nextLine();
-                    System.out.println("");
-                    System.out.println("These are all the courses available");
+
+                    System.out.println("\n These are all the courses available");
                     showAllCourses(school.getCourseMap());
-                    System.out.println("");
-                    System.out.println(printBlue("Enter the id of the course:"));
+                    System.out.println(printBlue("\n Enter the id of the course:"));
                     courseId = scanner.nextLine();
-                    System.out.println("Please wait, assigning teacher to the course.");
-                    System.out.println("");
-                    System.out.println("");
+                    System.out.println(printBlueBold("Please wait, assigning teacher to the course... \n \n"));
                     try{
                         assignTeacher(teacherId, courseId, school);
                         System.out.println(printYellow("Congratulations! Your teacher has been successfully assigned to the course."));
@@ -83,12 +73,11 @@ public class Commands {
                     break;
                 case 3:
                     try{
-                        System.out.println("These are all the courses available:");
+                        System.out.println("\n These are all the courses available:");
                         showAllCourses(school.getCourseMap());
-                        System.out.println("");
-                        System.out.println("");
+
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error: "+e.getMessage());
+                        System.out.println(printRed("Error: "+e.getMessage()));
                     }
                     break;
                 case 4:
@@ -146,7 +135,7 @@ public class Commands {
                     break;
                 case 9:
                     double profit = showProfit(school);
-                    System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit)));
+                    System.out.println(printYellow("The profit of the school is ") + printPurple(String.valueOf(profit))+"\n");
                     break;
                 case 10:
                     addNewCourse(school);
@@ -211,15 +200,15 @@ public class Commands {
                                 : null;
                         unenrollStudent(studentId, courseId, school);
                         System.out.println(printYellow("Congratulations! "
-                                + printStudent
+                                + printPurple(printStudent)
                                 + " has been successfully unrolled from "
-                                + getCourseById(school.getCourseMap(), courseId).getName()  + "."));
+                                + printPurple(getCourseById(school.getCourseMap(), courseId).getName()  + ".")));
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error: "+e.getMessage());
+                        System.out.println(printRed("Error: "+e.getMessage()));
                     }
                     break;
                 case 15:
-                    System.out.println("These are all the students that join "+school.getName()+" school.");
+                    System.out.println("These are all the students that join "+printPurple(school.getName())+" school.");
                     showAllStudents(school.getStudentMap());
                     System.out.println("");
 
@@ -228,18 +217,18 @@ public class Commands {
 
                     while (true) {
                         try {
-                            System.out.println("How many students do you want to add?");
+                            System.out.println(printBlue("How many students do you want to add?"));
                             numberStudents = scanner.nextInt();
 
                             if (numberStudents > 0 && numberStudents <= maxStudents) {
                                 scanner.nextLine();
                                 break;
                             } else {
-                                throw new IllegalArgumentException("Error: Number of students to add must be greater than 0 and less or equal to " + maxStudents);
+                                throw new IllegalArgumentException(printRed("Error: Number of students to add must be greater than 0 and less or equal to " + maxStudents));
                             }
                         } catch (InputMismatchException e) {
                             scanner.nextLine();
-                            System.err.println("Oops! You need to enter a valid number.");
+                            System.err.println(printRed("Oops! You need to enter a valid number."));
                         } catch (IllegalArgumentException e) {
                             scanner.nextLine();
                             System.err.println(e.getMessage());
@@ -248,7 +237,7 @@ public class Commands {
 
                     List<String> studentList = new ArrayList<>();
                     for (int i = 0; i < numberStudents; i++) {
-                        System.out.println("Enter the id of the student:");
+                        System.out.println(printBlue("Enter the id of the student:"));
                         studentId = scanner.nextLine();
                         studentList.add(studentId);
                     }
@@ -258,14 +247,12 @@ public class Commands {
                     System.out.println("");
                     System.out.println(printBlue("Enter the id of the course:"));
                     courseId = scanner.nextLine();
-                    System.out.println("Please wait, enrolling students...");
-                    // TODO- tratar de poner un elapse time o algo para que espere.
+                    System.out.println(printBlueBold("Please wait, enrolling students..."));
                     System.out.println("");
                     System.out.println("");
                     try{
                         enrollStudents(studentList, courseId, school);
-                        // TODO agregar el nombre del estudiante y curso en el print
-                        // TODO enrolar multiples alumnos (extra)
+
                         System.out.println(printYellow("Congratulations! Your students have been successfully enrolled to "
                                 + CommandUtils.getCourseById(school.getCourseMap(), courseId).getName()  + "."));
 

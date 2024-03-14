@@ -21,8 +21,8 @@ public class SchoolCreator {
     public static void initialMenu(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Hi!");
-        System.out.println("Welcome to the School Manager Tool.");
+        System.out.println("Hi! \n");
+        System.out.println(("Welcome to the School Manager Tool. \n"));
 
         System.out.println(printBlue("Please, text the name for your school:"));
         schoolName = scanner.nextLine();

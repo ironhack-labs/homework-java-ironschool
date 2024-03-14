@@ -17,4 +17,9 @@ public class PrintUtils {
     static String printRed(String text) {
         return ConsoleColors.RED + text + ConsoleColors.RESET;
     }
+
+    static String printCyan(String text) { return ConsoleColors.CYAN + text + ConsoleColors.RESET; }
+
+    static String printBlueBold(String text) { return ConsoleColors.BLUE_BOLD + text + ConsoleColors.RESET; }
+
 }

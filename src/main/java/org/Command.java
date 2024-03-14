@@ -5,26 +5,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.PrintUtils.printBlue;
+
 public class Command {
 
     public static void displayCommands(){
-        System.out.println("1. Enroll a new student");
-        System.out.println("2. Assign teacher to a course");
-        System.out.println("3. See all courses");
-        System.out.println("4. Search for a specific course");
-        System.out.println("5. See all students");
-        System.out.println("6. Search for a specific student");
-        System.out.println("7. See all teachers");
-        System.out.println("8. Search for a specific teacher");
-        System.out.println("9. Show profit");
+        System.out.println(printBlue("Please, select a command from the menu:\n"));
+        System.out.println("1.  Enroll a new student");
+        System.out.println("2.  Assign teacher to a course");
+        System.out.println("3.  See all courses");
+        System.out.println("4.  Search for a specific course");
+        System.out.println("5.  See all students");
+        System.out.println("6.  Search for a specific student");
+        System.out.println("7.  See all teachers");
+        System.out.println("8.  Search for a specific teacher");
+        System.out.println("9.  Show profit");
         System.out.println("10. Add new course");
         System.out.println("11. Add new student");
         System.out.println("12. Add new teacher");
         System.out.println("13. Remove teacher from course");
-        System.out.println("14. Uneroll student from course");
+        System.out.println("14. Unroll student from course");
         System.out.println("15. Enroll a list of students to course");
-        System.out.println("16. Exit program");
-        System.out.print("Enter your choice: ");
+        System.out.println("16. Exit program \n");
+        System.out.print(printBlue("Enter your choice: "));
     }
 
     public static void enrollStudent(String studentId, String courseId, School school) {
