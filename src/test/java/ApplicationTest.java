@@ -69,6 +69,97 @@ class ApplicationTest {
 
     }
 
+    @Test
+    public void testValidateInputWithValidInput() {
+        input = new ByteArrayInputStream("Ironhack\n".getBytes());
+        System.setIn(input);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        application = new Application();
+
+        String result = application.validateInput("Name", "Name cannot be empty", "Name cannot contain numbers");
+
+        assertEquals("Ironhack", result);
+    }
+
+    @Test
+    public void testTeacherDetail() {
+        input = new ByteArrayInputStream("1\nJohn\n3000\n".getBytes());
+        System.setIn(input);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        application = new Application();
+
+        Map<String, Teacher> result = application.teacherDetails();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+
+        Teacher teacher = result.values().iterator().next();
+        assertEquals("John", teacher.getName());
+        assertEquals(3000.0, teacher.getSalary());
+
+        assertTrue(outputStream.toString().contains("John"));
+        assertTrue(outputStream.toString().contains("3000.0"));
+    }
+
+
+
+    @Test
+    public void testStudentDetail() {
+        input = new ByteArrayInputStream("1\nJohn\nCasa\ndsdad@fds.com".getBytes());
+        System.setIn(input);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        application = new Application();
+
+        Map<String, Student> result = application.studentDetails();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+
+        Student student = result.values().iterator().next();
+        assertEquals("John", student.getName());
+        assertEquals("Casa", student.getAddress());
+        assertEquals("dsdad@fds.com", student.getEmail());
+
+        assertTrue(outputStream.toString().contains("John"));
+        assertTrue(outputStream.toString().contains("Casa"));
+        assertTrue(outputStream.toString().contains("dsdad@fds.com"));
+    }
+
+    @Test
+    public void testCourseDetail() {
+        input = new ByteArrayInputStream("1\nEnglish\n3000\n".getBytes());
+        System.setIn(input);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        application = new Application();
+
+        Map<String, Course> result = application.courseDetails();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+
+        Course student = result.values().iterator().next();
+        assertEquals("English", student.getName());
+        assertEquals(3000.0, student.getPrice());
+
+
+        assertTrue(outputStream.toString().contains("English"));
+        assertTrue(outputStream.toString().contains("3000.0"));
+    }
+
+
+
 
     @AfterEach
     public void restoreSystemInputOutput() {
