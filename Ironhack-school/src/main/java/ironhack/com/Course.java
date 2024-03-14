@@ -2,6 +2,8 @@ package ironhack.com;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class Course {
@@ -40,5 +42,14 @@ public class Course {
                 + ", Price: " + getPrice()
                 + ", Money Earned: " + getMoney_earned()
                 + ", Teacher: " +(getTeacher() != null ? getTeacher().getName() : "N/A"));
+    }
+
+    public static Course findCourseByName(List<Course> courses, String courseName) {
+        for (Course course : courses) {
+            if (course.getName().equalsIgnoreCase(courseName)) {
+                return course;
+            }
+        }
+        return null;
     }
 }

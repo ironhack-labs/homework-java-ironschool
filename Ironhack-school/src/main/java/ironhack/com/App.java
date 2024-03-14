@@ -2,6 +2,7 @@ package ironhack.com;
 
 import java.util.*;
 
+import static ironhack.com.ReadCsvInfo.school_creation_csv;
 import static ironhack.com.Utils.*;
 
 public class App {
@@ -20,6 +21,7 @@ public class App {
             switch (value) {
                 case "1":
                     System.out.println("READING CSV.....");
+                    school = school_creation_csv();
                     break;
                 case "2":
                     school = create_school_by_std_input(scanner);
