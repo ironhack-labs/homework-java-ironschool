@@ -1,0 +1,20 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Default ignored files\n/shelf/\n/workspace.xml\n/misc.xml\n/vcs.xml\n/homework-java-ironschool.iml\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision 878ef3ff79760b86937e8a4f8753d19bad0f7e45)
++++ b/.idea/.gitignore	(date 1710192118606)
+@@ -1,6 +1,9 @@
+ # Default ignored files
+ /shelf/
+ /workspace.xml
++/jarRepositories.xml
++/compiler.xml
++/encodings.xml
+ /misc.xml
+ /vcs.xml
+ /homework-java-ironschool.iml
