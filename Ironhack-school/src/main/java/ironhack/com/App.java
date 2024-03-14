@@ -153,22 +153,42 @@ public class App {
             System.out.println("7-SHOW TEACHERS");
             System.out.println("8-LOOKUP TEACHER [TEACHER_ID]");
             System.out.println("9-SHOW PROFIT");
-            System.out.println("q-Exit");
+            System.out.println("10-Go back");
             System.out.println("h-help");
             String value = scanner.nextLine();
             String result;
-            String student_id;
+            String student_id ;
             String teacher_id;
             String course_id;
             switch (value) {
                 case "1":
                     System.out.println("1-ENROLL [STUDENT_ID] [COURSE_ID]");
+                    Student student = null;
                     System.out.println("Enter a [STUDENT_ID]");
-                    student_id = Long.toString(validateIdOf(scanner));
-                    System.out.println("Now Enter a [COURSE_ID]");
-                    course_id = Long.toString(validateIdOf(scanner));
-                    school.enroll(student_id, course_id);
+                    while (student == null) {
+                        student_id = Long.toString(validateIdOf(scanner));
+                        student = school.findStudentById(student_id);
+                        if (student == null) {
+                            System.out.println("Student with ID " + student_id + " not found. Please try again.");
+                        } else {
+                            System.out.println("Student found:");
+                            student.printInfo();
+                        }
+                    }
 
+                    // Similar logic applies to course
+                    System.out.println("Now Enter a [COURSE_ID]");
+                    Course course = null;
+                    while (course == null) {
+                        course_id = Long.toString(validateIdOf(scanner));
+                        course = school.lookupCourse(course_id);
+                        if (course == null) {
+                            System.out.println("Course with ID " + course_id + " not found. Please try again.");
+                        } else {
+                            System.out.println("Course found:");
+                            course.printInfo();
+                        }
+                    }
                     break;
                 case "2":
                     System.out.println("2-ASSIGN [TEACHER_ID] [COURSE_ID]");
@@ -224,9 +244,8 @@ public class App {
                     System.out.println("LOOKUP TEACHER [TEACHER_ID]: This command will display the full details of the specified teacher");
                     System.out.println("SHOW PROFIT: This command will calculate (The total money earned from all courses) - (The sum of all the teachers' salaries) and return the result");
                     break;
-                case "q":
+                case "10":
                     is_finish = true;
-                    System.out.println("SEE YOU SOON!");
                     break;
 
                 default:

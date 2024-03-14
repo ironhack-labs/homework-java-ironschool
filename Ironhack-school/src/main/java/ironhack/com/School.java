@@ -88,13 +88,14 @@ public class School {
         }
     }
 
-    public void lookupCourse(String courseId) {
+    public Course lookupCourse(String courseId) {
         Course course = course_map.get(courseId);
         if (course != null) {
             course.printInfo();
         } else {
             System.out.println("Course with ID " + courseId + " not found.");
         }
+        return course;
     }
 
     public void showTeachers() {
@@ -136,20 +137,19 @@ public class School {
         return profit;
     }
 
-    public void enroll(String studentId, String courseId) {
-        Student student = findStudentById(studentId);
-        Course course = findCourseById(courseId);
+    public void enroll(Student student, Course course) {
 
         if (student == null) {
-            System.out.println("Student not found.");
+           // System.out.println("Student not found.");
+            return;
         }
 
         if (course == null) {
-            System.out.println("Course not found.");
+           // System.out.println("Course not found.");
+            return;
         }
 
         student.enrollInCourse(course);
-      
         course.setMoney_earned(course.getMoney_earned() + course.getPrice());
     }
 
