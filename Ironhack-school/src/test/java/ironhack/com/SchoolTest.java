@@ -37,8 +37,8 @@ public class SchoolTest {
         school.getStudent_map().put(student1.getId(), student1);
         school.getStudent_map().put(student2.getId(), student2);
 
-        school.enroll(student1.getId(), course1.getId());
-        school.enroll(student2.getId(), course2.getId());
+        school.enroll(student1, course1);
+        school.enroll(student2, course2);
     }
 
 
@@ -65,7 +65,7 @@ public void testCalculateProfit() {
 
     @Test
     public void testEnroll() {
-        school.enroll(student1.getId(), course1.getId());
+        school.enroll(student1, course1);
         Course courseEnrolled = school.getStudent_map().get(student1.getId()).getCourseList().get(0);
         assertEquals("Course1", courseEnrolled.getName());
     }
