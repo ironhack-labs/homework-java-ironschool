@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 
 /**
@@ -100,10 +102,16 @@ public class AppTest
 
     @Test
     public void testCreateStudentWithNotValidEmail() {
-        Student studentNotValidEmail = new Student("Paula","Calle Calabria 25","paulasg461@gmail");
-        Student studentNotValidEmail2 = new Student("Paula","Calle Calabria 25","paulasg461.com");
-        Student studentNotValidEmail3 = new Student("Paula","Calle Calabria 25","dhjskjfsfsjfksefjicnweirmwrdlkjsijfkcjxospfojisjeifjasdkfpoasfoksofasflasf@gmail.com");
-        // pending
+
+        String name = "Paula";
+        String address = "Calle Calabria 25";
+        assertThrows(IllegalArgumentException.class, () -> new Student(name, address, "paulasg461@gmail"),
+                "Expected IllegalArgumentException to be thrown");
+        assertThrows(IllegalArgumentException.class, () -> new Student(name, address, "paulasg461.com"),
+                "Expected IllegalArgumentException to be thrown");
+
+        assertThrows(IllegalArgumentException.class, () -> new Student(name, address, "dhjskjfsfsjfksefjicnweirmw"),
+                "Expected IllegalArgumentException to be thrown");
     }
 
     @Test

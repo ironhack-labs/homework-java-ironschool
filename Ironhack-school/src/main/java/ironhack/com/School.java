@@ -115,7 +115,10 @@ public class School {
             System.out.println("Teacher with ID " + teacherId + " not found.");
         }
     }
-
+    public void showProfit(){
+        System.out.println("Current Total Profit:");
+        System.out.println(String.valueOf(calculateProfit())+"€");
+    }
     public double calculateProfit() {
         double profit = 0;
         for (Course course : course_map.values()) {

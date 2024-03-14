@@ -175,6 +175,7 @@ public class App {
                     break;
                 case "9":
                     System.out.println("9-SHOW PROFIT");
+                    school.showProfit();
 
                     break;
                 case "h":
