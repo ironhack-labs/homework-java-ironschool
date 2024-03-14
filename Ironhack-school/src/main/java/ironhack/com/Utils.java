@@ -24,7 +24,7 @@ public class Utils {
     public static class ValidateEmail {
 
         private static final Pattern EMAIL_PATTERN =
-                Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+                Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$");
 
         public static boolean isValidEmail(String email) {
             if (email == null) {
