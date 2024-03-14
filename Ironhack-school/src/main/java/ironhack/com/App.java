@@ -157,18 +157,38 @@ public class App {
             System.out.println("h-help");
             String value = scanner.nextLine();
             String result;
-            String student_id;
+            String student_id ;
             String teacher_id;
             String course_id;
             switch (value) {
                 case "1":
                     System.out.println("1-ENROLL [STUDENT_ID] [COURSE_ID]");
+                    Student student = null;
                     System.out.println("Enter a [STUDENT_ID]");
-                    student_id = Long.toString(validateIdOf(scanner));
-                    System.out.println("Now Enter a [COURSE_ID]");
-                    course_id = Long.toString(validateIdOf(scanner));
-                    school.enroll(student_id, course_id);
+                    while (student == null) {
+                        student_id = Long.toString(validateIdOf(scanner));
+                        student = school.findStudentById(student_id);
+                        if (student == null) {
+                            System.out.println("Student with ID " + student_id + " not found. Please try again.");
+                        } else {
+                            System.out.println("Student found:");
+                            student.printInfo();
+                        }
+                    }
 
+                    // Similar logic applies to course
+                    System.out.println("Now Enter a [COURSE_ID]");
+                    Course course = null;
+                    while (course == null) {
+                        course_id = Long.toString(validateIdOf(scanner));
+                        course = school.lookupCourse(course_id);
+                        if (course == null) {
+                            System.out.println("Course with ID " + course_id + " not found. Please try again.");
+                        } else {
+                            System.out.println("Course found:");
+                            course.printInfo();
+                        }
+                    }
                     break;
                 case "2":
                     System.out.println("2-ASSIGN [TEACHER_ID] [COURSE_ID]");
