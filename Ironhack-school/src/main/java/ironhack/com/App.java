@@ -153,7 +153,7 @@ public class App {
             System.out.println("7-SHOW TEACHERS");
             System.out.println("8-LOOKUP TEACHER [TEACHER_ID]");
             System.out.println("9-SHOW PROFIT");
-            System.out.println("q-Exit");
+            System.out.println("10-Go back");
             System.out.println("h-help");
             String value = scanner.nextLine();
             String result;
@@ -244,9 +244,8 @@ public class App {
                     System.out.println("LOOKUP TEACHER [TEACHER_ID]: This command will display the full details of the specified teacher");
                     System.out.println("SHOW PROFIT: This command will calculate (The total money earned from all courses) - (The sum of all the teachers' salaries) and return the result");
                     break;
-                case "q":
+                case "10":
                     is_finish = true;
-                    System.out.println("SEE YOU SOON!");
                     break;
 
                 default:
