@@ -192,10 +192,22 @@ public class App {
                     break;
                 case "2":
                     System.out.println("2-ASSIGN [TEACHER_ID] [COURSE_ID]");
+
                     System.out.println("Enter a [TEACHER_ID]");
                     teacher_id = Long.toString(validateIdOf(scanner));
+                    Teacher teacher = school.findTeacherById(teacher_id);
+                    if(teacher ==null) {
+                        System.out.println("Teacher not Found");
+                        break;
+                    }
                     System.out.println("Now Enter a [COURSE_ID]");
                     course_id = Long.toString(validateIdOf(scanner));
+                    Course course_retrieve = school.findCourseById(course_id);
+
+                    if(course_retrieve==null) {
+                        System.out.println("Course not Found");
+                        break;
+                    }
                     school.assignTeacherToCourse(teacher_id, course_id);
                     break;
                 case "3":
