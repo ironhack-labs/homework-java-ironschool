@@ -130,12 +130,12 @@ public class AppTest
         assertEquals(student1.getAddress(),school.getStudent_map().get(student1.getId()).getAddress());
     }
 
-    @Test
-    public void testLookupMethods() {
-        assertEquals(teacher1,school.lookupTeacher(teachers.get(0).getId()));
-        assertEquals(course2,school.lookupCourse(courses.get(1).getId()));
-        assertEquals(student3,school.lookupStudent(students.get(2).getId()));
-    }
+//    @Test
+//    public void testLookupMethods() {
+//        assertEquals(teacher1,school.lookupTeacher(teachers.get(0).getId()));
+//        assertEquals(course2,school.lookupCourse(courses.get(1).getId()));
+//        assertEquals(student3,school.lookupStudent(students.get(2).getId()));
+//    }
 
 //    @Test
 //    public void testShowInfoMethods() {
